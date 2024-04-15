@@ -20,6 +20,25 @@ public class QuanLy extends NguoiDung {
         this.MaQuanLy = MaQuanLy;
     }
     
+     @Override
+    public void NhapThongTin() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void LayThongTin() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void DangNhap() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void DangXuat() {
+        throw new UnsupportedOperationException();
+    }
     
     //methods
 }
