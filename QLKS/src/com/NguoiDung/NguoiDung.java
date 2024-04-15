@@ -2,7 +2,7 @@
 package com.NguoiDung;
 
 
-public class NguoiDung {
+public asbtract class NguoiDung {
     private String MaNguoiDung;
     private String TenDangNhap;
     private String MatKhau;
