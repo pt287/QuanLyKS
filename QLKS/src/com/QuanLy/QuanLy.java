@@ -1,8 +1,10 @@
 package com.QuanLy;
 
 import com.NguoiDung.NguoiDung;
+import java.util.Scanner;
 
 public class QuanLy extends NguoiDung {
+    Scanner sc = new Scanner(System.in);
     private String MaQuanLy;
 
     public QuanLy(String MaQuanLy, String MaNguoiDung, String TenDangNhap, String MatKhau, String SDT, int TrangThai) {
@@ -20,7 +22,8 @@ public class QuanLy extends NguoiDung {
         this.MaQuanLy = MaQuanLy;
     }
     
-     @Override
+    
+    @Override
     public void NhapThongTin() {
         throw new UnsupportedOperationException();
     }
@@ -39,6 +42,9 @@ public class QuanLy extends NguoiDung {
     public void DangXuat() {
         throw new UnsupportedOperationException();
     }
-    
-    //methods
+
+    /*@Override
+    public void SuaThongTin() {
+        throw new UnsupportedOperationException();
+    }*/
 }

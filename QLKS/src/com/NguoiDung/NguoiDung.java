@@ -1,20 +1,18 @@
-
 package com.NguoiDung;
 
-
-public asbtract class NguoiDung {
+public abstract class NguoiDung {
     private String MaNguoiDung;
-    private String TenDangNhap;
+    private String TaiKhoan;
     private String MatKhau;
     private String SDT;
     private int TrangThai;
 
-    public NguoiDung(String MaNguoiDung, String TenDangNhap, String MatKhau, String SDT, int TrangThai) {
+    public NguoiDung(String MaNguoiDung, String TaiKhoan, String MatKhau, String SDT, int TrangThai) {
         this.MaNguoiDung = MaNguoiDung;
-        this.TenDangNhap = TenDangNhap;
+        this.TaiKhoan = TaiKhoan;
         this.MatKhau = MatKhau;
         this.SDT = SDT;
-        this.TrangThai = TrangThai;
+        this.TrangThai = 1;
     }
     
     public NguoiDung(){}
@@ -27,12 +25,12 @@ public asbtract class NguoiDung {
         this.MaNguoiDung = MaNguoiDung;
     }
 
-    public String getTenDangNhap() {
-        return TenDangNhap;
+    public String getTaiKhoan() {
+        return TaiKhoan;
     }
 
-    public void setTenDangNhap(String TenDangNhap) {
-        this.TenDangNhap = TenDangNhap;
+    public void setTaiKhoan(String TaiKhoan) {
+        this.TaiKhoan = TaiKhoan;
     }
 
     public String getMatKhau() {
@@ -60,4 +58,13 @@ public asbtract class NguoiDung {
     }
     
     //methods
+    public abstract void DangNhap();
+    
+    public abstract void DangXuat();
+    
+    public abstract void NhapThongTin();
+    
+    public abstract void LayThongTin();
+    
+    //public abstract void SuaThongTin();
 }

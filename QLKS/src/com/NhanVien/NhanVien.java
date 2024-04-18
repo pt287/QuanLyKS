@@ -2,7 +2,10 @@ package com.NhanVien;
 
 import com.NguoiDung.NguoiDung;
 import com.QuanLy.QuanLy;
+import java.util.Scanner;
+
 public class NhanVien extends NguoiDung{
+    Scanner sc = new Scanner(System.in);
     private String MaNhanVien;
 
     public NhanVien(String MaNhanVien, String MaNguoiDung, String TenDangNhap, String MatKhau, String SDT, int TrangThai) {
@@ -19,17 +22,22 @@ public class NhanVien extends NguoiDung{
     public void setMaNhanVien(String MaNhanVien) {
         this.MaNhanVien = MaNhanVien;
     }
-
+    
     @Override
     public void NhapThongTin() {
-        throw new UnsupportedOperationException();
+        System.out.println("Nhap Thong Tin Nhan Vien:");;
     }
 
     @Override
     public void LayThongTin() {
-        throw new UnsupportedOperationException();
+        System.out.println("Lay Thong Tin Nhan Vien");;
     }
 
+    /*@Override
+    public void SuaThongTin() {
+        System.out.println("");;
+    }*/
+    
     @Override
     public void DangNhap() {
         throw new UnsupportedOperationException();
@@ -39,6 +47,7 @@ public class NhanVien extends NguoiDung{
     public void DangXuat() {
         throw new UnsupportedOperationException();
     }
+
     
-    //mothods
+    
 }
