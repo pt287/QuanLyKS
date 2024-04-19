@@ -4,19 +4,20 @@
  */
 package BUS;
 
+import DTO.NguoiDung.NguoiDungDTO;
+import java.util.ArrayList;
+
 /**
  *
  * @author capij
  */
-public abstract class NguoiDungBUS {
-        //methods
-    public abstract void DangNhap();
+public class NguoiDungBUS {
+    static ArrayList<NguoiDungDTO> dsnd;
+    NguoiDungBUS(){}
     
-    public abstract void DangXuat();
-    
-    public abstract void NhapThongTin();
-    
-    public abstract void LayThongTin();
+    void DangNhap(String tk,String mk){
+        
+    }
     
     //public abstract void SuaThongTin();
 }
