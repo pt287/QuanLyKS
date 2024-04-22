@@ -4,10 +4,9 @@
  */
 package GUI;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import DAO.NguoiDungDAO;
 
 public class DangNhap extends javax.swing.JFrame {
 
@@ -16,14 +15,6 @@ public class DangNhap extends javax.swing.JFrame {
      */
     public DangNhap() {
         initComponents();
-        
-        DangNhapUI.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DangNhapUI.setText("Đăng Nhập Thành Công");
-            }
-        });
-        
         
     }
 
@@ -99,6 +90,7 @@ public class DangNhap extends javax.swing.JFrame {
 
     private void DangNhapUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DangNhapUIActionPerformed
         // TODO add your handling code here:
+        NguoiDungDAO nd=new NguoiDungDAO();
         String TaiKhoan=TaiKhoanUI.getText();
         String MatKhau=new String(MatKhauUI.getPassword());
         
@@ -114,6 +106,9 @@ public class DangNhap extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,tb.toString(),"Lỗi",
                     JOptionPane.ERROR_MESSAGE);
             return;
+        }if(nd.dangnhap(TaiKhoan, MatKhau)!=null){
+            dispose();
+            Menu.main(null);;
         }
         
         
