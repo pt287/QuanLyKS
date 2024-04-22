@@ -3,13 +3,15 @@ package DTO;
 
 public class HoaDonDTO {
     private String MaHoaDon;
+    private String MaNhanVien;
     private String NgayNhan;
     private String NgayTra;
     private String TongTien;
     private ChiTietHoaDonDTO[] dscthd;
 
-    public HoaDonDTO(String MaHoaDon, String NgayNhan, String NgayTra, String TongTien, ChiTietHoaDonDTO[] dscthd) {
+    public HoaDonDTO(String MaHoaDon,String MaNhanVien, String NgayNhan, String NgayTra, String TongTien, ChiTietHoaDonDTO[] dscthd) {
         this.MaHoaDon = MaHoaDon;
+        this.MaNhanVien = MaNhanVien;
         this.NgayNhan = NgayNhan;
         this.NgayTra = NgayTra;
         this.TongTien = TongTien;
@@ -56,5 +58,13 @@ public class HoaDonDTO {
 
     public void setTongTien(String TongTien) {
         this.TongTien = TongTien;
+    }
+
+    public String getMaNhanVien() {
+        return MaNhanVien;
+    }
+
+    public void setMaNhanVien(String maNhanVien) {
+        MaNhanVien = maNhanVien;
     }    
 }
