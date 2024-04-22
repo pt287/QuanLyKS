@@ -39,7 +39,7 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 16, 31));
 
-        Logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Phat\\OneDrive\\Pictures\\menu\\1.jpg")); // NOI18N
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/1.jpg"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 204));
