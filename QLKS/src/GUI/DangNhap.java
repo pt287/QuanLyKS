@@ -109,7 +109,10 @@ public class DangNhap extends javax.swing.JFrame {
         }if(nd.dangnhap(TaiKhoan, MatKhau)!=null){
             dispose();
             Menu.main(null);;
+        }else{
+            JOptionPane.showMessageDialog(this, "Tài khoản/mật khẩu sai!!!","Lỗi",JOptionPane.ERROR_MESSAGE);
         }
+        
         
         
         
