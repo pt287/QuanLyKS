@@ -16,6 +16,7 @@ CREATE TABLE Phong (
 	RoomSTT CHAR(1) NOT NULL CHECK(RoomSTT IN('C','R','F')),
     RoomNote VARCHAR(50),
     RoomPrice INT NOT NULL,
+    RoomDRID CHAR(3),
 	PRIMARY KEY(RoomID)
 );
 
