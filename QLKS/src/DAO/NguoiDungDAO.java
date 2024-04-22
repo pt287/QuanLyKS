@@ -37,7 +37,7 @@ public class NguoiDungDAO {
             st=con.createStatement();
             rs=st.executeQuery(qry);
             while(rs.next()){
-                if(rs.getString(1).substring(0,2)=="QL"){
+                if(rs.getString(1).substring(0,2).equals("QL")){
                     NguoiDungDTO ql=new QuanLyDTO();
                     ql.setMaNguoiDung(rs.getString(1));
                     ql.setTaiKhoan(rs.getString(2));
@@ -63,9 +63,9 @@ public class NguoiDungDAO {
     public String dangnhap(String tk, String mk){
         try{
             st=con.createStatement();
-            rs=st.executeQuery("SELECT UserName, UserPass FROM NguoiDung");
+            rs=st.executeQuery("SELECT UserID,UserName,UserPass FROM NguoiDung");
             while(rs.next()){
-                if(tk==rs.getString(2)&&mk==rs.getString(3)){
+                if(tk.equals(rs.getString(2))&&mk.equals(rs.getString(3))){
                     return rs.getString(1);
                 }
             }
