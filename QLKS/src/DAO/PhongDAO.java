@@ -24,7 +24,7 @@ public class PhongDAO {
             qry=qry+"'"+p.getTinhTrang()+"',";
             qry=qry+"'"+p.getGhiChu()+"',";
             qry=qry+p.getDonGia()+",";
-            if(p.getLoaiPhong()=="VIP"||p.getLoaiPhong()=="PSD"){
+            if(p.getLoaiPhong().equals("VIP")||p.getLoaiPhong().equals("PSD")){
                 PhongVipDTO pv= (PhongVipDTO) p;
                 qry=qry+"'"+pv.getMaPhongAn()+"')";
             } else {
