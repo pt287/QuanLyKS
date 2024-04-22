@@ -5,7 +5,6 @@ CREATE TABLE NguoiDung (
     UserName VARCHAR(100) NOT NULL,
     UserPass VARCHAR(32) NOT NULL,
     UserPhoneNum CHAR(10) NOT NULL,
-	UserAdrs VARCHAR(100),
     UserSTT BOOL NOT NULL,
     PRIMARY KEY(UserID)
 );
