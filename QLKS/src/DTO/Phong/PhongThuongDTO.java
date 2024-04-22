@@ -4,7 +4,7 @@ public class PhongThuongDTO extends PhongDTO{
     private DichVuDTO DichVu;
 
     public PhongThuongDTO(String MaPhong, String SoPhong, String LoaiPhong, String TinhTrang, String GhiChu,
-            String DonGia) {
+            int DonGia) {
         super(MaPhong, SoPhong, LoaiPhong, TinhTrang, GhiChu, DonGia);
     }
 

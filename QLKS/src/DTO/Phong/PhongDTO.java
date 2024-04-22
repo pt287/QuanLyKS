@@ -3,15 +3,15 @@ package DTO.Phong;
 public class PhongDTO {
     private String MaPhong;
     private String SoPhong;
-    private String MaLoaiPhong;
+    private String LoaiPhong;
     private String TinhTrang;
     private String GhiChu;
-    private String DonGia;
+    private int DonGia;
 
-    public PhongDTO(String MaPhong, String SoPhong, String MaLoaiPhong, String TinhTrang, String GhiChu, String DonGia) {
+    public PhongDTO(String MaPhong, String SoPhong, String LoaiPhong, String TinhTrang, String GhiChu, int DonGia) {
         this.MaPhong = MaPhong;
         this.SoPhong = SoPhong;
-        this.MaLoaiPhong = MaLoaiPhong;
+        this.LoaiPhong = LoaiPhong;
         this.TinhTrang = TinhTrang;
         this.GhiChu = GhiChu;
         this.DonGia = DonGia;
@@ -35,12 +35,12 @@ public class PhongDTO {
         this.SoPhong = SoPhong;
     }
 
-    public String getMaLoaiPhong() {
-        return MaLoaiPhong;
+    public String getLoaiPhong() {
+        return LoaiPhong;
     }
 
-    public void setMaLoaiPhong(String MaLoaiPhong) {
-        this.MaLoaiPhong = MaLoaiPhong;
+    public void setLoaiPhong(String LoaiPhong) {
+        this.LoaiPhong = LoaiPhong;
     }
 
     public String getTinhTrang() {
@@ -59,11 +59,11 @@ public class PhongDTO {
         this.GhiChu = GhiChu;
     }
 
-    public String getDonGia() {
+    public int getDonGia() {
         return DonGia;
     }
 
-    public void setDonGia(String DonGia) {
+    public void setDonGia(int DonGia) {
         this.DonGia = DonGia;
     }
     

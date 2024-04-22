@@ -5,7 +5,7 @@ public class PhongVipDTO extends PhongDTO{
     private String MaPhongAn;
 
     public PhongVipDTO(String MaPhong, String SoPhong, String MaLoaiPhong, String TinhTrang, String GhiChu,
-            String DonGia) {
+            int DonGia) {
         super(MaPhong, SoPhong, MaLoaiPhong, TinhTrang, GhiChu, DonGia);
     }
 
