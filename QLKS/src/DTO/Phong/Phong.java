@@ -6,9 +6,9 @@ public class Phong {
     private String MaLoaiPhong;
     private String TinhTrang;
     private String GhiChu;
-    private String DonGia;
+    private int DonGia;
 
-    public Phong(String MaPhong, String SoPhong, String MaLoaiPhong, String TinhTrang, String GhiChu, String DonGia) {
+    public Phong(String MaPhong, String SoPhong, String MaLoaiPhong, String TinhTrang, String GhiChu, int DonGia) {
         this.MaPhong = MaPhong;
         this.SoPhong = SoPhong;
         this.MaLoaiPhong = MaLoaiPhong;
@@ -59,11 +59,11 @@ public class Phong {
         this.GhiChu = GhiChu;
     }
 
-    public String getDonGia() {
+    public int getDonGia() {
         return DonGia;
     }
 
-    public void setDonGia(String DonGia) {
+    public void setDonGia(int DonGia) {
         this.DonGia = DonGia;
     }
     
