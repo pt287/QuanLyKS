@@ -4,14 +4,16 @@ package DTO;
 public class HoaDonDTO {
     private String MaHoaDon;
     private String MaNhanVien;
+    private String MaKhachHang;
     private String NgayNhan;
     private String NgayTra;
     private String TongTien;
     private ChiTietHoaDonDTO[] dscthd;
 
-    public HoaDonDTO(String MaHoaDon,String MaNhanVien, String NgayNhan, String NgayTra, String TongTien, ChiTietHoaDonDTO[] dscthd) {
+    public HoaDonDTO(String MaHoaDon,String MaNhanVien,String MaKhachHang, String NgayNhan, String NgayTra, String TongTien, ChiTietHoaDonDTO[] dscthd) {
         this.MaHoaDon = MaHoaDon;
         this.MaNhanVien = MaNhanVien;
+        this.MaKhachHang = MaKhachHang;
         this.NgayNhan = NgayNhan;
         this.NgayTra = NgayTra;
         this.TongTien = TongTien;
@@ -66,5 +68,13 @@ public class HoaDonDTO {
 
     public void setMaNhanVien(String maNhanVien) {
         MaNhanVien = maNhanVien;
+    }
+
+    public String getMaKhachHang() {
+        return MaKhachHang;
+    }
+
+    public void setMaKhachHang(String maKhachHang) {
+        MaKhachHang = maKhachHang;
     }    
 }
