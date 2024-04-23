@@ -5,13 +5,16 @@ public class ChiTietHoaDonDTO {
     private int MaHoaDon;
     private int MaChiTietHoaDon;
     private String MaPhong;
+    private String MaDichVu;
     private String UuDai;
     private String Tien;
 
-    public ChiTietHoaDonDTO(int maHoaDon, int maChiTietHoaDon, String maPhong, String uuDai, String tien) {
+    public ChiTietHoaDonDTO(int maHoaDon, int maChiTietHoaDon, String maPhong, String maDichVu, String uuDai,
+            String tien) {
         MaHoaDon = maHoaDon;
         MaChiTietHoaDon = maChiTietHoaDon;
         MaPhong = maPhong;
+        MaDichVu = maDichVu;
         UuDai = uuDai;
         Tien = tien;
     }
@@ -56,6 +59,14 @@ public class ChiTietHoaDonDTO {
 
     public void setMaChiTietHoaDon(int maChiTietHoaDon) {
         MaChiTietHoaDon = maChiTietHoaDon;
+    }
+
+    public String getMaDichVu() {
+        return MaDichVu;
+    }
+
+    public void setMaDichVu(String maDichVu) {
+        MaDichVu = maDichVu;
     }
     
     

@@ -1,29 +1,22 @@
 package DTO.Phong;
 
 public class PhongThuongDTO extends PhongDTO{
-    private DichVuDTO[] DichVu;
-
-    
+    private String KieuPhong;
 
     public PhongThuongDTO(String MaPhong, String SoPhong, String LoaiPhong, String TinhTrang, String GhiChu, int DonGia,
-            DichVuDTO[] dichVu) {
+            String kieuPhong) {
         super(MaPhong, SoPhong, LoaiPhong, TinhTrang, GhiChu, DonGia);
-        DichVu = dichVu;
-    }
-
-    public PhongThuongDTO(DichVuDTO[] dichVu) {
-        DichVu = dichVu;
+        KieuPhong = kieuPhong;
     }
 
     public PhongThuongDTO() {
     }
 
-    public DichVuDTO[] getDichVu() {
-        return DichVu;
+    public String getKieuPhong() {
+        return KieuPhong;
     }
 
-    public void setDichVu(DichVuDTO[] dichVu) {
-        DichVu = dichVu;
+    public void setKieuPhong(String kieuPhong) {
+        KieuPhong = kieuPhong;
     }
-    
 }
