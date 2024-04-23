@@ -8,10 +8,10 @@ public class HoaDonDTO {
     private String MaKhachHang;
     private LocalDate NgayNhan;
     private LocalDate NgayTra;
-    private String TongTien;
+    private int TongTien;
     private ChiTietHoaDonDTO[] dscthd;
 
-    public HoaDonDTO(int MaHoaDon,String MaNhanVien,String MaKhachHang, LocalDate NgayNhan, LocalDate NgayTra, String TongTien, ChiTietHoaDonDTO[] dscthd) {
+    public HoaDonDTO(int MaHoaDon,String MaNhanVien,String MaKhachHang, LocalDate NgayNhan, LocalDate NgayTra, int TongTien, ChiTietHoaDonDTO[] dscthd) {
         this.MaHoaDon = MaHoaDon;
         this.MaNhanVien = MaNhanVien;
         this.MaKhachHang = MaKhachHang;
@@ -55,11 +55,11 @@ public class HoaDonDTO {
         this.NgayTra = NgayTra;
     }
 
-    public String getTongTien() {
+    public int getTongTien() {
         return TongTien;
     }
 
-    public void setTongTien(String TongTien) {
+    public void setTongTien(int TongTien) {
         this.TongTien = TongTien;
     }
 
