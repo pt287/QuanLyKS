@@ -1,16 +1,17 @@
 package DTO;
 
+import java.time.LocalDate;
 
 public class HoaDonDTO {
     private String MaHoaDon;
     private String MaNhanVien;
     private String MaKhachHang;
-    private String NgayNhan;
-    private String NgayTra;
+    private LocalDate NgayNhan;
+    private LocalDate NgayTra;
     private String TongTien;
     private ChiTietHoaDonDTO[] dscthd;
 
-    public HoaDonDTO(String MaHoaDon,String MaNhanVien,String MaKhachHang, String NgayNhan, String NgayTra, String TongTien, ChiTietHoaDonDTO[] dscthd) {
+    public HoaDonDTO(String MaHoaDon,String MaNhanVien,String MaKhachHang, LocalDate NgayNhan, LocalDate NgayTra, String TongTien, ChiTietHoaDonDTO[] dscthd) {
         this.MaHoaDon = MaHoaDon;
         this.MaNhanVien = MaNhanVien;
         this.MaKhachHang = MaKhachHang;
@@ -38,19 +39,19 @@ public class HoaDonDTO {
         this.MaHoaDon = MaHoaDon;
     }
 
-    public String getNgayNhan() {
+    public LocalDate getNgayNhan() {
         return NgayNhan;
     }
 
-    public void setNgayNhan(String NgayNhan) {
+    public void setNgayNhan(LocalDate NgayNhan) {
         this.NgayNhan = NgayNhan;
     }
 
-    public String getNgayTra() {
+    public LocalDate getNgayTra() {
         return NgayTra;
     }
 
-    public void setNgayTra(String NgayTra) {
+    public void setNgayTra(LocalDate NgayTra) {
         this.NgayTra = NgayTra;
     }
 
