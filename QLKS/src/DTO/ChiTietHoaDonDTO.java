@@ -3,13 +3,17 @@ package DTO;
 
 public class ChiTietHoaDonDTO {
     private int MaHoaDon;
+    private int MaChiTietHoaDon;
+    private String MaPhong;
     private String UuDai;
     private String Tien;
 
-    public ChiTietHoaDonDTO(int MaHoaDon, String UuDai, String Tien) {
-        this.MaHoaDon = MaHoaDon;
-        this.UuDai = UuDai;
-        this.Tien = Tien;
+    public ChiTietHoaDonDTO(int maHoaDon, int maChiTietHoaDon, String maPhong, String uuDai, String tien) {
+        MaHoaDon = maHoaDon;
+        MaChiTietHoaDon = maChiTietHoaDon;
+        MaPhong = maPhong;
+        UuDai = uuDai;
+        Tien = tien;
     }
 
     public ChiTietHoaDonDTO(){}
@@ -30,12 +34,28 @@ public class ChiTietHoaDonDTO {
         this.UuDai = UuDai;
     }
 
+    public String getMaPhong() {
+        return MaPhong;
+    }
+
+    public void setMaPhong(String maPhong) {
+        MaPhong = maPhong;
+    }
+
     public String getTien() {
         return Tien;
     }
 
     public void setTien(String Tien) {
         this.Tien = Tien;
+    }
+
+    public int getMaChiTietHoaDon() {
+        return MaChiTietHoaDon;
+    }
+
+    public void setMaChiTietHoaDon(int maChiTietHoaDon) {
+        MaChiTietHoaDon = maChiTietHoaDon;
     }
     
     
