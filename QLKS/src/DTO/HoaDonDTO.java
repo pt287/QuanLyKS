@@ -3,7 +3,7 @@ package DTO;
 import java.time.LocalDate;
 
 public class HoaDonDTO {
-    private String MaHoaDon;
+    private int MaHoaDon;
     private String MaNhanVien;
     private String MaKhachHang;
     private LocalDate NgayNhan;
@@ -11,7 +11,7 @@ public class HoaDonDTO {
     private String TongTien;
     private ChiTietHoaDonDTO[] dscthd;
 
-    public HoaDonDTO(String MaHoaDon,String MaNhanVien,String MaKhachHang, LocalDate NgayNhan, LocalDate NgayTra, String TongTien, ChiTietHoaDonDTO[] dscthd) {
+    public HoaDonDTO(int MaHoaDon,String MaNhanVien,String MaKhachHang, LocalDate NgayNhan, LocalDate NgayTra, String TongTien, ChiTietHoaDonDTO[] dscthd) {
         this.MaHoaDon = MaHoaDon;
         this.MaNhanVien = MaNhanVien;
         this.MaKhachHang = MaKhachHang;
@@ -31,11 +31,11 @@ public class HoaDonDTO {
         this.dscthd = dscthd;
     }
 
-    public String getMaHoaDon() {
+    public int getMaHoaDon() {
         return MaHoaDon;
     }
 
-    public void setMaHoaDon(String MaHoaDon) {
+    public void setMaHoaDon(int MaHoaDon) {
         this.MaHoaDon = MaHoaDon;
     }
 
