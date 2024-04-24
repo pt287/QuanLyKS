@@ -4,12 +4,14 @@ package DTO.NguoiDung;
 
 public class NhanVienDTO extends NguoiDungDTO{
     private String MaNhanVien;
-
-    public NhanVienDTO(String MaNhanVien, String MaNguoiDung, String TenDangNhap, String MatKhau, String SDT, int TrangThai) {
-        super(MaNguoiDung, TenDangNhap, MatKhau, SDT, TrangThai);
-        this.MaNhanVien = MaNhanVien;
-    }
+    private String MaQuanLy;
+    private String VaiTro;
+     
     
+    public NhanVienDTO(String MaNguoiDung, String TaiKhoan, String MatKhau, String SDT, int TrangThai) {
+        super(MaNguoiDung, TaiKhoan, MatKhau, SDT, TrangThai);
+    }
+
     public NhanVienDTO(){}
 
     public String getMaNhanVien() {
@@ -18,6 +20,22 @@ public class NhanVienDTO extends NguoiDungDTO{
 
     public void setMaNhanVien(String MaNhanVien) {
         this.MaNhanVien = MaNhanVien;
+    }
+
+    public String getMaQuanLy() {
+        return MaQuanLy;
+    }
+
+    public void setMaQuanLy(String maQuanLy) {
+        MaQuanLy = maQuanLy;
+    }
+
+    public String getVaiTro() {
+        return VaiTro;
+    }
+
+    public void setVaiTro(String vaiTro) {
+        VaiTro = vaiTro;
     }
 
     
