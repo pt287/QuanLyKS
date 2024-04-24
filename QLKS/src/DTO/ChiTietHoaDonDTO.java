@@ -7,10 +7,10 @@ public class ChiTietHoaDonDTO {
     private String MaPhong;
     private String MaDichVu;
     private String UuDai;
-    private String Tien;
+    private int Tien;
 
     public ChiTietHoaDonDTO(int maHoaDon, int maChiTietHoaDon, String maPhong, String maDichVu, String uuDai,
-            String tien) {
+            int tien) {
         MaHoaDon = maHoaDon;
         MaChiTietHoaDon = maChiTietHoaDon;
         MaPhong = maPhong;
@@ -45,11 +45,11 @@ public class ChiTietHoaDonDTO {
         MaPhong = maPhong;
     }
 
-    public String getTien() {
+    public int getTien() {
         return Tien;
     }
 
-    public void setTien(String Tien) {
+    public void setTien(int Tien) {
         this.Tien = Tien;
     }
 
