@@ -4,12 +4,13 @@ package DTO.NguoiDung;
 
 public class QuanLyDTO extends NguoiDungDTO {
     private String MaQuanLy;
+    private int SoLuong;
 
-    public QuanLyDTO (String MaQuanLy, String MaNguoiDung, String TenDangNhap, String MatKhau, String SDT, int TrangThai) {
-        super(MaNguoiDung, TenDangNhap, MatKhau, SDT, TrangThai);
-        this.MaQuanLy = MaQuanLy;
-    }
     
+    public QuanLyDTO(String MaNguoiDung, String TaiKhoan, String MatKhau, String SDT, int TrangThai) {
+        super(MaNguoiDung, TaiKhoan, MatKhau, SDT, TrangThai);
+    }
+
     public QuanLyDTO(){}
 
     public String getMaQuanLy() {
@@ -18,6 +19,14 @@ public class QuanLyDTO extends NguoiDungDTO {
 
     public void setMaQuanLy(String MaQuanLy) {
         this.MaQuanLy = MaQuanLy;
+    }
+
+    public int getSoLuong() {
+        return SoLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        SoLuong = soLuong;
     }
     
 }
