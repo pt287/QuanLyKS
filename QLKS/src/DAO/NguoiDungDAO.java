@@ -3,13 +3,11 @@ package DAO;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import DTO.NguoiDung.NguoiDungDTO;
 import DTO.NguoiDung.QuanLyDTO;
 import DTO.NguoiDung.NhanVienDTO;
 import java.util.ArrayList;
-import DAO.ConnectionProvider;
 public class NguoiDungDAO {
     Connection con = ConnectionProvider.getCon();
     Statement st = null;
@@ -17,13 +15,15 @@ public class NguoiDungDAO {
     public void them(NguoiDungDTO nd)
     {
         try {
+            st=con.createStatement();
+            st.executeUpdate("Set Foreign_key_checks = 0");
             String qry="Insert into NguoiDung Values(";
             qry=qry+"'"+nd.getMaNguoiDung()+"',";
             qry=qry+"'"+nd.getTaiKhoan()+"',";
             qry=qry+"'"+nd.getMatKhau()+"',";
             qry=qry+nd.getSDT()+",1)";
-            st=con.createStatement();
             st.executeUpdate(qry);
+            st.executeUpdate("Set Foreign_key_checks = 1");
         }
         catch(SQLException ex){
             //JOPtionPane.ShowMessageDialog(null,"Lỗi ghi thông tin người dùng!");

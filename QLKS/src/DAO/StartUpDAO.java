@@ -3,9 +3,7 @@ package DAO;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import DAO.ConnectionProvider;
 public class StartUpDAO {
     Connection con= ConnectionProvider.getCon();
     Statement st = null;

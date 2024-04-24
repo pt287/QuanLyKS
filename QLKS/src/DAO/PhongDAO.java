@@ -3,13 +3,11 @@ package DAO;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import DTO.Phong.PhongDTO;
 import java.util.ArrayList;
 import DTO.Phong.PhongVipDTO;
 import DTO.Phong.PhongThuongDTO;
-import DAO.ConnectionProvider;
 public class PhongDAO {
     Connection con = ConnectionProvider.getCon();
     Statement st = null;
@@ -17,6 +15,8 @@ public class PhongDAO {
     public void them(PhongDTO p)
     {
         try {
+            st=con.createStatement();
+            st.executeUpdate("Set Foreign_key_checks = 0");
             String qry="Insert into Phong Values(";
             qry=qry+"'"+p.getMaPhong()+"',";
             qry=qry+"'"+p.getSoPhong()+"',";
@@ -30,8 +30,8 @@ public class PhongDAO {
             } else {
                 qry=qry+"NULL)";
             }
-            st=con.createStatement();
             st.executeUpdate(qry);
+            st.executeUpdate("Set Foreign_key_checks = 1");
         }
         catch(SQLException ex){
             //JOPtionPane.ShowMessageDialog(null,"Lỗi ghi thông tin người dùng!");
