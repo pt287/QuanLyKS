@@ -4,17 +4,24 @@ public abstract class NguoiDungDTO {
     private String MaNguoiDung;
     private String TaiKhoan;
     private String MatKhau;
+    private String Ten;
+    private String CCCD;
     private String SDT;
     private int TrangThai;
 
-    public NguoiDungDTO (String MaNguoiDung, String TaiKhoan, String MatKhau, String SDT, int TrangThai) {
-        this.MaNguoiDung = MaNguoiDung;
-        this.TaiKhoan = TaiKhoan;
-        this.MatKhau = MatKhau;
-        this.SDT = SDT;
-        this.TrangThai = 1;
-    }
     
+    
+    public NguoiDungDTO(String maNguoiDung, String taiKhoan, String matKhau, String ten, String cCCD, String sDT,
+            int trangThai) {
+        MaNguoiDung = maNguoiDung;
+        TaiKhoan = taiKhoan;
+        MatKhau = matKhau;
+        Ten = ten;
+        CCCD = cCCD;
+        SDT = sDT;
+        TrangThai = trangThai;
+    }
+
     public NguoiDungDTO(){}
 
     public String getMaNguoiDung() {
@@ -27,6 +34,22 @@ public abstract class NguoiDungDTO {
 
     public String getTaiKhoan() {
         return TaiKhoan;
+    }
+
+    public String getTen() {
+        return Ten;
+    }
+
+    public void setTen(String ten) {
+        Ten = ten;
+    }
+
+    public String getCCCD() {
+        return CCCD;
+    }
+
+    public void setCCCD(String cCCD) {
+        CCCD = cCCD;
     }
 
     public void setTaiKhoan(String TaiKhoan) {

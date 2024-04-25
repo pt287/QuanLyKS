@@ -6,10 +6,19 @@ public class NhanVienDTO extends NguoiDungDTO{
     private String MaNhanVien;
     private String MaQuanLy;
     private String VaiTro;
-     
-    
-    public NhanVienDTO(String MaNguoiDung, String TaiKhoan, String MatKhau, String SDT, int TrangThai) {
-        super(MaNguoiDung, TaiKhoan, MatKhau, SDT, TrangThai);
+
+    public NhanVienDTO(String maNguoiDung, String taiKhoan, String matKhau, String ten, String cCCD, String sDT,
+            int trangThai, String maNhanVien, String maQuanLy, String vaiTro) {
+        super(maNguoiDung, taiKhoan, matKhau, ten, cCCD, sDT, trangThai);
+        MaNhanVien = maNhanVien;
+        MaQuanLy = maQuanLy;
+        VaiTro = vaiTro;
+    }
+
+    public NhanVienDTO(String maNhanVien, String maQuanLy, String vaiTro) {
+        MaNhanVien = maNhanVien;
+        MaQuanLy = maQuanLy;
+        VaiTro = vaiTro;
     }
 
     public NhanVienDTO(){}

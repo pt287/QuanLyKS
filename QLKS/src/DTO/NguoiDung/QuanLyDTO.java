@@ -6,12 +6,12 @@ public class QuanLyDTO extends NguoiDungDTO {
     private String MaQuanLy;
     private int SoLuong;
 
-    
-    public QuanLyDTO(String MaNguoiDung, String TaiKhoan, String MatKhau, String SDT, int TrangThai) {
-        super(MaNguoiDung, TaiKhoan, MatKhau, SDT, TrangThai);
+    public QuanLyDTO(String maNguoiDung, String taiKhoan, String matKhau, String ten, String cCCD, String sDT,
+            int trangThai) {
+        super(maNguoiDung, taiKhoan, matKhau, ten, cCCD, sDT, trangThai);
     }
 
-    public QuanLyDTO(){}
+    public QuanLyDTO() {}
 
     public String getMaQuanLy() {
         return MaQuanLy;
