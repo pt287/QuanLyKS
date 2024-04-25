@@ -4,6 +4,8 @@ CREATE TABLE NguoiDung (
 	UserID CHAR(8) NOT NULL,
     UserName VARCHAR(100) NOT NULL,
     UserPass VARCHAR(32) NOT NULL,
+    UserRName VARCHAR(100) NOT NULL,
+    UserCID CHAR(12) NOT NULL,
     UserPhoneNum CHAR(10) NOT NULL,
     UserSTT BOOL NOT NULL,
     PRIMARY KEY(UserID)
