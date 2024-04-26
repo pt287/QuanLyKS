@@ -49,11 +49,9 @@ public class Menu extends javax.swing.JFrame {
 
         LeTanMenu.setBackground(new java.awt.Color(0, 16, 31));
         LeTanMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        LeTanMenu.setForeground(new java.awt.Color(0, 0, 0));
 
         DatPhong.setBackground(new java.awt.Color(0, 16, 31));
         DatPhong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        DatPhong.setForeground(new java.awt.Color(0, 0, 0));
         DatPhong.setText("Đặt Phòng");
         DatPhong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,7 +62,6 @@ public class Menu extends javax.swing.JFrame {
 
         DSPhong.setBackground(new java.awt.Color(0, 16, 31));
         DSPhong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        DSPhong.setForeground(new java.awt.Color(0, 0, 0));
         DSPhong.setText("Danh Sách Phòng");
         DSPhong.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         DSPhong.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +73,6 @@ public class Menu extends javax.swing.JFrame {
 
         HoaDon.setBackground(new java.awt.Color(0, 16, 31));
         HoaDon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        HoaDon.setForeground(new java.awt.Color(0, 0, 0));
         HoaDon.setText("Hóa Đơn");
         HoaDon.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         HoaDon.addActionListener(new java.awt.event.ActionListener() {

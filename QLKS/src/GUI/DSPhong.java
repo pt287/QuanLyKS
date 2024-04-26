@@ -4,6 +4,14 @@
  */
 package GUI;
 
+import java.util.ArrayList;
+
+import javax.swing.table.DefaultTableModel;
+
+import DAO.PhongDAO;
+import DTO.NguoiDung.NguoiDungDTO;
+import DTO.Phong.PhongDTO;
+
 /**
  *
  * @author Phat
@@ -14,7 +22,20 @@ public class DSPhong extends javax.swing.JPanel {
      * Creates new form DSPhong
      */
     public DSPhong() {
+        PhongDAO phong=new PhongDAO();
+        ArrayList<PhongDTO> dsphong= phong.docDSP();
         initComponents();
+        DefaultTableModel table=new DefaultTableModel();
+        jTable2.setModel(table);
+        table.addColumn("Mã Phòng");
+        table.addColumn( "Số Phòng");
+        table.addColumn("Loại Phòng");
+        table.addColumn("Tình Trạng");
+        table.addColumn("Ghi Chú");
+        table.addColumn("Giá");
+        for(PhongDTO p:dsphong){
+            table.addRow(new Object[]{p.getMaPhong(),p.getSoPhong(),p.getLoaiPhong(),p.getTinhTrang(),p.getGhiChu(),p.getDonGia()});
+        }
     }
 
     /**
