@@ -6,7 +6,7 @@ package GUI;
 
 import javax.swing.JOptionPane;
 
-import DAO.NguoiDungDAO;
+import BUS.NguoiDungBUS;
 
 public class DangNhap extends javax.swing.JFrame {
 
@@ -90,7 +90,7 @@ public class DangNhap extends javax.swing.JFrame {
 
     private void DangNhapUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DangNhapUIActionPerformed
         // TODO add your handling code here:
-        NguoiDungDAO nd=new NguoiDungDAO();
+        NguoiDungBUS nd=new NguoiDungBUS();
         String TaiKhoan=TaiKhoanUI.getText();
         String MatKhau=new String(MatKhauUI.getPassword());
         

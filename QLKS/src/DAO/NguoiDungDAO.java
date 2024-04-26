@@ -30,8 +30,8 @@ public class NguoiDungDAO {
             System.out.println("Lỗi ghi thông tin người dùng");
         }
     }
-    public ArrayList docDSND(){
-        ArrayList dsnd=new ArrayList<NguoiDungDTO>();
+    public ArrayList<NguoiDungDTO> docDSND(){
+        ArrayList<NguoiDungDTO> dsnd=new ArrayList<NguoiDungDTO>();
         try{
             String qry="select * from nguoidung";
             st=con.createStatement();

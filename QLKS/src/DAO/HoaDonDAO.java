@@ -31,8 +31,8 @@ public class HoaDonDAO {
             System.out.println("Lỗi ghi thông tin người dùng");
         }
     }
-    public ArrayList docDSHD(){
-        ArrayList dsp=new ArrayList<HoaDonDTO>();
+    public ArrayList<HoaDonDTO> docDSHD(){
+        ArrayList<HoaDonDTO> dsp=new ArrayList<HoaDonDTO>();
         try{
             String qry="select * from HoaDon";
             st=con.createStatement();

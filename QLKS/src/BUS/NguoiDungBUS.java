@@ -5,7 +5,11 @@
 package BUS;
 
 import DTO.NguoiDung.NguoiDungDTO;
+import DTO.Phong.PhongDTO;
+
 import java.util.ArrayList;
+
+import DAO.NguoiDungDAO;
 
 /**
  *
@@ -13,11 +17,20 @@ import java.util.ArrayList;
  */
 public class NguoiDungBUS {
     static ArrayList<NguoiDungDTO> dsnd;
-    NguoiDungBUS(){}
-    
-    void DangNhap(String tk,String mk){
-        
+    public NguoiDungBUS(){}
+    public void docDSPhong(){
+        NguoiDungDAO data=new NguoiDungDAO();
+        if(dsnd!=null) dsnd=new ArrayList<NguoiDungDTO>();
+        dsnd=data.docDSND();
     }
-    
+    public void them(NguoiDungDTO nd){
+        NguoiDungDAO data=new NguoiDungDAO();
+        data.them(nd);
+        dsnd.add(nd);
+    }
+    public String dangnhap(String tk,String mk){
+        NguoiDungDAO data=new NguoiDungDAO();
+        return data.dangnhap(tk, mk);
+    }
     //public abstract void SuaThongTin();
 }

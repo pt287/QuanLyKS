@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import DTO.ChiTietHoaDonDTO;
+import DTO.HoaDonDTO;
 public class ChiTietHoaDonDAO {
     Connection con = ConnectionProvider.getCon();
     Statement st = null;
@@ -42,8 +43,8 @@ public class ChiTietHoaDonDAO {
             System.out.println("Lỗi ghi thông tin người dùng");
         }
     }
-    public ArrayList docDSHD(){
-        ArrayList dsp=new ArrayList<ChiTietHoaDonDTO>();
+    public ArrayList<ChiTietHoaDonDTO> docDSHD(){
+        ArrayList<ChiTietHoaDonDTO> dsp=new ArrayList<ChiTietHoaDonDTO>();
         try{
             String qry="select * from ChiTietHoaDon";
             st=con.createStatement();

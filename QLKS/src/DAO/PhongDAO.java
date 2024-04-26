@@ -38,8 +38,8 @@ public class PhongDAO {
             System.out.println("Lỗi ghi thông tin người dùng");
         }
     }
-    public ArrayList docDSP(){
-        ArrayList dsp=new ArrayList<PhongDTO>();
+    public ArrayList<PhongDTO> docDSP(){
+        ArrayList<PhongDTO> dsp=new ArrayList<PhongDTO>();
         try{
             String qry="select * from Phong";
             st=con.createStatement();
@@ -52,6 +52,7 @@ public class PhongDAO {
                 p.setTinhTrang(rs.getString(4));
                 p.setGhiChu(rs.getString(5));
                 p.setDonGia(rs.getInt(6));
+                dsp.add(p);
             }
         }
         catch(SQLException ex){

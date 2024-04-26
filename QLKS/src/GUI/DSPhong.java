@@ -8,8 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
 
-import DAO.PhongDAO;
-import DTO.NguoiDung.NguoiDungDTO;
+import BUS.PhongBUS;
 import DTO.Phong.PhongDTO;
 
 /**
@@ -22,8 +21,8 @@ public class DSPhong extends javax.swing.JPanel {
      * Creates new form DSPhong
      */
     public DSPhong() {
-        PhongDAO phong=new PhongDAO();
-        ArrayList<PhongDTO> dsphong= phong.docDSP();
+        PhongBUS phong=new PhongBUS();
+        ArrayList<PhongDTO> dsphong= phong.docDSPhong();
         initComponents();
         DefaultTableModel table=new DefaultTableModel();
         jTable2.setModel(table);
