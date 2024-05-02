@@ -28,8 +28,8 @@ public class KhachHangDAO {
             System.out.println("Lỗi ghi thông tin người dùng");
         }
     }
-    public ArrayList<KhachHangDTO> docDSKH(){
-        ArrayList<KhachHangDTO> dsnd=new ArrayList<KhachHangDTO>();
+    public ArrayList docDSKH(){
+        ArrayList dskh=new ArrayList<KhachHangDTO>();
         try{
             String qry="select * from khachhang";
             st=con.createStatement();
@@ -39,10 +39,11 @@ public class KhachHangDAO {
             kh.setTen(rs.getString(2));
             kh.setSoDienThoai(rs.getString(3));
             kh.setCCCD(rs.getString(4));
+            dskh.add(kh);
         }
         catch(SQLException ex){
             //JOptionPane.ShowMessageDialog(null,"Lỗi đọc thông tin Sinh Viên!");
         }
-        return dsnd;
+        return dskh;
     }
 }

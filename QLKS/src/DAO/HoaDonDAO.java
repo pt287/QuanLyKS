@@ -31,8 +31,8 @@ public class HoaDonDAO {
             System.out.println("Lỗi ghi thông tin người dùng");
         }
     }
-    public ArrayList<HoaDonDTO> docDSHD(){
-        ArrayList<HoaDonDTO> dsp=new ArrayList<HoaDonDTO>();
+    public ArrayList docDSHD(){
+        ArrayList dshd=new ArrayList<HoaDonDTO>();
         try{
             String qry="select * from HoaDon";
             st=con.createStatement();
@@ -45,11 +45,12 @@ public class HoaDonDAO {
                 hd.setNgayNhan(LocalDate.parse(rs.getString(4)));
                 hd.setNgayTra(LocalDate.parse(rs.getString(5)));
                 hd.setTongTien(rs.getInt(6));
+                dshd.add(hd);
             }
         }
         catch(SQLException ex){
             //JOptionPane.ShowMessageDialog(null,"Lỗi đọc thông tin Sinh Viên!");
         }
-        return dsp;
+        return dshd;
     }
 }

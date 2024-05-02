@@ -38,8 +38,8 @@ public class PhongDAO {
             System.out.println("Lỗi ghi thông tin người dùng");
         }
     }
-    public ArrayList<PhongDTO> docDSP(){
-        ArrayList<PhongDTO> dsp=new ArrayList<PhongDTO>();
+    public ArrayList docDSP(){
+        ArrayList dsp=new ArrayList<PhongDTO>();
         try{
             String qry="select * from Phong";
             st=con.createStatement();

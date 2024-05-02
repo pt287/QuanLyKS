@@ -6,11 +6,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import DTO.ChiTietHoaDonDTO;
-import DTO.HoaDonDTO;
 public class ChiTietHoaDonDAO {
     Connection con = ConnectionProvider.getCon();
     Statement st = null;
     ResultSet rs=null;
+    public void UpdateMoney(int mhd){
+        try{
+            st=con.createStatement();
+            rs=st.executeQuery("select SUM(BDPrice) from chitiethoadon Where BillID = " + mhd);
+            st.executeUpdate("update hoadon set BillTotal = " + rs.getInt(1)+ " where BillID = " + mhd);
+        } catch(SQLException ex){
+            //báo lỗi
+        }
+    }
     public void them(ChiTietHoaDonDTO cthd)
     {
         try {
@@ -37,14 +45,15 @@ public class ChiTietHoaDonDAO {
             qry= qry + giatien +")";
             st.executeUpdate(qry);
             st.executeUpdate("Set Foreign_key_checks = 1");
+            UpdateMoney(cthd.getMaHoaDon());
         }
         catch(SQLException ex){
             //JOPtionPane.ShowMessageDialog(null,"Lỗi ghi thông tin người dùng!");
             System.out.println("Lỗi ghi thông tin người dùng");
         }
     }
-    public ArrayList<ChiTietHoaDonDTO> docDSHD(){
-        ArrayList<ChiTietHoaDonDTO> dsp=new ArrayList<ChiTietHoaDonDTO>();
+    public ArrayList docDSHD(){
+        ArrayList dscthd=new ArrayList<ChiTietHoaDonDTO>();
         try{
             String qry="select * from ChiTietHoaDon";
             st=con.createStatement();
@@ -56,11 +65,12 @@ public class ChiTietHoaDonDAO {
                 cthd.setMaDichVu(rs.getString(3));
                 cthd.setMaPhong(rs.getString(4));
                 cthd.setTien(rs.getInt(5));
+                dscthd.add(cthd);
             }
         }
         catch(SQLException ex){
             //JOptionPane.ShowMessageDialog(null,"Lỗi đọc thông tin Sinh Viên!");
         }
-        return dsp;
+        return dscthd;
     }
 }

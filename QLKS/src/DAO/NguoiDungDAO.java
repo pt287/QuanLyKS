@@ -12,6 +12,16 @@ public class NguoiDungDAO {
     Connection con = ConnectionProvider.getCon();
     Statement st = null;
     ResultSet rs=null;
+    public void updateCountManager(String mql){
+        try{
+            st=con.createStatement();
+            ResultSet rsc = st.executeQuery("select Count(*) from nhanvien where MngID = '" + mql+"'");
+            String upql = "update quanly set MngCount = " + rsc.getInt(1) + " Where MngID = '" + mql +"';";
+            st.executeUpdate(upql);
+        }catch(SQLException ex){
+            //báo lỗi
+        }
+    }
     public void them(NguoiDungDTO nd)
     {
         try {
@@ -21,17 +31,36 @@ public class NguoiDungDAO {
             qry=qry+"'"+nd.getMaNguoiDung()+"',";
             qry=qry+"'"+nd.getTaiKhoan()+"',";
             qry=qry+"'"+nd.getMatKhau()+"',";
+            qry=qry+"'"+nd.getTen()+"',";
+            qry=qry+"'"+nd.getCCCD()+"',";
             qry=qry+nd.getSDT()+",1)";
             st.executeUpdate(qry);
+            if(nd.getMaNguoiDung().substring(0, 2).equals("QL")){
+                QuanLyDTO ql = (QuanLyDTO) nd;
+                String qryql = "Insert into QuanLy Values(";
+                qryql = qryql + "'" + ql.getMaQuanLy() + "',";
+                ResultSet rsc = st.executeQuery("select Count(*) from nhanvien where Mng = '" + ql.getMaQuanLy()+"'");
+                qryql = qryql + rsc.getInt(1) +",";
+                qryql =qryql + "'" + ql.getMaNguoiDung() + "')";
+                st.executeUpdate(qryql);
+            } else if (nd.getMaNguoiDung().substring(0, 2).equals("NV")){
+                NhanVienDTO nv = (NhanVienDTO) nd;
+                String qrynv = "Insert into NhanVien Values(";
+                qrynv = qrynv + "'" + nv.getMaNhanVien() + "',";
+                qrynv = qrynv + "'" + nv.getMaQuanLy() + "',";
+                qrynv = qrynv + "'" + nv.getMaNguoiDung() + "',";
+                qrynv = qrynv + "'" + nv.getVaiTro() + "')";
+                st.executeUpdate(qrynv);
+                updateCountManager(nv.getMaQuanLy());
+            }
             st.executeUpdate("Set Foreign_key_checks = 1");
         }
         catch(SQLException ex){
-            //JOPtionPane.ShowMessageDialog(null,"Lỗi ghi thông tin người dùng!");
-            System.out.println("Lỗi ghi thông tin người dùng");
+            //báo lỗi
         }
     }
-    public ArrayList<NguoiDungDTO> docDSND(){
-        ArrayList<NguoiDungDTO> dsnd=new ArrayList<NguoiDungDTO>();
+    public ArrayList docDSND(){
+        ArrayList dsnd=new ArrayList<NguoiDungDTO>();
         try{
             String qry="select * from nguoidung";
             st=con.createStatement();
@@ -42,21 +71,27 @@ public class NguoiDungDAO {
                     ql.setMaNguoiDung(rs.getString(1));
                     ql.setTaiKhoan(rs.getString(2));
                     ql.setMatKhau(rs.getString(3));
-                    ql.setSDT(rs.getString(4));
-                    ql.setTrangThai(rs.getInt(5));
+                    ql.setTen(rs.getString(4));
+                    ql.setCCCD(rs.getString(5));
+                    ql.setSDT(rs.getString(6));
+                    ql.setTrangThai(rs.getInt(7));
+                    dsnd.add(ql);
                 } else {
                     NguoiDungDTO nv=new NhanVienDTO();
                     nv.setMaNguoiDung(rs.getString(1));
                     nv.setTaiKhoan(rs.getString(2));
                     nv.setMatKhau(rs.getString(3));
-                    nv.setSDT(rs.getString(4));
-                    nv.setTrangThai(rs.getInt(5));
+                    nv.setTen(rs.getString(4));
+                    nv.setCCCD(rs.getString(5));
+                    nv.setSDT(rs.getString(6));
+                    nv.setTrangThai(rs.getInt(7));
+                    dsnd.add(nv);
                 }
                 
             }
         }
         catch(SQLException ex){
-            //JOptionPane.ShowMessageDialog(null,"Lỗi đọc thông tin Sinh Viên!");
+            //báo lỗi
         }
         return dsnd;
     }
@@ -65,7 +100,7 @@ public class NguoiDungDAO {
             st=con.createStatement();
             rs=st.executeQuery("SELECT UserID,UserName,UserPass FROM NguoiDung");
             while(rs.next()){
-                if(tk.equals(rs.getString(2))&&mk.equals(rs.getString(3))){
+                if(tk.toLowerCase().equals((rs.getString(2).toLowerCase()))&&mk.equals(rs.getString(3))){
                     return rs.getString(1);
                 }
             }
