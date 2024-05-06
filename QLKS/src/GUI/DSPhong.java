@@ -25,7 +25,7 @@ public class DSPhong extends javax.swing.JPanel {
         ArrayList<PhongDTO> dsphong= phong.docDSPhong();
         initComponents();
         DefaultTableModel table=new DefaultTableModel();
-        jTable2.setModel(table);
+        BangDSPhong.setModel(table);
         table.addColumn("Mã Phòng");
         table.addColumn( "Số Phòng");
         table.addColumn("Loại Phòng");
