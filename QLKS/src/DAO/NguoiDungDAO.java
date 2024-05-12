@@ -110,4 +110,15 @@ public class NguoiDungDAO {
         }
         return null;
     }
+    public void xoa(String mnd){
+        try{
+            st=con.createStatement();
+            String qry="Delete from nguoidung where UserID = ";
+            qry = qry + "'"+mnd +"'";
+            st.executeUpdate(qry);
+        }
+        catch(SQLException ex){
+            //báo lỗi
+        }
+    }
 }
