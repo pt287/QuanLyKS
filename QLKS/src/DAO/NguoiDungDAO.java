@@ -98,9 +98,9 @@ public class NguoiDungDAO {
     public String dangnhap(String tk, String mk){
         try{
             st=con.createStatement();
-            rs=st.executeQuery("SELECT UserID,UserName,UserPass FROM NguoiDung");
+            rs=st.executeQuery("SELECT UserID,UserName,UserPass,UserSTT FROM NguoiDung");
             while(rs.next()){
-                if(tk.toLowerCase().equals((rs.getString(2).toLowerCase()))&&mk.equals(rs.getString(3))){
+                if(tk.toLowerCase().equals((rs.getString(2).toLowerCase()))&&mk.equals(rs.getString(3))&&rs.getInt(4)==1){
                     return rs.getString(1);
                 }
             }
