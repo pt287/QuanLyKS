@@ -74,15 +74,9 @@ public class HoaDon extends javax.swing.JPanel {
         ChiTietHoaDon.setBackground(new java.awt.Color(220, 242, 197));
         ChiTietHoaDon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 16, 31), 2));
         ChiTietHoaDon.setForeground(new java.awt.Color(0, 16, 31));
-        ChiTietHoaDon.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         ChiTietHoaDon.setMaximumSize(new java.awt.Dimension(50, 100));
         ChiTietHoaDon.setMinimumSize(new java.awt.Dimension(50, 100));
         ChiTietHoaDon.setPreferredSize(new java.awt.Dimension(50, 100));
-        jScrollPane1.setViewportView(ChiTietHoaDon);
 
         ButtonChinhSuaHD.setBackground(new java.awt.Color(220, 242, 197));
         ButtonChinhSuaHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -107,11 +101,6 @@ public class HoaDon extends javax.swing.JPanel {
         DSHoaDon.setBackground(new java.awt.Color(220, 242, 197));
         DSHoaDon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 16, 31), 2));
         DSHoaDon.setForeground(new java.awt.Color(0, 16, 31));
-        DSHoaDon.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(DSHoaDon);
 
         javax.swing.GroupLayout HoaDonPanelLayout = new javax.swing.GroupLayout(HoaDonPanel);
@@ -121,11 +110,12 @@ public class HoaDon extends javax.swing.JPanel {
             .addGroup(HoaDonPanelLayout.createSequentialGroup()
                 .addGroup(HoaDonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HoaDonPanelLayout.createSequentialGroup()
-                        .addGap(254, 254, 254)
-                        .addComponent(TittleChiTietHD, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(146, 146, 146)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(HoaDonPanelLayout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(256, 256, 256)
+                        .addComponent(TittleChiTietHD, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(46, 46, 46)
                 .addGroup(HoaDonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HoaDonPanelLayout.createSequentialGroup()
                         .addGap(73, 73, 73)
