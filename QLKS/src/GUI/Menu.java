@@ -10,18 +10,24 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import BUS.NguoiDungBUS;
+
 public class Menu extends javax.swing.JFrame {
+    NguoiDungBUS nd=new NguoiDungBUS();
     CardLayout layout;
+    
     /**
      * Creates new form Menu
      */
-    public Menu() {
+    public Menu(String a) {
         initComponents();
         layout = new CardLayout();
         MenuUI.setLayout(layout);
         MenuUI.add("dsPhong", new DSPhong());
         MenuUI.add("HoaDon",new HoaDon());
         MenuUI.add("DatPhong",new DatPhong());
+        MenuUI.add("QuanLy",new QuanLy(a));
+        TaiKhoan.setText(a);
     }
 
     /**
@@ -45,6 +51,8 @@ public class Menu extends javax.swing.JFrame {
         QuanLyPopupMenu = new javax.swing.JLabel();
         DichVu = new javax.swing.JLabel();
         ThongKe = new javax.swing.JLabel();
+        TaiKhoan = new javax.swing.JLabel();
+        DangXuat = new javax.swing.JButton();
         MenuUI = new javax.swing.JPanel();
 
         LeTanMenu.setBackground(new java.awt.Color(0, 16, 31));
@@ -95,9 +103,9 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1920, 1080));
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         jPanel2.setBackground(new java.awt.Color(0, 16, 31));
+        jPanel2.setPreferredSize(new java.awt.Dimension(210, 1080));
 
         Logo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/1.jpg"))); // NOI18N
@@ -118,12 +126,22 @@ public class Menu extends javax.swing.JFrame {
         QuanLyPopupMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QuanLyPopupMenu.setText("Quản Lý");
         QuanLyPopupMenu.setToolTipText("");
+        QuanLyPopupMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                QuanLyPopupMenuMouseClicked(evt);
+            }
+        });
 
         DichVu.setBackground(new java.awt.Color(0, 16, 31));
         DichVu.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         DichVu.setForeground(new java.awt.Color(220, 242, 197));
         DichVu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         DichVu.setText("Dịch Vụ");
+        DichVu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DichVuMouseClicked(evt);
+            }
+        });
 
         ThongKe.setBackground(new java.awt.Color(0, 16, 31));
         ThongKe.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -131,18 +149,38 @@ public class Menu extends javax.swing.JFrame {
         ThongKe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ThongKe.setText("Thống Kê");
 
+        TaiKhoan.setBackground(new java.awt.Color(0, 16, 31));
+        TaiKhoan.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        TaiKhoan.setForeground(new java.awt.Color(220, 242, 197));
+        TaiKhoan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        DangXuat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        DangXuat.setText("Đăng xuất");
+        DangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DangXuatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(DichVu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Logo, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                    .addComponent(QuanLyPopupMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(LeTanPopupMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ThongKe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DichVu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                    .addComponent(QuanLyPopupMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(LeTanPopupMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(TaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(DangXuat)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,17 +194,22 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(DichVu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(640, Short.MAX_VALUE))
+                .addGap(303, 303, 303)
+                .addComponent(TaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DangXuat)
+                .addContainerGap(329, Short.MAX_VALUE))
         );
 
         MenuUI.setBackground(new java.awt.Color(220, 242, 197));
         MenuUI.setForeground(new java.awt.Color(255, 255, 255));
+        MenuUI.setPreferredSize(new java.awt.Dimension(1710, 1080));
 
         javax.swing.GroupLayout MenuUILayout = new javax.swing.GroupLayout(MenuUI);
         MenuUI.setLayout(MenuUILayout);
         MenuUILayout.setHorizontalGroup(
             MenuUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 713, Short.MAX_VALUE)
+            .addGap(0, 1710, Short.MAX_VALUE)
         );
         MenuUILayout.setVerticalGroup(
             MenuUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,7 +230,7 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(MenuUI, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(MenuUI, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1086, Short.MAX_VALUE)
         );
 
         pack();
@@ -214,10 +257,27 @@ public class Menu extends javax.swing.JFrame {
         layout.show(MenuUI,"HoaDon");
     }//GEN-LAST:event_HoaDonActionPerformed
 
+    private void DichVuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DichVuMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_DichVuMouseClicked
+
+    private void QuanLyPopupMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QuanLyPopupMenuMouseClicked
+        // TODO add your handling code here:
+        layout.show(MenuUI, "QuanLy");
+    }//GEN-LAST:event_QuanLyPopupMenuMouseClicked
+
+    private void DangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DangXuatActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        DangNhap.main(null);
+        
+    }//GEN-LAST:event_DangXuatActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String a) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -244,13 +304,14 @@ public class Menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
+                new Menu(a).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem DSPhong;
+    private javax.swing.JButton DangXuat;
     private javax.swing.JMenuItem DatPhong;
     private javax.swing.JLabel DichVu;
     private javax.swing.JMenuItem HoaDon;
@@ -260,6 +321,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel MenuUI;
     private javax.swing.JPopupMenu QuanLyMenu;
     private javax.swing.JLabel QuanLyPopupMenu;
+    private javax.swing.JLabel TaiKhoan;
     private javax.swing.JLabel ThongKe;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
