@@ -113,12 +113,13 @@ public class NguoiDungDAO {
     public void xoa(String mnd){
         try{
             st=con.createStatement();
-            String qry="Delete from nguoidung where UserID = ";
+            st.executeUpdate("Set Foreign_key_checks = 0");
+            String qry="Update nguoidung set UserSTT = 0 WHERE UserID = ";
             qry = qry + "'"+mnd +"'";
             st.executeUpdate(qry);
+            st.executeUpdate("Set Foreign_key_checks = 1");
         }
         catch(SQLException ex){
             //báo lỗi
         }
-    }
 }
