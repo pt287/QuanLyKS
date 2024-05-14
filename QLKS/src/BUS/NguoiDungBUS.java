@@ -5,7 +5,6 @@
 package BUS;
 
 import DTO.NguoiDung.NguoiDungDTO;
-import DTO.Phong.PhongDTO;
 
 import java.util.ArrayList;
 
@@ -17,20 +16,66 @@ import DAO.NguoiDungDAO;
  */
 public class NguoiDungBUS {
     static ArrayList<NguoiDungDTO> dsnd;
+    NguoiDungDAO data=new NguoiDungDAO();
+    private String TK="";
+
+    public String gettk() {
+        return TK;
+    }
+
+    public void settk(String tk) {
+        this.TK=tk;
+    }
+
     public NguoiDungBUS(){}
-    public void docDSPhong(){
-        NguoiDungDAO data=new NguoiDungDAO();
+
+    public ArrayList<NguoiDungDTO> docDSND(){
         if(dsnd!=null) dsnd=new ArrayList<NguoiDungDTO>();
         dsnd=data.docDSND();
+        return dsnd;
     }
     public void them(NguoiDungDTO nd){
-        NguoiDungDAO data=new NguoiDungDAO();
         data.them(nd);
         dsnd.add(nd);
     }
     public String dangnhap(String tk,String mk){
-        NguoiDungDAO data=new NguoiDungDAO();
+        TK=data.dangnhap(tk, mk);
         return data.dangnhap(tk, mk);
     }
-    //public abstract void SuaThongTin();
+    public void Xoa(String Mnd){
+        data.xoa(Mnd);
+        for (int i = 0; i < dsnd.size(); i++) {
+            NguoiDungDTO b = dsnd.get(i);
+            if (Mnd.equals(b.getMaNguoiDung())) {
+                b.setTrangThai(0);
+                dsnd.set(i, b);
+                break;
+            }
+        }
+    }
+    public void Sua(String mnd,NguoiDungDTO a){
+        data.Sua(mnd, a);
+        for (int i = 0; i < dsnd.size(); i++) {
+            NguoiDungDTO b = dsnd.get(i);
+            if (mnd.equals(b.getMaNguoiDung())) {
+                dsnd.set(i, a);
+                break;
+            }
+        }
+    }
+    public boolean kiemTraMaNhanVien(String maNhanVien) {
+        if (data.kiemTraMaNhanVien(maNhanVien)){
+            return true;
+        }
+        return false;
+    }
+    public boolean kiemTraMaQuanLy(String maquanly) {
+        if (data.kiemTraMaQuanLy(maquanly)){
+            return true;
+        }
+        return false;
+    }
+    public String Ten(String a){
+        return data.Ten(a);
+    }
 }
