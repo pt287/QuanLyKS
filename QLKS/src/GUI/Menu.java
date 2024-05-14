@@ -11,11 +11,12 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import BUS.NguoiDungBUS;
+import DTO.NguoiDung.NguoiDungDTO;
 
 public class Menu extends javax.swing.JFrame {
     NguoiDungBUS nd=new NguoiDungBUS();
     CardLayout layout;
-    
+    static String tk="";
     /**
      * Creates new form Menu
      */
@@ -26,8 +27,8 @@ public class Menu extends javax.swing.JFrame {
         MenuUI.add("dsPhong", new DSPhong());
         MenuUI.add("HoaDon",new HoaDon());
         MenuUI.add("DatPhong",new DatPhong());
-        MenuUI.add("QuanLy",new QuanLy(a));
-        TaiKhoan.setText(a);
+        MenuUI.add("QuanLy",new QuanLy(a));        
+        TaiKhoan.setText(nd.Ten(a));
     }
 
     /**
@@ -264,7 +265,11 @@ public class Menu extends javax.swing.JFrame {
 
     private void QuanLyPopupMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QuanLyPopupMenuMouseClicked
         // TODO add your handling code here:
-        layout.show(MenuUI, "QuanLy");
+        if (tk.contains("QL") || tk.equals("ADMIN")) {
+            layout.show(MenuUI, "QuanLy");            
+        }else{
+            JOptionPane.showMessageDialog(this, "Bạn không đủ quuyền hạn truy cập!!","Lỗi",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_QuanLyPopupMenuMouseClicked
 
     private void DangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DangXuatActionPerformed
@@ -305,6 +310,7 @@ public class Menu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Menu(a).setVisible(true);
+                tk=a;
             }
         });
     }
