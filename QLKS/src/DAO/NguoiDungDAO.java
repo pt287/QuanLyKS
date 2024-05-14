@@ -12,11 +12,12 @@ public class NguoiDungDAO {
     Connection con = ConnectionProvider.getCon();
     Statement st = null;
     ResultSet rs=null;
+
     public void updateCountManager(String mql){
         try{
             st=con.createStatement();
-            ResultSet rsc = st.executeQuery("select Count(*) from nhanvien where MngID = '" + mql+"'");
-            String upql = "update quanly set MngCount = " + rsc.getInt(1) + " Where MngID = '" + mql +"';";
+            ResultSet rsc = st.executeQuery("select Count(*) FROM nhanvien WHERE MngID = '" + mql+"'");
+            String upql = "update quanly set MngCount = " + rsc.getInt(1) + " WHERE MngID = '" + mql +"';";
             st.executeUpdate(upql);
         }catch(SQLException ex){
             //báo lỗi
@@ -25,76 +26,96 @@ public class NguoiDungDAO {
     public void them(NguoiDungDTO nd)
     {
         try {
-            st=con.createStatement();
-            st.executeUpdate("Set Foreign_key_checks = 0");
-            String qry="Insert into NguoiDung Values(";
-            qry=qry+"'"+nd.getMaNguoiDung()+"',";
-            qry=qry+"'"+nd.getTaiKhoan()+"',";
-            qry=qry+"'"+nd.getMatKhau()+"',";
-            qry=qry+"'"+nd.getTen()+"',";
-            qry=qry+"'"+nd.getCCCD()+"',";
-            qry=qry+nd.getSDT()+",1)";
+            st = con.createStatement();
+            st.executeUpdate("SET FOREIGN_KEY_CHECKS = 0");
+    
+            String qry = "INSERT INTO NguoiDung VALUES(" +
+                    "'" + nd.getMaNguoiDung() + "'," +
+                    "'" + nd.getTaiKhoan() + "'," +
+                    "'" + nd.getMatKhau() + "'," +
+                    "'" + nd.getTen() + "'," +
+                    "'" + nd.getCCCD() + "'," +
+                    "'" + nd.getSDT() + "'," +
+                    "1)";
             st.executeUpdate(qry);
-            if(nd.getMaNguoiDung().substring(0, 2).equals("QL")){
+    
+            if (nd.getMaNguoiDung().contains("QL")) {
                 QuanLyDTO ql = (QuanLyDTO) nd;
-                String qryql = "Insert into QuanLy Values(";
-                qryql = qryql + "'" + ql.getMaQuanLy() + "',";
-                ResultSet rsc = st.executeQuery("select Count(*) from nhanvien where Mng = '" + ql.getMaQuanLy()+"'");
-                qryql = qryql + rsc.getInt(1) +",";
-                qryql =qryql + "'" + ql.getMaNguoiDung() + "')";
+                String qryql = "INSERT INTO QuanLy VALUES(" +
+                    "'" + ql.getMaQuanLy() + "'," +
+                    "0," + // Khởi tạo số lượng quản lý là 0
+                    "'" + ql.getMaNguoiDung() + "')";
                 st.executeUpdate(qryql);
-            } else if (nd.getMaNguoiDung().substring(0, 2).equals("NV")){
+            } else{
                 NhanVienDTO nv = (NhanVienDTO) nd;
-                String qrynv = "Insert into NhanVien Values(";
-                qrynv = qrynv + "'" + nv.getMaNhanVien() + "',";
-                qrynv = qrynv + "'" + nv.getMaQuanLy() + "',";
-                qrynv = qrynv + "'" + nv.getMaNguoiDung() + "',";
-                qrynv = qrynv + "'" + nv.getVaiTro() + "')";
+                String qrynv = "INSERT INTO NhanVien VALUES(" +
+                        "'" + nv.getMaNhanVien() + "'," +
+                        "'" + nv.getMaQuanLy() + "'," +
+                        "'" + nv.getMaNguoiDung() + "'," +
+                        "'" + nv.getVaiTro() + "')";
                 st.executeUpdate(qrynv);
-                updateCountManager(nv.getMaQuanLy());
+                updateCountManager(nv.getMaQuanLy(), st); // Chuyển Statement vào phương thức updateCountManager
             }
-            st.executeUpdate("Set Foreign_key_checks = 1");
-        }
-        catch(SQLException ex){
-            //báo lỗi
+    
+            st.executeUpdate("SET FOREIGN_KEY_CHECKS = 1");
+        } catch (SQLException ex) {
+            ex.printStackTrace(); // In lỗi ra console hoặc ghi log
         }
     }
-    public ArrayList docDSND(){
-        ArrayList dsnd=new ArrayList<NguoiDungDTO>();
+    private void updateCountManager(String maQuanLy, Statement st) throws SQLException {
+        String updateQry = "UPDATE QuanLy SET MngCount = (SELECT COUNT(*) FROM NhanVien WHERE MngID = '" + maQuanLy + "') WHERE MngID = '" + maQuanLy + "'";
+        st.executeUpdate(updateQry);
+    }
+    public ArrayList<NguoiDungDTO> docDSND(){
+        ArrayList<NguoiDungDTO> dsnd = new ArrayList<NguoiDungDTO>();
         try{
-            String qry="select * from nguoidung";
-            st=con.createStatement();
-            rs=st.executeQuery(qry);
-            while(rs.next()){
-                if(rs.getString(1).substring(0,2).equals("QL")){
-                    NguoiDungDTO ql=new QuanLyDTO();
-                    ql.setMaNguoiDung(rs.getString(1));
-                    ql.setTaiKhoan(rs.getString(2));
-                    ql.setMatKhau(rs.getString(3));
-                    ql.setTen(rs.getString(4));
-                    ql.setCCCD(rs.getString(5));
-                    ql.setSDT(rs.getString(6));
-                    ql.setTrangThai(rs.getInt(7));
+            st = con.createStatement();
+            rs = st.executeQuery("SELECT * FROM NguoiDung");
+            while(rs.next()){                
+                String userID = rs.getString(1);
+                String userName = rs.getString(2);
+                String userPass = rs.getString(3);
+                String userRName = rs.getString(4);
+                String userCID = rs.getString(5);
+                String userPhoneNum = rs.getString(6);
+                int userSTT = rs.getInt(7);
+    
+                if(userID.substring(0, 2).equals("QL")){    
+                    QuanLyDTO ql = new QuanLyDTO(userID, userName, userPass, userRName, userCID, userPhoneNum, userSTT);
+                    Statement str=con.createStatement();
+                    ResultSet rst = str.executeQuery("SELECT * FROM QuanLy WHERE UserID = '"+userID+"'");
+                    if(rst.next()){
+                        ql.setMaQuanLy(rst.getString(1));
+                        ql.setSoLuong(rst.getInt(2));
+                    }
                     dsnd.add(ql);
                 } else {
-                    NguoiDungDTO nv=new NhanVienDTO();
-                    nv.setMaNguoiDung(rs.getString(1));
-                    nv.setTaiKhoan(rs.getString(2));
-                    nv.setMatKhau(rs.getString(3));
-                    nv.setTen(rs.getString(4));
-                    nv.setCCCD(rs.getString(5));
-                    nv.setSDT(rs.getString(6));
-                    nv.setTrangThai(rs.getInt(7));
+                    NhanVienDTO nv = new NhanVienDTO(userID, userName, userPass, userRName, userCID, userPhoneNum, userSTT);
+                    Statement str=con.createStatement();
+                    ResultSet rst = str.executeQuery("SELECT * FROM NhanVien WHERE UserID= '"+userID+"'");
+                    if(rst.next()){
+                        nv.setMaNhanVien(rst.getString(1));
+                        nv.setMaQuanLy(rst.getString(2));
+                        nv.setVaiTro(rst.getString(4));
+                    } 
                     dsnd.add(nv);
                 }
-                
             }
-        }
-        catch(SQLException ex){
-            //báo lỗi
+        } catch(SQLException ex){
+            // Xử lý ngoại lệ
+            System.out.println("Không thể truy vấn dữ liệu người dùng");
+            ex.printStackTrace();
+        } finally {
+            try {
+                if(rs != null) rs.close();
+                if(st != null) st.close();
+            } catch(SQLException e) {
+                e.printStackTrace();
+            }
         }
         return dsnd;
     }
+    
     public String dangnhap(String tk, String mk){
         try{
             st=con.createStatement();
@@ -122,4 +143,82 @@ public class NguoiDungDAO {
         catch(SQLException ex){
             //báo lỗi
         }
+    }
+    public void Sua(String mnd, NguoiDungDTO a) {
+        try {
+            st = con.createStatement();
+            st.executeUpdate("SET FOREIGN_KEY_CHECKS = 0");
+    
+            String qry = "UPDATE NguoiDung SET " +
+                    "UserName = '" + a.getTaiKhoan() + "', " +
+                    "UserPass = '" + a.getMatKhau() + "', " +
+                    "UserRName = '" + a.getTen() + "', " +
+                    "UserCID = '" + a.getCCCD() + "', " +
+                    "UserPhoneNum = '" + a.getSDT() + "' " +
+                    "WHERE UserID = '" + mnd + "'";
+            st.executeUpdate(qry);
+    
+            if (a instanceof NhanVienDTO) {
+                NhanVienDTO b = (NhanVienDTO) a;
+                qry = "UPDATE NhanVien SET " +
+                        "WkID = '" + b.getMaNhanVien() + "', " +
+                        "WkRole = '" + b.getVaiTro() + "' " +
+                        "WHERE UserID = '" + mnd + "'";
+                st.executeUpdate(qry);
+            } else if (a instanceof QuanLyDTO) {
+                QuanLyDTO b = (QuanLyDTO) a;
+                qry = "UPDATE QuanLy SET " +
+                        "MngID = '" + b.getMaQuanLy() + "', " +
+                        "MngCount = '" + b.getSoLuong() + "' " +
+                        "WHERE UserID = '" + mnd + "'";
+                st.executeUpdate(qry);
+            }
+    
+            st.executeUpdate("SET FOREIGN_KEY_CHECKS = 1");
+        } catch (SQLException ex) {
+            // Xử lý ngoại lệ
+            ex.printStackTrace(); // In lỗi ra console hoặc ghi log
+        }
+    }
+    public boolean kiemTraMaNhanVien(String maNhanVien) {
+        try (
+             Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery("SELECT COUNT(*) FROM NhanVien WHERE WkID = '" + maNhanVien + "'");
+        ) {
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(); // Xử lý ngoại lệ
+        }
+        return false;
+    }
+    public boolean kiemTraMaQuanLy(String maquanly) {
+        try (
+             Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery("SELECT COUNT(*) FROM NhanVien WHERE MngID = '" + maquanly + "'");
+        ) {
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(); // Xử lý ngoại lệ
+        }
+        return false;
+    }
+    public String Ten(String a){
+        try (
+             Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery("SELECT * FROM NguoiDung WHERE UserID = '" + a + "'");
+        ) {
+            if (rs.next()) {
+                return rs.getString(4);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(); // Xử lý ngoại lệ
+        }
+        return "";
+    }
 }
