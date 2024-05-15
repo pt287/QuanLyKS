@@ -13,25 +13,32 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import BUS.NguoiDungBUS;
 import GUICHART.ServiceRatio.SR;
 
 public class Menu extends javax.swing.JFrame {
     CardLayout layout;
+    String TaiKhoan="";
+    NguoiDungBUS nd=new NguoiDungBUS();
     /**
      * Creates new form Menu
      */
-    public Menu() {
+    public Menu(String a) {
         initComponents();
         layout = new CardLayout();
         MenuUI.setLayout(layout);
         MenuUI.add("dsPhong", new DSPhong());
         MenuUI.add("HoaDon",new HoaDon());
         MenuUI.add("DatPhong",new DatPhong());
+        MenuUI.add("QuanLy", new QuanLy(TaiKhoan));
         MenuUI.add("CPM",new CPMChart());
         MenuUI.add("MPM",new MPMChart());
         MenuUI.add("CPSAR",new CPSAR());
         MenuUI.add("RR",new RR());
         MenuUI.add("SR",new SR());
+        TenND.setText(nd.Ten(a));
+        TaiKhoan=a;
     }
 
     /**
@@ -63,15 +70,15 @@ public class Menu extends javax.swing.JFrame {
         QuanLyPopupMenu = new javax.swing.JLabel();
         DichVu = new javax.swing.JLabel();
         ThongKe = new javax.swing.JLabel();
+        DangXuat = new javax.swing.JButton();
+        TenND = new javax.swing.JLabel();
         MenuUI = new javax.swing.JPanel();
 
         LeTanMenu.setBackground(new java.awt.Color(0, 16, 31));
         LeTanMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        LeTanMenu.setForeground(new java.awt.Color(0, 0, 0));
 
         DatPhong.setBackground(new java.awt.Color(0, 16, 31));
         DatPhong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        DatPhong.setForeground(new java.awt.Color(0, 0, 0));
         DatPhong.setText("Đặt Phòng");
         DatPhong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,7 +89,6 @@ public class Menu extends javax.swing.JFrame {
 
         DSPhong.setBackground(new java.awt.Color(0, 16, 31));
         DSPhong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        DSPhong.setForeground(new java.awt.Color(0, 0, 0));
         DSPhong.setText("Danh Sách Phòng");
         DSPhong.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         DSPhong.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +100,6 @@ public class Menu extends javax.swing.JFrame {
 
         HoaDon.setBackground(new java.awt.Color(0, 16, 31));
         HoaDon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        HoaDon.setForeground(new java.awt.Color(0, 0, 0));
         HoaDon.setText("Hóa Đơn");
         HoaDon.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         HoaDon.addActionListener(new java.awt.event.ActionListener() {
@@ -189,6 +194,11 @@ public class Menu extends javax.swing.JFrame {
         QuanLyPopupMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QuanLyPopupMenu.setText("Quản Lý");
         QuanLyPopupMenu.setToolTipText("");
+        QuanLyPopupMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                QuanLyPopupMenuMouseClicked(evt);
+            }
+        });
 
         DichVu.setBackground(new java.awt.Color(0, 16, 31));
         DichVu.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -207,6 +217,19 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        DangXuat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        DangXuat.setText("Đăng xuất");
+        DangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DangXuatActionPerformed(evt);
+            }
+        });
+
+        TenND.setBackground(new java.awt.Color(0, 16, 31));
+        TenND.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        TenND.setForeground(new java.awt.Color(220, 242, 197));
+        TenND.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -218,6 +241,14 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(Logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(QuanLyPopupMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(LeTanPopupMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(DangXuat)
+                .addGap(42, 42, 42))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(TenND, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -232,7 +263,11 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(DichVu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(700, Short.MAX_VALUE))
+                .addGap(264, 264, 264)
+                .addComponent(TenND, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(DangXuat)
+                .addContainerGap(356, Short.MAX_VALUE))
         );
 
         MenuUI.setBackground(new java.awt.Color(220, 242, 197));
@@ -320,10 +355,25 @@ public class Menu extends javax.swing.JFrame {
         layout.show(MenuUI,"SR");
     }//GEN-LAST:event_SRActionPerformed
 
+    private void DangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DangXuatActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        DangNhap.main(null);
+    }//GEN-LAST:event_DangXuatActionPerformed
+
+    private void QuanLyPopupMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QuanLyPopupMenuMouseClicked
+        // TODO add your handling code here:
+        if (TaiKhoan.contains("NV")) {
+            JOptionPane.showMessageDialog(this, "Không đủ quyền hạn!!!","Lỗi",JOptionPane.ERROR_MESSAGE);
+        }else{
+            layout.show(MenuUI, "QuanLy");
+        }
+    }//GEN-LAST:event_QuanLyPopupMenuMouseClicked
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String a) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -350,7 +400,7 @@ public class Menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
+                new Menu(a).setVisible(true);
             }
         });
     }
@@ -359,6 +409,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem CPM;
     private javax.swing.JMenuItem CPSAR;
     private javax.swing.JMenuItem DSPhong;
+    private javax.swing.JButton DangXuat;
     private javax.swing.JMenuItem DatPhong;
     private javax.swing.JLabel DichVu;
     private javax.swing.JMenuItem HoaDon;
@@ -372,6 +423,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel QuanLyPopupMenu;
     private javax.swing.JMenuItem RR;
     private javax.swing.JMenuItem SR;
+    private javax.swing.JLabel TenND;
     private javax.swing.JLabel ThongKe;
     private javax.swing.JPopupMenu ThongKeMenu;
     private javax.swing.JMenu ThuNhap;
