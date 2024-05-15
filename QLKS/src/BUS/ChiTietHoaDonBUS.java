@@ -14,7 +14,12 @@ public class ChiTietHoaDonBUS {
     static ArrayList<ChiTietHoaDonDTO> dscthd;
     public ChiTietHoaDonBUS(){}
     ChiTietHoaDonDAO data = new ChiTietHoaDonDAO();
+    
     public ArrayList RoomRatio(){
         return data.RoomRatio();
+    }
+    
+    public ArrayList SvcRatio(){
+        return data.SvcRatio();
     }
 }
