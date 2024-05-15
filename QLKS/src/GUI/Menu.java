@@ -419,7 +419,10 @@ public class Menu extends javax.swing.JFrame {
         layout.show(MenuUI, "DichVu");
     }
 
-
+    public void ThoatDichVu(){
+        layout.show(MenuUI,"HoaDon");
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem CPM;
     private javax.swing.JMenuItem CPSAR;
