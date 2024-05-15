@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import DTO.ChiTietHoaDonDTO;
 import GUICHART.RoomRatio.RoomRatioModel;
+import GUICHART.ServiceRatio.SvcRatioModel;
 public class ChiTietHoaDonDAO {
     Connection con = ConnectionProvider.getCon();
     Statement st = null;
@@ -89,5 +90,22 @@ public class ChiTietHoaDonDAO {
             //báo lỗi
         }
         return RRlist;
+    }
+    public ArrayList SvcRatio(){
+        ArrayList SRlist = new ArrayList<SvcRatioModel>();
+        try{
+            st=con.createStatement();
+            rs=st.executeQuery("Select Svc.SvcName as SName ,Count(BD.SvcID) as Count From DichVu as Svc, chitiethoadon as BD where BD.SvcID=Svc.SvcID GROUP by Svc.SvcName; ");
+            while(rs.next()){
+                SvcRatioModel model = new SvcRatioModel();
+                model.setName(rs.getString(1));
+                model.setScount(rs.getInt(2));
+                SRlist.add(model);
+            }
+        }
+        catch(SQLException ex){
+            //báo lỗi
+        }
+        return SRlist;
     }
 }
