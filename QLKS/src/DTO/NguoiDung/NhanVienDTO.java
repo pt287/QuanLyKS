@@ -14,6 +14,13 @@ public class NhanVienDTO extends NguoiDungDTO{
         MaQuanLy = maQuanLy;
         VaiTro = vaiTro;
     }
+    
+
+    public NhanVienDTO(String maNguoiDung, String taiKhoan, String matKhau, String ten, String cCCD, String sDT,
+            int trangThai) {
+        super(maNguoiDung, taiKhoan, matKhau, ten, cCCD, sDT, trangThai);
+    }
+
 
     public NhanVienDTO(String maNhanVien, String maQuanLy, String vaiTro) {
         MaNhanVien = maNhanVien;
