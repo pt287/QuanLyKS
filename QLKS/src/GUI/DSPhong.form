@@ -49,7 +49,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="800" max="-2" attributes="0"/>
-                          <EmptySpace pref="38" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="PanelChinhSua" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -162,7 +162,9 @@
             <Property name="text" type="java.lang.String" value="Danh S&#xe1;ch Ph&#xf2;ng"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder/>
+                <TitledBorder>
+                  <Color PropertyName="color" blue="1f" green="10" red="0" type="rgb"/>
+                </TitledBorder>
               </Border>
             </Property>
           </Properties>
