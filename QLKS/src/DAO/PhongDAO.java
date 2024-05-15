@@ -20,11 +20,16 @@ public class PhongDAO {
             String qry="Insert into Phong Values(";
             qry=qry+"'"+p.getMaPhong()+"',";
             qry=qry+"'"+p.getSoPhong()+"',";
-            qry=qry+"'"+p.getLoaiPhong()+"',";
+            if (!p.getMaPhong().equals("VIP")) {
+                PhongThuongDTO pt=(PhongThuongDTO)p;
+                qry=qry+"'"+pt.getKieuPhong()+"',";
+            }else{
+                qry=qry+"NULL,";
+            }
             qry=qry+"'"+p.getTinhTrang()+"',";
             qry=qry+"'"+p.getGhiChu()+"',";
             qry=qry+p.getDonGia()+",";
-            if(p.getLoaiPhong().equals("VIP")||p.getLoaiPhong().equals("PSD")){
+            if(p.getMaPhong().equals("VIP")){
                 PhongVipDTO pv= (PhongVipDTO) p;
                 qry=qry+"'"+pv.getMaPhongAn()+"')";
             } else {
@@ -34,30 +39,49 @@ public class PhongDAO {
             st.executeUpdate("Set Foreign_key_checks = 1");
         }
         catch(SQLException ex){
-            //JOPtionPane.ShowMessageDialog(null,"Lỗi ghi thông tin người dùng!");
-            System.out.println("Lỗi ghi thông tin người dùng");
         }
     }
-    public ArrayList docDSP(){
-        ArrayList dsp=new ArrayList<PhongDTO>();
+    public ArrayList<PhongDTO> docDSP(){
+        ArrayList<PhongDTO> dsp=new ArrayList<PhongDTO>();
         try{
             String qry="select * from Phong";
             st=con.createStatement();
             rs=st.executeQuery(qry);
             while(rs.next()){
-                PhongDTO p = new PhongDTO();
-                p.setMaPhong(rs.getString(1));
-                p.setSoPhong(rs.getString(2));
-                p.setLoaiPhong(rs.getString(3));
-                p.setTinhTrang(rs.getString(4));
-                p.setGhiChu(rs.getString(5));
-                p.setDonGia(rs.getInt(6));
-                dsp.add(p);
+                String RoomID = rs.getString(1);
+                String RoomNum = rs.getString(2);
+                String RoomType =rs.getString(3);
+	            String RoomSTT =rs.getString(4);
+                String RoomNote =rs.getString(5);
+                int RoomPrice =rs.getInt(6);
+                String RoomDRID =rs.getString(7);
+                if (RoomID.substring(0,3).equals("VIP")) {
+                    PhongVipDTO pv=new PhongVipDTO(RoomID,RoomNum,RoomSTT,RoomNote,RoomPrice,RoomDRID);
+                    dsp.add(pv);
+                }else{
+                    PhongThuongDTO pt=new PhongThuongDTO(RoomID, RoomNum, RoomSTT, RoomNote, RoomPrice,RoomType);
+                    dsp.add(pt);
+                }
             }
         }
         catch(SQLException ex){
             //JOptionPane.ShowMessageDialog(null,"Lỗi đọc thông tin Sinh Viên!");
         }
         return dsp;
+    }
+    public void Sua(String mp,PhongDTO p){
+        try {
+            st = con.createStatement();
+            st.executeUpdate("SET FOREIGN_KEY_CHECKS = 0");
+                String qry = "UPDATE Phong SET " +
+                    "RoomSTT = '" + p.getTinhTrang() + "' " +
+                    "RoomNote = '" + p.getGhiChu() + "', " +
+                    "WHERE RoomID = '" + p.getMaPhong() + "'";
+            st.executeUpdate(qry);
+            st.executeUpdate("SET FOREIGN_KEY_CHECKS = 1");
+        } catch (SQLException ex) {
+            // Xử lý ngoại lệ
+            ex.printStackTrace(); // In lỗi ra console hoặc ghi log
+        }
     }
 }
