@@ -3,9 +3,9 @@ package DTO.Phong;
 public class PhongThuongDTO extends PhongDTO{
     private String KieuPhong;
 
-    public PhongThuongDTO(String MaPhong, String SoPhong, String LoaiPhong, String TinhTrang, String GhiChu, int DonGia,
+    public PhongThuongDTO(String MaPhong, String SoPhong, String TinhTrang, String GhiChu, int DonGia,
             String kieuPhong) {
-        super(MaPhong, SoPhong, LoaiPhong, TinhTrang, GhiChu, DonGia);
+        super(MaPhong, SoPhong, TinhTrang, GhiChu, DonGia);
         KieuPhong = kieuPhong;
     }
 
