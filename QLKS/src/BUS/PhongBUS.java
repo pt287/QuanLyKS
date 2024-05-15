@@ -6,21 +6,27 @@ import DAO.PhongDAO;
 
 public class PhongBUS {
     static ArrayList<PhongDTO> dsphong;
+    PhongDAO data=new PhongDAO();
     public PhongBUS(){}
-    public ArrayList<PhongDTO> docDSPhong(){
-        PhongDAO data=new PhongDAO();
+    public ArrayList<PhongDTO> docDSPhong(){  
         if(dsphong!=null) dsphong=new ArrayList<PhongDTO>();
         dsphong=data.docDSP();
         return dsphong;
     }
     public void them(PhongDTO nd){
-        PhongDAO data=new PhongDAO();
         data.them(nd);
         dsphong.add(nd);
     }
-    public void TimKiem_mp(String tk){
-        for(PhongDTO p:dsphong){
-
+    public void Sua(String mp,PhongDTO p){
+        data.Sua(mp, p);
+        for(int i=0;i<dsphong.size();i++){
+            PhongDTO a=dsphong.get(i);
+            if (a.getMaPhong().equals(mp)) {
+                dsphong.add(i, p);
+                break;
+            }
         }
+    }
+    public void TimKiem_mp(String tk){
     }
 }
