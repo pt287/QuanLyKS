@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import DTO.ChiTietHoaDonDTO;
+import GUICHART.RoomRatio.RoomRatioModel;
 public class ChiTietHoaDonDAO {
     Connection con = ConnectionProvider.getCon();
     Statement st = null;
@@ -25,8 +26,7 @@ public class ChiTietHoaDonDAO {
             st=con.createStatement();
             st.executeUpdate("Set Foreign_key_checks = 0");
             int giatien = 0;
-            String qry="Insert into ChiTietHoaDon Values(";
-            qry= qry + "'"+cthd.getMaChiTietHoaDon()+"',";
+            String qry="Insert into ChiTietHoaDon(BillID, SvcID, RoomID, BDPRICE) Values(";
             qry = qry + "'" + cthd.getMaHoaDon() + "',";
             if(cthd.getMaDichVu()==null){
                 qry = qry + "null,";
@@ -72,5 +72,22 @@ public class ChiTietHoaDonDAO {
             //JOptionPane.ShowMessageDialog(null,"Lỗi đọc thông tin Sinh Viên!");
         }
         return dscthd;
+    }
+    public ArrayList RoomRatio(){
+        ArrayList RRlist = new ArrayList<RoomRatioModel>();
+        try{
+            st=con.createStatement();
+            rs=st.executeQuery("Select R.RoomType as RType ,Count(BD.RoomID) as Count From Phong as R, chitiethoadon as BD where BD.RoomID=R.RoomID GROUP by R.RoomType; ");
+            while(rs.next()){
+                RoomRatioModel model = new RoomRatioModel();
+                model.setRType(rs.getString(1));
+                model.setRCount(rs.getInt(2));
+                RRlist.add(model);
+            }
+        }
+        catch(SQLException ex){
+            //báo lỗi
+        }
+        return RRlist;
     }
 }
