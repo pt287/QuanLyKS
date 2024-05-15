@@ -4,31 +4,34 @@
  */
 package GUI;
 
+import GUICHART.ClientPerMonth.CPMChart;
+import GUICHART.ClientPerServiceAndRoom.CPSAR;
+import GUICHART.MoneyPerMonth.MPMChart;
+import GUICHART.RoomRatio.RR;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
-import BUS.NguoiDungBUS;
-import DTO.NguoiDung.NguoiDungDTO;
+import GUICHART.ServiceRatio.SR;
 
 public class Menu extends javax.swing.JFrame {
-    NguoiDungBUS nd=new NguoiDungBUS();
     CardLayout layout;
-    static String tk="";
     /**
      * Creates new form Menu
      */
-    public Menu(String a) {
+    public Menu() {
         initComponents();
         layout = new CardLayout();
         MenuUI.setLayout(layout);
         MenuUI.add("dsPhong", new DSPhong());
         MenuUI.add("HoaDon",new HoaDon());
         MenuUI.add("DatPhong",new DatPhong());
-        MenuUI.add("QuanLy",new QuanLy(a));        
-        TaiKhoan.setText(nd.Ten(a));
+        MenuUI.add("CPM",new CPMChart());
+        MenuUI.add("MPM",new MPMChart());
+        MenuUI.add("CPSAR",new CPSAR());
+        MenuUI.add("RR",new RR());
+        MenuUI.add("SR",new SR());
     }
 
     /**
@@ -46,21 +49,29 @@ public class Menu extends javax.swing.JFrame {
         HoaDon = new javax.swing.JMenuItem();
         QuanLyMenu = new javax.swing.JPopupMenu();
         jPanel3 = new javax.swing.JPanel();
+        ThongKeMenu = new javax.swing.JPopupMenu();
+        ThuNhap = new javax.swing.JMenu();
+        CPM = new javax.swing.JMenuItem();
+        MPM = new javax.swing.JMenuItem();
+        CPSAR = new javax.swing.JMenuItem();
+        NhuCau = new javax.swing.JMenu();
+        RR = new javax.swing.JMenuItem();
+        SR = new javax.swing.JMenuItem();
         jPanel2 = new javax.swing.JPanel();
         Logo = new javax.swing.JLabel();
         LeTanPopupMenu = new javax.swing.JLabel();
         QuanLyPopupMenu = new javax.swing.JLabel();
         DichVu = new javax.swing.JLabel();
         ThongKe = new javax.swing.JLabel();
-        TaiKhoan = new javax.swing.JLabel();
-        DangXuat = new javax.swing.JButton();
         MenuUI = new javax.swing.JPanel();
 
         LeTanMenu.setBackground(new java.awt.Color(0, 16, 31));
         LeTanMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        LeTanMenu.setForeground(new java.awt.Color(0, 0, 0));
 
         DatPhong.setBackground(new java.awt.Color(0, 16, 31));
         DatPhong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DatPhong.setForeground(new java.awt.Color(0, 0, 0));
         DatPhong.setText("Đặt Phòng");
         DatPhong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,6 +82,7 @@ public class Menu extends javax.swing.JFrame {
 
         DSPhong.setBackground(new java.awt.Color(0, 16, 31));
         DSPhong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DSPhong.setForeground(new java.awt.Color(0, 0, 0));
         DSPhong.setText("Danh Sách Phòng");
         DSPhong.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         DSPhong.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +94,7 @@ public class Menu extends javax.swing.JFrame {
 
         HoaDon.setBackground(new java.awt.Color(0, 16, 31));
         HoaDon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        HoaDon.setForeground(new java.awt.Color(0, 0, 0));
         HoaDon.setText("Hóa Đơn");
         HoaDon.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         HoaDon.addActionListener(new java.awt.event.ActionListener() {
@@ -102,11 +115,60 @@ public class Menu extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        ThuNhap.setText("Thu Nhập");
+
+        CPM.setText("CPM");
+        CPM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CPMActionPerformed(evt);
+            }
+        });
+        ThuNhap.add(CPM);
+
+        MPM.setText("MPM");
+        MPM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MPMActionPerformed(evt);
+            }
+        });
+        ThuNhap.add(MPM);
+
+        CPSAR.setText("CPSAR");
+        CPSAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CPSARActionPerformed(evt);
+            }
+        });
+        ThuNhap.add(CPSAR);
+
+        ThongKeMenu.add(ThuNhap);
+
+        NhuCau.setText("Nhu Cầu Khách Hàng");
+
+        RR.setText("Tỉ Lệ Đặt Phòng");
+        RR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RRActionPerformed(evt);
+            }
+        });
+        NhuCau.add(RR);
+
+        SR.setText("Tỉ Lệ Sử Dụng DỊch Vụ");
+        SR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SRActionPerformed(evt);
+            }
+        });
+        NhuCau.add(SR);
+
+        ThongKeMenu.add(NhuCau);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1920, 1080));
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         jPanel2.setBackground(new java.awt.Color(0, 16, 31));
-        jPanel2.setPreferredSize(new java.awt.Dimension(210, 1080));
+        jPanel2.setPreferredSize(new java.awt.Dimension(200, 1080));
 
         Logo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/1.jpg"))); // NOI18N
@@ -127,39 +189,21 @@ public class Menu extends javax.swing.JFrame {
         QuanLyPopupMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QuanLyPopupMenu.setText("Quản Lý");
         QuanLyPopupMenu.setToolTipText("");
-        QuanLyPopupMenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                QuanLyPopupMenuMouseClicked(evt);
-            }
-        });
 
         DichVu.setBackground(new java.awt.Color(0, 16, 31));
         DichVu.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         DichVu.setForeground(new java.awt.Color(220, 242, 197));
         DichVu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         DichVu.setText("Dịch Vụ");
-        DichVu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                DichVuMouseClicked(evt);
-            }
-        });
 
         ThongKe.setBackground(new java.awt.Color(0, 16, 31));
         ThongKe.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         ThongKe.setForeground(new java.awt.Color(220, 242, 197));
         ThongKe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ThongKe.setText("Thống Kê");
-
-        TaiKhoan.setBackground(new java.awt.Color(0, 16, 31));
-        TaiKhoan.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        TaiKhoan.setForeground(new java.awt.Color(220, 242, 197));
-        TaiKhoan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        DangXuat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        DangXuat.setText("Đăng xuất");
-        DangXuat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DangXuatActionPerformed(evt);
+        ThongKe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ThongKeMouseClicked(evt);
             }
         });
 
@@ -167,21 +211,14 @@ public class Menu extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ThongKe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(DichVu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                    .addComponent(QuanLyPopupMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(LeTanPopupMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(TaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DichVu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(QuanLyPopupMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(LeTanPopupMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(DangXuat)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,26 +232,23 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(DichVu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(303, 303, 303)
-                .addComponent(TaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DangXuat)
-                .addContainerGap(329, Short.MAX_VALUE))
+                .addContainerGap(700, Short.MAX_VALUE))
         );
 
         MenuUI.setBackground(new java.awt.Color(220, 242, 197));
         MenuUI.setForeground(new java.awt.Color(255, 255, 255));
-        MenuUI.setPreferredSize(new java.awt.Dimension(1710, 1080));
+        MenuUI.setMinimumSize(new java.awt.Dimension(1720, 1080));
+        MenuUI.setPreferredSize(new java.awt.Dimension(1720, 1080));
 
         javax.swing.GroupLayout MenuUILayout = new javax.swing.GroupLayout(MenuUI);
         MenuUI.setLayout(MenuUILayout);
         MenuUILayout.setHorizontalGroup(
             MenuUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1710, Short.MAX_VALUE)
+            .addGap(0, 1720, Short.MAX_VALUE)
         );
         MenuUILayout.setVerticalGroup(
             MenuUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1080, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -228,10 +262,8 @@ public class Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(MenuUI, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1086, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(MenuUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -258,31 +290,40 @@ public class Menu extends javax.swing.JFrame {
         layout.show(MenuUI,"HoaDon");
     }//GEN-LAST:event_HoaDonActionPerformed
 
-    private void DichVuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DichVuMouseClicked
+    private void ThongKeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ThongKeMouseClicked
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_DichVuMouseClicked
+        ThongKeMenu.show(ThongKe, WIDTH+50, WIDTH+30);
+    }//GEN-LAST:event_ThongKeMouseClicked
 
-    private void QuanLyPopupMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QuanLyPopupMenuMouseClicked
+    private void CPMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPMActionPerformed
         // TODO add your handling code here:
-        if (tk.contains("QL") || tk.equals("ADMIN")) {
-            layout.show(MenuUI, "QuanLy");            
-        }else{
-            JOptionPane.showMessageDialog(this, "Bạn không đủ quuyền hạn truy cập!!","Lỗi",JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_QuanLyPopupMenuMouseClicked
+        layout.show(MenuUI, "CPM");
+    }//GEN-LAST:event_CPMActionPerformed
 
-    private void DangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DangXuatActionPerformed
+    private void MPMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPMActionPerformed
         // TODO add your handling code here:
-        dispose();
-        DangNhap.main(null);
-        
-    }//GEN-LAST:event_DangXuatActionPerformed
+        layout.show(MenuUI,"MPM");
+    }//GEN-LAST:event_MPMActionPerformed
+
+    private void CPSARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPSARActionPerformed
+        // TODO add your handling code here:
+        layout.show(MenuUI,"CPSAR");
+    }//GEN-LAST:event_CPSARActionPerformed
+
+    private void RRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RRActionPerformed
+        // TODO add your handling code here:
+        layout.show(MenuUI,"RR");
+    }//GEN-LAST:event_RRActionPerformed
+
+    private void SRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SRActionPerformed
+        // TODO add your handling code here:
+        layout.show(MenuUI,"SR");
+    }//GEN-LAST:event_SRActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String a) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -309,26 +350,31 @@ public class Menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu(a).setVisible(true);
-                tk=a;
+                new Menu().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem CPM;
+    private javax.swing.JMenuItem CPSAR;
     private javax.swing.JMenuItem DSPhong;
-    private javax.swing.JButton DangXuat;
     private javax.swing.JMenuItem DatPhong;
     private javax.swing.JLabel DichVu;
     private javax.swing.JMenuItem HoaDon;
     private javax.swing.JPopupMenu LeTanMenu;
     private javax.swing.JLabel LeTanPopupMenu;
     private javax.swing.JLabel Logo;
+    private javax.swing.JMenuItem MPM;
     private javax.swing.JPanel MenuUI;
+    private javax.swing.JMenu NhuCau;
     private javax.swing.JPopupMenu QuanLyMenu;
     private javax.swing.JLabel QuanLyPopupMenu;
-    private javax.swing.JLabel TaiKhoan;
+    private javax.swing.JMenuItem RR;
+    private javax.swing.JMenuItem SR;
     private javax.swing.JLabel ThongKe;
+    private javax.swing.JPopupMenu ThongKeMenu;
+    private javax.swing.JMenu ThuNhap;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
