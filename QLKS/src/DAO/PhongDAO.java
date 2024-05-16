@@ -24,7 +24,7 @@ public class PhongDAO {
                 PhongThuongDTO pt=(PhongThuongDTO)p;
                 qry=qry+"'"+pt.getKieuPhong()+"',";
             }else{
-                qry=qry+"NULL,";
+                qry=qry+"'VIP',";
             }
             qry=qry+"'"+p.getTinhTrang()+"',";
             qry=qry+"'"+p.getGhiChu()+"',";
@@ -33,7 +33,7 @@ public class PhongDAO {
                 PhongVipDTO pv= (PhongVipDTO) p;
                 qry=qry+"'"+pv.getMaPhongAn()+"')";
             } else {
-                qry=qry+"'VIP')";
+                qry=qry+"NULL)";
             }
             st.executeUpdate(qry);
             st.executeUpdate("Set Foreign_key_checks = 1");
