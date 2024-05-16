@@ -276,6 +276,7 @@ public class DichVu extends javax.swing.JPanel {
 
     private void ButtonThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonThoatActionPerformed
         // TODO add your handling code here:
+        menu.ThoatDichVu();
     }//GEN-LAST:event_ButtonThoatActionPerformed
 
 
