@@ -33,8 +33,6 @@ public class DatPhong extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         KQPhong = new javax.swing.JTable();
         BangPhong = new javax.swing.JComboBox<>();
-        NgayNhanChooser = new com.toedter.calendar.JDateChooser();
-        NgayTraChooser = new com.toedter.calendar.JDateChooser();
         XacNhanDatPhong = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -102,12 +100,6 @@ public class DatPhong extends javax.swing.JPanel {
         BangPhong.setBackground(new java.awt.Color(220, 242, 197));
         BangPhong.setForeground(new java.awt.Color(220, 242, 197));
 
-        NgayNhanChooser.setBackground(new java.awt.Color(220, 242, 197));
-        NgayNhanChooser.setForeground(new java.awt.Color(220, 242, 197));
-
-        NgayTraChooser.setBackground(new java.awt.Color(220, 242, 197));
-        NgayTraChooser.setForeground(new java.awt.Color(220, 242, 197));
-
         XacNhanDatPhong.setBackground(new java.awt.Color(220, 242, 197));
         XacNhanDatPhong.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         XacNhanDatPhong.setForeground(new java.awt.Color(0, 1, 15));
@@ -171,13 +163,9 @@ public class DatPhong extends javax.swing.JPanel {
                                     .addComponent(LoaiPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(BangPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(142, 142, 142)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(NgayNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(NgayNhanChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(NgayNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(170, 170, 170)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(NgayTraChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(NgayTra, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(NgayTra, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(56, 56, 56)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,10 +187,7 @@ public class DatPhong extends javax.swing.JPanel {
                             .addComponent(NgayNhan)
                             .addComponent(LoaiPhong))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NgayNhanChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(NgayTraChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BangPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(BangPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(DSPhongDaDat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -239,9 +224,7 @@ public class DatPhong extends javax.swing.JPanel {
     private javax.swing.JTable KQPhong;
     private javax.swing.JLabel LoaiPhong;
     private javax.swing.JLabel NgayNhan;
-    private com.toedter.calendar.JDateChooser NgayNhanChooser;
     private javax.swing.JLabel NgayTra;
-    private com.toedter.calendar.JDateChooser NgayTraChooser;
     private javax.swing.JButton XacNhanDatPhong;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;

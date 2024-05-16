@@ -64,15 +64,9 @@
                                       <Component id="BangPhong" min="-2" pref="122" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="NgayNhan" min="-2" pref="126" max="-2" attributes="0"/>
-                                      <Component id="NgayNhanChooser" min="-2" pref="126" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="NgayNhan" min="-2" pref="126" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="NgayTraChooser" min="-2" pref="126" max="-2" attributes="0"/>
-                                      <Component id="NgayTra" min="-2" pref="126" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="NgayTra" min="-2" pref="126" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane2" min="-2" pref="686" max="-2" attributes="0"/>
                           </Group>
@@ -103,11 +97,7 @@
                               <Component id="LoaiPhong" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="NgayNhanChooser" min="-2" max="-2" attributes="0"/>
-                              <Component id="NgayTraChooser" min="-2" max="-2" attributes="0"/>
-                              <Component id="BangPhong" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="BangPhong" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
@@ -253,26 +243,6 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
-        </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="NgayNhanChooser">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="c5" green="f2" red="dc" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="c5" green="f2" red="dc" type="rgb"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="NgayTraChooser">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="c5" green="f2" red="dc" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="c5" green="f2" red="dc" type="rgb"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="XacNhanDatPhong">
           <Properties>

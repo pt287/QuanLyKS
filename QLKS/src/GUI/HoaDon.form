@@ -78,11 +78,6 @@
                                       <EmptySpace min="-2" pref="209" max="-2" attributes="0"/>
                                       <Component id="ButtonTim" min="-2" pref="90" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="NgayNhan" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
-                                      <Component id="NgayTra" min="-2" pref="150" max="-2" attributes="0"/>
-                                  </Group>
                                   <Component id="jScrollPane3" min="-2" pref="499" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -116,12 +111,7 @@
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="NgayTra" min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="NgayNhan" min="-2" pref="35" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="ButtonTim" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="NhapTimKiem" min="-2" pref="30" max="-2" attributes="0"/>
@@ -179,20 +169,6 @@
                   <Color PropertyName="color" blue="1f" green="10" red="0" type="rgb"/>
                 </TitledBorder>
               </Border>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="NgayNhan">
-          <Properties>
-            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[150, 30]"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="NgayTra">
-          <Properties>
-            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[150, 30]"/>
             </Property>
           </Properties>
         </Component>

@@ -219,6 +219,6 @@ public class NguoiDungDAO {
         } catch (SQLException ex) {
             ex.printStackTrace(); // Xử lý ngoại lệ
         }
-        return "";
+        return "k lay dc";
     }
 }

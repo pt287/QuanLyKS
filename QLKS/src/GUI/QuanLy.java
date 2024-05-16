@@ -28,16 +28,16 @@ public class QuanLy extends javax.swing.JPanel {
     /**
      * Creates new form QuanLy
      */
-    public QuanLy(String TaiKhoan) {
-        this.TaiKhoan=TaiKhoan;       
+    public QuanLy(String b) {
+        TaiKhoan=b;       
         dsnd= nd.docDSND();
         initComponents();       
         for (NguoiDungDTO a:dsnd)
-            if(a.getMaNguoiDung().equals(TaiKhoan)) Ql=(QuanLyDTO)a; 
+            if(a.getMaNguoiDung().equals(b)) Ql=(QuanLyDTO)a; 
         TaoBang(TaiKhoan);
         
     }
-    public void TaoBang(String TaiKhoan){
+    public void TaoBang(String b){
         sl=0;
         DefaultTableModel table=new DefaultTableModel();
         Bang.setModel(table);
@@ -45,7 +45,7 @@ public class QuanLy extends javax.swing.JPanel {
         table.addColumn( "Họ và tên");
         table.addColumn("Số điện thoại");
         table.addColumn("Chức vụ");
-        if (TaiKhoan.contains("QL")) {
+        if (b.contains("QL")) {
             for(NguoiDungDTO p:dsnd){
                 if (p.getMaNguoiDung().contains("NV") && p.getTrangThai()==1) {
                     NhanVienDTO a=(NhanVienDTO) p;
@@ -383,7 +383,7 @@ public class QuanLy extends javax.swing.JPanel {
             String vaiTro = VaiTro.getText();
             if (TaiKhoan.contains("QL")) {
                 if (maNguoiDung.contains("NV") && maNguoiDung.length() == 8 && maNhanVien.length() == 8) {
-                    if (!nd.kiemTraMaNhanVien(maNhanVien) && luumanv!=maNhanVien) {
+                    if (!nd.kiemTraMaNhanVien(maNhanVien) && luumanv.equals(maNhanVien)) {
                         if (cccd.length() < 13) {
                             if (sdt.length() < 11) {
                                 a = new NhanVienDTO(maNguoiDung, taiKhoan, matKhau, hoTen, cccd, sdt, 1, maNhanVien, Ql.getMaQuanLy(), vaiTro);
@@ -401,7 +401,7 @@ public class QuanLy extends javax.swing.JPanel {
                 }
             } else {
                 if (maNguoiDung.contains("QL") && maNguoiDung.length() == 8 && maNhanVien.length() == 8) {
-                    if (!nd.kiemTraMaQuanLy(maNhanVien) && luumanv!=maNhanVien) {
+                    if (!nd.kiemTraMaQuanLy(maNhanVien) && luumanv.equals(maNhanVien)) {
                         if (cccd.length() < 13) {
                             if (sdt.length() < 11) {
                                 a = new QuanLyDTO(maNguoiDung, taiKhoan, matKhau, hoTen, cccd, sdt, 1, maNhanVien, 0);

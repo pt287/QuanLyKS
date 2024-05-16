@@ -49,8 +49,6 @@ public class HoaDon extends javax.swing.JPanel {
         HoaDonPanel = new javax.swing.JPanel();
         LabelCTHD = new javax.swing.JLabel();
         LabelTKHD = new javax.swing.JLabel();
-        NgayNhan = new com.toedter.calendar.JDateChooser();
-        NgayTra = new com.toedter.calendar.JDateChooser();
         NhapTimKiem = new javax.swing.JTextField();
         ButtonTim = new javax.swing.JButton();
         ButtonChinhSuaHD = new javax.swing.JButton();
@@ -81,10 +79,6 @@ public class HoaDon extends javax.swing.JPanel {
         LabelTKHD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelTKHD.setText("Tìm Kiếm Hóa Đơn");
         LabelTKHD.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 16, 31))); // NOI18N
-
-        NgayNhan.setMaximumSize(new java.awt.Dimension(150, 30));
-
-        NgayTra.setMaximumSize(new java.awt.Dimension(150, 30));
 
         NhapTimKiem.setBackground(new java.awt.Color(220, 242, 197));
         NhapTimKiem.setForeground(new java.awt.Color(0, 16, 31));
@@ -196,10 +190,6 @@ public class HoaDon extends javax.swing.JPanel {
                                     .addComponent(NhapTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(209, 209, 209)
                                     .addComponent(ButtonTim, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(HoaDonPanelLayout.createSequentialGroup()
-                                    .addComponent(NgayNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(199, 199, 199)
-                                    .addComponent(NgayTra, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(HoaDonPanelLayout.createSequentialGroup()
                                 .addComponent(ButtonChinhSuaHD)
@@ -223,11 +213,7 @@ public class HoaDon extends javax.swing.JPanel {
                         .addGap(32, 32, 32)
                         .addComponent(jScrollPane1))
                     .addGroup(HoaDonPanelLayout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addGroup(HoaDonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(NgayTra, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(NgayNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(172, 172, 172)
                         .addGroup(HoaDonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ButtonTim, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(NhapTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -275,8 +261,6 @@ public class HoaDon extends javax.swing.JPanel {
     private javax.swing.JPanel HoaDonPanel;
     private javax.swing.JLabel LabelCTHD;
     private javax.swing.JLabel LabelTKHD;
-    private com.toedter.calendar.JDateChooser NgayNhan;
-    private com.toedter.calendar.JDateChooser NgayTra;
     private javax.swing.JTextField NhapTimKiem;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;

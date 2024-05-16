@@ -28,8 +28,8 @@ public class KhachHangDAO {
             System.out.println("Lỗi ghi thông tin người dùng");
         }
     }
-    public ArrayList docDSKH(){
-        ArrayList dskh=new ArrayList<KhachHangDTO>();
+    public ArrayList<KhachHangDTO> docDSKH(){
+        ArrayList<KhachHangDTO> dskh=new ArrayList<KhachHangDTO>();
         try{
             String qry="select * from khachhang";
             st=con.createStatement();

@@ -10,6 +10,8 @@ import javax.swing.table.DefaultTableModel;
 
 import BUS.PhongBUS;
 import DTO.Phong.PhongDTO;
+import DTO.Phong.PhongThuongDTO;
+import DTO.Phong.PhongVipDTO;
 /**
  *
  * @author Phat
@@ -23,6 +25,7 @@ public class DSPhong extends javax.swing.JPanel {
         initComponents();
         PhongBUS phong=new PhongBUS();
         ArrayList<PhongDTO> dsphong= phong.docDSPhong();
+        initComponents();
         DefaultTableModel table=new DefaultTableModel();
         BangDSPhong.setModel(table);
         table.addColumn("Mã Phòng");
@@ -31,7 +34,13 @@ public class DSPhong extends javax.swing.JPanel {
         table.addColumn("Tình Trạng");
         table.addColumn("Giá");
         for(PhongDTO p:dsphong){
-            table.addRow(new Object[]{p.getMaPhong(),p.getSoPhong(),p.getLoaiPhong(),p.getTinhTrang(),p.getDonGia()});
+            if (p.getMaPhong().substring(0, 3).equals("VIP")) {
+                PhongVipDTO pv=(PhongVipDTO)p;
+                table.addRow(new Object[]{pv.getMaPhong(),pv.getSoPhong(),"VIP",pv.getTinhTrang(),pv.getDonGia()});
+            }else{
+                PhongThuongDTO pt=(PhongThuongDTO)p;
+                table.addRow(new Object[]{pt.getMaPhong(),pt.getSoPhong(),pt.getKieuPhong(),pt.getTinhTrang(),pt.getDonGia()});
+            }
         }
     }
 
