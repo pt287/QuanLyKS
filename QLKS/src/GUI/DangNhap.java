@@ -6,10 +6,10 @@ package GUI;
 
 import javax.swing.JOptionPane;
 
-import BUS.NguoiDungBUS;
+import DAO.NguoiDungDAO;
 
 public class DangNhap extends javax.swing.JFrame {
-    NguoiDungBUS nd=new NguoiDungBUS();
+
     /**
      * Creates new form DangNhap
      */
@@ -27,9 +27,7 @@ public class DangNhap extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        DangKyUI = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        DangNhapPanel = new javax.swing.JPanel();
         TaiKhoanUI = new javax.swing.JTextField();
         MatKhauUI = new javax.swing.JPasswordField();
         DangNhapUI = new javax.swing.JButton();
@@ -37,52 +35,54 @@ public class DangNhap extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
-        jButton1.setText("jButton1");
-
-        DangKyUI.setText("Đăng Ký");
-        DangKyUI.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DangKyUIActionPerformed(evt);
-            }
-        });
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Đăng Nhập");
+        setLocation(new java.awt.Point(600, 250));
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(500, 500));
-        jPanel1.setLayout(null);
-        jPanel1.add(TaiKhoanUI);
+        DangNhapPanel.setBackground(new java.awt.Color(220, 242, 197));
+        DangNhapPanel.setPreferredSize(new java.awt.Dimension(500, 500));
+        DangNhapPanel.setLayout(null);
+
+        TaiKhoanUI.setForeground(new java.awt.Color(0, 16, 31));
+        DangNhapPanel.add(TaiKhoanUI);
         TaiKhoanUI.setBounds(145, 71, 170, 30);
-        jPanel1.add(MatKhauUI);
+
+        MatKhauUI.setForeground(new java.awt.Color(0, 16, 31));
+        DangNhapPanel.add(MatKhauUI);
         MatKhauUI.setBounds(145, 127, 170, 30);
 
+        DangNhapUI.setForeground(new java.awt.Color(0, 16, 31));
         DangNhapUI.setText("Đăng Nhập");
         DangNhapUI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DangNhapUIActionPerformed(evt);
             }
         });
-        jPanel1.add(DangNhapUI);
-        DangNhapUI.setBounds(140, 220, 110, 23);
+        DangNhapPanel.add(DangNhapUI);
+        DangNhapUI.setBounds(140, 220, 110, 30);
 
+        jLabel1.setBackground(new java.awt.Color(0, 16, 31));
+        jLabel1.setForeground(new java.awt.Color(0, 16, 31));
         jLabel1.setText("Tài Khoản");
-        jPanel1.add(jLabel1);
+        DangNhapPanel.add(jLabel1);
         jLabel1.setBounds(50, 70, 60, 30);
 
+        jLabel2.setForeground(new java.awt.Color(0, 16, 31));
         jLabel2.setText("Mật Khẩu");
-        jPanel1.add(jLabel2);
+        DangNhapPanel.add(jLabel2);
         jLabel2.setBounds(50, 130, 60, 30);
-        jPanel1.add(jSeparator1);
+        DangNhapPanel.add(jSeparator1);
         jSeparator1.setBounds(0, 190, 400, 3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(DangNhapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(DangNhapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
 
         pack();
@@ -90,8 +90,10 @@ public class DangNhap extends javax.swing.JFrame {
 
     private void DangNhapUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DangNhapUIActionPerformed
         // TODO add your handling code here:
+        NguoiDungDAO nd=new NguoiDungDAO();
         String TaiKhoan=TaiKhoanUI.getText();
         String MatKhau=new String(MatKhauUI.getPassword());
+        
         
         StringBuilder tb= new StringBuilder();
         
@@ -107,7 +109,7 @@ public class DangNhap extends javax.swing.JFrame {
             return;
         }if(nd.dangnhap(TaiKhoan, MatKhau)!=null){
             dispose();
-            Menu.main(nd.dangnhap(TaiKhoan, MatKhau));
+            Menu.main(null);;
         }else{
             JOptionPane.showMessageDialog(this, "Tài khoản/mật khẩu sai!!!","Lỗi",JOptionPane.ERROR_MESSAGE);
         }
@@ -116,10 +118,6 @@ public class DangNhap extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_DangNhapUIActionPerformed
-
-    private void DangKyUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DangKyUIActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DangKyUIActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,20 +149,20 @@ public class DangNhap extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new DangNhap().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton DangKyUI;
+    private javax.swing.JPanel DangNhapPanel;
     private javax.swing.JButton DangNhapUI;
     private javax.swing.JPasswordField MatKhauUI;
     private javax.swing.JTextField TaiKhoanUI;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

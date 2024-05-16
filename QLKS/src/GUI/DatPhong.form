@@ -76,10 +76,10 @@
                               </Group>
                               <Component id="jScrollPane2" min="-2" pref="686" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="DSPhongDaDat" max="32767" attributes="0"/>
-                              <Component id="jScrollPane3" pref="449" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane3" min="-2" pref="449" max="-2" attributes="0"/>
+                              <Component id="DSPhongDaDat" min="-2" pref="449" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -87,7 +87,7 @@
                           <Component id="XacNhanDatPhong" min="-2" pref="130" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="605" max="32767" attributes="0"/>
+                  <EmptySpace pref="645" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -139,7 +139,9 @@
             <Property name="text" type="java.lang.String" value="Lo&#x1ea1;i Ph&#xf2;ng"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder/>
+                <TitledBorder>
+                  <Color PropertyName="color" blue="1f" green="10" red="0" type="rgb"/>
+                </TitledBorder>
               </Border>
             </Property>
           </Properties>
@@ -156,7 +158,9 @@
             <Property name="text" type="java.lang.String" value="Ng&#xe0;y Nh&#x1ead;n"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder/>
+                <TitledBorder>
+                  <Color PropertyName="color" blue="1f" green="10" red="0" type="rgb"/>
+                </TitledBorder>
               </Border>
             </Property>
           </Properties>
@@ -173,7 +177,9 @@
             <Property name="text" type="java.lang.String" value="Ng&#xe0;y Tr&#x1ea3;"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder/>
+                <TitledBorder>
+                  <Color PropertyName="color" blue="1f" green="10" red="0" type="rgb"/>
+                </TitledBorder>
               </Border>
             </Property>
           </Properties>
@@ -354,7 +360,9 @@
             <Property name="text" type="java.lang.String" value="Danh S&#xe1;ch Ph&#xf2;ng &#x110;&#xe3; &#x110;&#x1eb7;t"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder/>
+                <TitledBorder>
+                  <Color PropertyName="color" blue="1f" green="10" red="0" type="rgb"/>
+                </TitledBorder>
               </Border>
             </Property>
           </Properties>
