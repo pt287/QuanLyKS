@@ -33,7 +33,7 @@ public class PhongDAO {
                 PhongVipDTO pv= (PhongVipDTO) p;
                 qry=qry+"'"+pv.getMaPhongAn()+"')";
             } else {
-                qry=qry+"NULL)";
+                qry=qry+"'VIP')";
             }
             st.executeUpdate(qry);
             st.executeUpdate("Set Foreign_key_checks = 1");
