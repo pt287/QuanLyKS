@@ -73,10 +73,17 @@ public class PhongDAO {
         try {
             st = con.createStatement();
             st.executeUpdate("SET FOREIGN_KEY_CHECKS = 0");
-                String qry = "UPDATE Phong SET " +
-                    "RoomSTT = '" + p.getTinhTrang() + "' " +
-                    "RoomNote = '" + p.getGhiChu() + "', " +
-                    "WHERE RoomID = '" + p.getMaPhong() + "'";
+            String qry = "UPDATE Phong SET " +
+                "RoomPrice = " + p.getDonGia() + ", " +
+                "RoomNum = '" + p.getSoPhong() + "', " +
+                "RoomSTT = '" + p.getTinhTrang() + "', " +
+                "RoomNote = '" + p.getGhiChu() + "', ";
+            if (p instanceof PhongVipDTO a) {
+                qry = qry + "RoomDRID = '" + a.getMaPhongAn() + "' ";
+            }else{
+                qry = qry + "RoomDRID = NULL ";
+            }    
+            qry = qry + "WHERE RoomID = '" + p.getMaPhong() + "'";
             st.executeUpdate(qry);
             st.executeUpdate("SET FOREIGN_KEY_CHECKS = 1");
         } catch (SQLException ex) {
