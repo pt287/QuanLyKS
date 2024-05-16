@@ -15,7 +15,7 @@ CREATE TABLE Phong (
 	RoomID CHAR(8) NOT NULL,
     RoomNum CHAR(5) NOT NULL,
     RoomType CHAR(3) NOT NULL CHECK(RoomType IN('1SB','2SB','1DB','2DB','VIP','PSD')),
-	RoomSTT CHAR(1) NOT NULL CHECK(RoomSTT IN('C','R','F')),
+	RoomSTT CHAR(1) NOT NULL CHECK(RoomSTT IN('C','R','F','O')),
     RoomNote VARCHAR(50),
     RoomPrice INT NOT NULL,
     RoomDRID CHAR(3),
