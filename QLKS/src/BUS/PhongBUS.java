@@ -22,7 +22,7 @@ public class PhongBUS {
         for(int i=0;i<dsphong.size();i++){
             PhongDTO a=dsphong.get(i);
             if (a.getMaPhong().equals(mp)) {
-                dsphong.add(i, p);
+                dsphong.set(i, p);
                 break;
             }
         }
