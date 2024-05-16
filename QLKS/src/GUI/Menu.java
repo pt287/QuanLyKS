@@ -4,23 +4,43 @@
  */
 package GUI;
 
+import GUICHART.ClientPerMonth.CPMChart;
+import GUICHART.ClientPerServiceAndRoom.CPSAR;
+import GUICHART.MoneyPerMonth.MPMChart;
+import GUICHART.RoomRatio.RR;
 import java.awt.CardLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import BUS.NguoiDungBUS;
+import GUICHART.ServiceRatio.SR;
 
 public class Menu extends javax.swing.JFrame {
     CardLayout layout;
+    String TaiKhoan="";
+    NguoiDungBUS nd=new NguoiDungBUS();
     /**
      * Creates new form Menu
      */
-    public Menu() {
+    public Menu(String a) {
         initComponents();
         layout = new CardLayout();
         MenuUI.setLayout(layout);
         MenuUI.add("dsPhong", new DSPhong());
         MenuUI.add("HoaDon",new HoaDon(this));
         MenuUI.add("DatPhong",new DatPhong());
+        MenuUI.add("QuanLy", new QuanLy(a));
         MenuUI.add("DichVu",new DichVu(this));
-        
-            }
+        MenuUI.add("CPM",new CPMChart());
+        MenuUI.add("MPM",new MPMChart());
+        MenuUI.add("CPSAR",new CPSAR());
+        MenuUI.add("RR",new RR());
+        MenuUI.add("SR",new SR());
+        TenND.setText(nd.Ten(a));
+        TaiKhoan=a;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -278,7 +298,7 @@ public class Menu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(MenuUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -299,8 +319,6 @@ public class Menu extends javax.swing.JFrame {
     private void DatPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DatPhongActionPerformed
         // TODO add your handling code here:
         layout.show(MenuUI,"DatPhong");
-        
-        
     }//GEN-LAST:event_DatPhongActionPerformed
 
     private void DSPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DSPhongActionPerformed
@@ -313,10 +331,60 @@ public class Menu extends javax.swing.JFrame {
         layout.show(MenuUI,"HoaDon");
     }//GEN-LAST:event_HoaDonActionPerformed
 
+    private void ThongKeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ThongKeMouseClicked
+        // TODO add your handling code here:
+        ThongKeMenu.show(ThongKe, WIDTH+50, WIDTH+30);
+    }//GEN-LAST:event_ThongKeMouseClicked
+
+    private void CPMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPMActionPerformed
+        // TODO add your handling code here:
+        layout.show(MenuUI, "CPM");
+    }//GEN-LAST:event_CPMActionPerformed
+
+    private void MPMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPMActionPerformed
+        // TODO add your handling code here:
+        layout.show(MenuUI,"MPM");
+    }//GEN-LAST:event_MPMActionPerformed
+
+    private void CPSARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPSARActionPerformed
+        // TODO add your handling code here:
+        layout.show(MenuUI,"CPSAR");
+    }//GEN-LAST:event_CPSARActionPerformed
+
+    private void RRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RRActionPerformed
+        // TODO add your handling code here:
+        layout.show(MenuUI,"RR");
+    }//GEN-LAST:event_RRActionPerformed
+
+    private void SRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SRActionPerformed
+        // TODO add your handling code here:
+        layout.show(MenuUI,"SR");
+    }//GEN-LAST:event_SRActionPerformed
+
+    private void DangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DangXuatActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        DangNhap.main(null);
+    }//GEN-LAST:event_DangXuatActionPerformed
+
+    private void QuanLyPopupMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QuanLyPopupMenuMouseClicked
+        // TODO add your handling code here:
+        if (TaiKhoan.contains("NV")) {
+            JOptionPane.showMessageDialog(this, "Không đủ quyền hạn!!!","Lỗi",JOptionPane.ERROR_MESSAGE);
+        }else{
+            layout.show(MenuUI, "QuanLy");
+        }
+    }//GEN-LAST:event_QuanLyPopupMenuMouseClicked
+
+    private void DichVuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DichVuMouseClicked
+        // TODO add your handling code here:
+        layout.show(MenuUI,"DichVu");
+    }//GEN-LAST:event_DichVuMouseClicked
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String a) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -343,20 +411,15 @@ public class Menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
-                
+                new Menu(a).setVisible(true);
             }
         });
     }
-    
     public void addDichVu(){
         layout.show(MenuUI, "DichVu");
     }
 
-    public void ThoatDichVu(){
-        layout.show(MenuUI,"HoaDon");
-    }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem CPM;
     private javax.swing.JMenuItem CPSAR;
