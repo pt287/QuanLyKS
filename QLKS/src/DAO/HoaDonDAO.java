@@ -5,9 +5,8 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 import DTO.HoaDonDTO;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,19 +45,15 @@ public class HoaDonDAO {
                 hd.setMaHoaDon(rs.getInt(1));
                 hd.setMaNhanVien(rs.getString(2));
                 hd.setMaKhachHang(rs.getString(3));
-                Date in = sqlfm.parse(rs.getString(4));
-                hd.setNgayNhan(in);
-                Date out = sqlfm.parse(rs.getString(5));
-                hd.setNgayTra(out);
+                hd.setNgayNhan(LocalDate.parse(rs.getString(4)));
+                hd.setNgayTra(LocalDate.parse(rs.getString(5)));
                 hd.setTongTien(rs.getInt(6));
                 dshd.add(hd);
             }
-        }
-        catch(SQLException ex){
+        }catch(SQLException ex){
             //JOptionPane.ShowMessageDialog(null,"Lỗi đọc thông tin Sinh Viên!");
-        } catch (ParseException ex) {
-            //báo lỗi
         }
+        //báo lỗi
         return dshd;
     }
     
