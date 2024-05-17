@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 
 import BUS.NguoiDungBUS;
 import GUICHART.ServiceRatio.SR;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Menu extends javax.swing.JFrame {
@@ -24,7 +25,17 @@ public class Menu extends javax.swing.JFrame {
     NguoiDungBUS nd=new NguoiDungBUS();
     Date datein=new Date();
     Date dateout=new Date();
+    ArrayList<String> maphong;
 
+    public ArrayList<String> getMaphong() {
+        return maphong;
+    }
+
+    public void setMaphong(ArrayList<String> maphong) {
+        this.maphong = maphong;
+    }
+
+    
     public Date getDatein() {
         return datein;
     }
