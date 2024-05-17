@@ -12,7 +12,9 @@ import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
 
 import BUS.HoaDonBUS;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -73,7 +75,7 @@ public class HoaDon extends javax.swing.JPanel {
         LabelTKHD = new javax.swing.JLabel();
         NhapTimKiem = new javax.swing.JTextField();
         ButtonChinhSuaHD = new javax.swing.JButton();
-        ButtonXoaHD = new javax.swing.JButton();
+        Button = new javax.swing.JButton();
         ButtonXuatHD = new javax.swing.JButton();
         ButtonThemDV = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -131,13 +133,13 @@ public class HoaDon extends javax.swing.JPanel {
         ButtonChinhSuaHD.setForeground(new java.awt.Color(0, 16, 31));
         ButtonChinhSuaHD.setText("Chỉnh Sửa Hóa Đơn");
 
-        ButtonXoaHD.setBackground(new java.awt.Color(220, 242, 197));
-        ButtonXoaHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ButtonXoaHD.setForeground(new java.awt.Color(0, 16, 31));
-        ButtonXoaHD.setText("Xóa Hóa Đơn");
-        ButtonXoaHD.addActionListener(new java.awt.event.ActionListener() {
+        Button.setBackground(new java.awt.Color(220, 242, 197));
+        Button.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Button.setForeground(new java.awt.Color(0, 16, 31));
+        Button.setText("♥");
+        Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonXoaHDActionPerformed(evt);
+                ButtonActionPerformed(evt);
             }
         });
 
@@ -362,7 +364,7 @@ public class HoaDon extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(HoaDonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(ButtonThemPhong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(ButtonXoaHD, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                                    .addComponent(Button, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                                 .addGap(12, 12, 12)
                                 .addGroup(HoaDonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(ButtonThemDV, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -409,7 +411,7 @@ public class HoaDon extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(HoaDonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ButtonChinhSuaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ButtonXoaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ButtonXuatHD, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(HoaDonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -481,11 +483,12 @@ public class HoaDon extends javax.swing.JPanel {
 
     private void ButtonTaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonTaoHDActionPerformed
         // TODO add your handling code here:
+        boolean isAfter = NgayTra.getDate().after(NgayNhan.getDate());
         try{
              if(MaKhachHang.getText().length() == 8){
                  if(MaNhanVien.getText().length() == 8){
-                     if(NgayTra.after(NgayNhan)){
-                     hd.them(new HoaDonDTO(
+                     if(isAfter){
+                        hd.them(new HoaDonDTO(
                              0,
                              MaKhachHang.getText(),
                              MaNhanVien.getText(),
@@ -494,33 +497,40 @@ public class HoaDon extends javax.swing.JPanel {
                              0,
                              null
                      ));
-                     }
-                }
+                    }else{
+                 JOptionPane.showMessageDialog(this, "Ngày trả phải sau ngày nhận", "Lỗi", JOptionPane.ERROR_MESSAGE);
+             }
+                }else{
+                 JOptionPane.showMessageDialog(this, "Mã nhân viên phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
+             }
                      
+             }else{
+                 JOptionPane.showMessageDialog(this, "Mã khách hàng phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
              }   
         }catch(Exception ex) {
             ex.printStackTrace();
         }
+        TaoBangHd();
     }//GEN-LAST:event_ButtonTaoHDActionPerformed
 
     private void NhapTimKiem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NhapTimKiem2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NhapTimKiem2ActionPerformed
 
-    private void ButtonXoaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonXoaHDActionPerformed
+    private void ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_ButtonXoaHDActionPerformed
+    }//GEN-LAST:event_ButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable BangCTHD;
     private javax.swing.JTable BangHoaDon;
+    private javax.swing.JButton Button;
     private javax.swing.JButton ButtonChinhSuaHD;
     private javax.swing.JButton ButtonTaoHD;
     private javax.swing.JButton ButtonThemDV;
     private javax.swing.JButton ButtonThemPhong;
-    private javax.swing.JButton ButtonXoaHD;
     private javax.swing.JButton ButtonXuatHD;
     private javax.swing.JPanel HoaDonPanel;
     private javax.swing.JLabel LabelCTHD;

@@ -75,7 +75,7 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="ButtonThemPhong" max="32767" attributes="0"/>
-                                      <Component id="ButtonXoaHD" pref="150" max="32767" attributes="0"/>
+                                      <Component id="Button" pref="150" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -134,7 +134,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="ButtonChinhSuaHD" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="ButtonXoaHD" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="Button" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                               <Component id="ButtonXuatHD" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -224,7 +224,7 @@
             <Property name="text" type="java.lang.String" value="Ch&#x1ec9;nh S&#x1eed;a H&#xf3;a &#x110;&#x1a1;n"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="ButtonXoaHD">
+        <Component class="javax.swing.JButton" name="Button">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="c5" green="f2" red="dc" type="rgb"/>
@@ -235,10 +235,10 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="1f" green="10" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="X&#xf3;a H&#xf3;a &#x110;&#x1a1;n"/>
+            <Property name="text" type="java.lang.String" value="&#x2665;"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonXoaHDActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="ButtonXuatHD">
