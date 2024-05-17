@@ -15,14 +15,42 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import BUS.NguoiDungBUS;
-import DTO.TGDTO;
 import GUICHART.ServiceRatio.SR;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class Menu extends javax.swing.JFrame {
     CardLayout layout;
     String TaiKhoan="";
     NguoiDungBUS nd=new NguoiDungBUS();
-    TGDTO tg = new TGDTO();
+    Date datein=new Date();
+    Date dateout=new Date();
+    ArrayList<String> maphong;
+
+    public ArrayList<String> getMaphong() {
+        return maphong;
+    }
+
+    public void setMaphong(ArrayList<String> maphong) {
+        this.maphong = maphong;
+    }
+
+    
+    public Date getDatein() {
+        return datein;
+    }
+
+    public void setDatein(Date datein) {
+        this.datein = datein;
+    }
+
+    public Date getDateout() {
+        return dateout;
+    }
+
+    public void setDateout(Date dateout) {
+        this.dateout = dateout;
+    }
     /**
      * Creates new form Menu
      */
@@ -30,10 +58,12 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         layout = new CardLayout();
         MenuUI.setLayout(layout);
-        //MenuUI.add("StartUp",new MainMenu());
+        MenuUI.add("StartUp",new MainMenu());
         MenuUI.add("dsPhong", new DSPhong());
+        MenuUI.add("HoaDon",new HoaDon(this));
+        MenuUI.add("DatPhong",new DatPhong(this));
         MenuUI.add("QuanLy", new QuanLy(a));
-        MenuUI.add("HoaDon",new HoaDon(tg));
+        MenuUI.add("DichVu",new DichVu(this));
         MenuUI.add("CPM",new CPMChart());
         MenuUI.add("MPM",new MPMChart());
         MenuUI.add("CPSAR",new CPSAR());
@@ -407,22 +437,24 @@ public class Menu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Menu(a).setVisible(true);
+                new MainMenu().setVisible(true);
             }
         });
     }
-    public void addDichVu(TGDTO a){
-        MenuUI.add("DichVu",new DichVu(a));
+    public void addDichVu(){
         layout.show(MenuUI, "DichVu");
     }
     
-    public void VeMenu(TGDTO a){       
-        MenuUI.add("HoaDon",new HoaDon(a));
+    public void ThoatDichVu(){
         layout.show(MenuUI, "HoaDon");
     }
     
-    public void addPhong(TGDTO a){       
-        MenuUI.add("DatPhong",new DatPhong(a));
+    public void addPhong(){
         layout.show(MenuUI,"DatPhong");
+    }
+    
+    public void ThoatDatPhong(){
+        layout.show(MenuUI,"HoaDon");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

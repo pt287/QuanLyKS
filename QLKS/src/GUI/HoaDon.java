@@ -6,22 +6,15 @@ package GUI;
 
 import GUI.DichVu;
 import DTO.HoaDonDTO;
-import DTO.TGDTO;
-
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
-
+import DTO.HoaDonInDTO;
 import BUS.HoaDonBUS;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,7 +22,6 @@ import javax.swing.JOptionPane;
  * @author Phat
  */
 public class HoaDon extends javax.swing.JPanel {
-    TGDTO tg;
     Menu menu;
     HoaDonBUS hd=new HoaDonBUS();
     ArrayList<HoaDonDTO> dshd;
@@ -37,10 +29,10 @@ public class HoaDon extends javax.swing.JPanel {
     /**
      * Creates new form HoaDon
      */
-    public HoaDon(TGDTO a) {
+    public HoaDon(Menu menu) {
         initComponents();
         dshd= hd.docDSHD();
-        tg=a;
+        this.menu = menu;
         TaoBangHd();
         TaoBangcthd();
         
@@ -459,7 +451,7 @@ public class HoaDon extends javax.swing.JPanel {
 
     private void ButtonThemDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonThemDVActionPerformed
         // TODO add your handling code here:
-        menu.addDichVu(tg);
+        menu.addDichVu();
     }//GEN-LAST:event_ButtonThemDVActionPerformed
 
     private void NhapTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NhapTimKiemKeyReleased
@@ -498,34 +490,27 @@ public class HoaDon extends javax.swing.JPanel {
     private void ButtonThemPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonThemPhongActionPerformed
         // TODO add your handling code here:
         if(BangHoaDon.getSelectedRow()>=0){
-            try {
-                tg.setDatein(DoiNgay(BangHoaDon.getValueAt(BangHoaDon.getSelectedRow(), 3).toString()));
-                tg.setDateOut(DoiNgay(BangHoaDon.getValueAt(BangHoaDon.getSelectedRow(), 4).toString()));          
-            } catch (ParseException ex) {
-                Logger.getLogger(HoaDon.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            menu.addPhong(tg);
+            menu.setDatein(TimKiemLich.getDate());
+            menu.setDateout(TimKiemLich1.getDate());            
+            menu.addPhong();
         }
         
     }//GEN-LAST:event_ButtonThemPhongActionPerformed
 
     private void ButtonTaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonTaoHDActionPerformed
         // TODO add your handling code here:
-        // So sánh ngày
-        boolean isAfter = NgayTra.getDate().compareTo(NgayNhan.getDate()) > 0;
+        boolean isAfter = NgayTra.getDate().after(NgayNhan.getDate());
         try{
              if(MaKhachHang.getText().length() == 8){
                  if(MaNhanVien.getText().length() == 8){
                      if(isAfter){
-                        hd.them(new HoaDonDTO(
-                            0,
-                            MaKhachHang.getText(),
-                            MaNhanVien.getText(),
-                            NgayNhan.getDate(),
-                            NgayTra.getDate(),
-                            0,
-                            null
-                     ));
+                        HoaDonInDTO temp = new HoaDonInDTO(
+                             MaKhachHang.getText(),
+                             MaNhanVien.getText(),
+                             NgayNhan.getDate(),
+                             NgayTra.getDate()
+                     );
+                    hd.them(temp);
                     }else{
                  JOptionPane.showMessageDialog(this, "Ngày trả phải sau ngày nhận", "Lỗi", JOptionPane.ERROR_MESSAGE);
              }
@@ -553,85 +538,54 @@ public class HoaDon extends javax.swing.JPanel {
 
     private void ButtonChinhSuaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonChinhSuaHDActionPerformed
         // TODO add your handling code here:
-        if(BangHoaDon.getSelectedRow()>=0){
-            boolean isAfter = NgayTra.getDate().after(NgayNhan.getDate());
-            try{
-                 if(MaKhachHang.getText().length() == 8){
-                     if(MaNhanVien.getText().length() == 8){
-                         if(isAfter){
-                            
-                        }else{
-                     JOptionPane.showMessageDialog(this, "Ngày trả phải sau ngày nhận", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                 }
-                    }else{
-                     JOptionPane.showMessageDialog(this, "Mã nhân viên phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                 }
-
-                 }else{
-                     JOptionPane.showMessageDialog(this, "Mã khách hàng phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                 }   
-            }catch(Exception ex) {
-                ex.printStackTrace();
-            }
-        }else{
-                     JOptionPane.showMessageDialog(this, "Không có hóa đơn nào được chọn", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                 }
-        TaoBangHd();
+//        if(BangHoaDon.getSelectedRow()>=0){
+//            boolean isAfter = NgayTra.getDate().after(NgayNhan.getDate());
+//            try{
+//                 if(MaKhachHang.getText().length() == 8){
+//                     if(MaNhanVien.getText().length() == 8){
+//                         if(isAfter){
+//                            hd.sua(,new HoaDonDTO(
+//                                 0,
+//                                 MaKhachHang.getText(),
+//                                 MaNhanVien.getText(),
+//                                 NgayNhan.getDate(),
+//                                 NgayTra.getDate(),
+//                                 0,
+//                                 null
+//                         ));
+//                        }else{
+//                     JOptionPane.showMessageDialog(this, "Ngày trả phải sau ngày nhận", "Lỗi", JOptionPane.ERROR_MESSAGE);
+//                 }
+//                    }else{
+//                     JOptionPane.showMessageDialog(this, "Mã nhân viên phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
+//                 }
+//
+//                 }else{
+//                     JOptionPane.showMessageDialog(this, "Mã khách hàng phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
+//                 }   
+//            }catch(Exception ex) {
+//                ex.printStackTrace();
+//            }
+//        }else{
+//                     JOptionPane.showMessageDialog(this, "Không có hóa đơn nào được chọn", "Lỗi", JOptionPane.ERROR_MESSAGE);
+//                 }
+//        TaoBangHd();
     }//GEN-LAST:event_ButtonChinhSuaHDActionPerformed
 
     private void BangHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BangHoaDonMouseClicked
         // TODO add your handling code here:
         int a = BangHoaDon.getSelectedRow();
         if(a>=0){
-            
+            NhapTimKiem.setText(BangHoaDon.getValueAt(a, 0).toString());
+            NhapTimKiem1.setText(BangHoaDon.getValueAt(a, 1).toString());
+            NhapTimKiem2.setText(BangHoaDon.getValueAt(a, 2).toString());
+            Date datein = (Date) BangHoaDon.getModel().getValueAt(a, 3);
+            TimKiemLich.setDate(datein);
+            Date dateout = (Date) BangHoaDon.getModel().getValueAt(a,4);
+            TimKiemLich1.setDate(dateout);
         }
     }//GEN-LAST:event_BangHoaDonMouseClicked
-    public Date DoiNgay(String a) throws ParseException{
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String[] as=a.split(" ");
-        switch (as[1]) {
-            case "Jan":
-                as[1]="01";
-                break;
-            case "Feb":
-                as[1]="02";
-                break;
-            case "Jul":
-                as[1]="07";
-                break;
-            case "Mar":
-                as[1]="03";
-                break;
-            case "Apr":
-                as[1]="04";
-                break;
-            case "May":
-                as[1]="05";
-                break;
-            case "Jun":
-                as[1]="06";
-                break;
-            case "Aug":
-                as[1]="08";
-                break;
-            case "Sep":
-                as[1]="09";
-                break;
-            case "Oct":
-                as[1]="10";
-                break;
-            case "Nov":
-                as[1]="11";
-                break;
-            case "Dec":
-                as[1]="12";
-                break;
-            default:
-                as[1]="07";
-                break;
-        }
-        return sdf.parse(as[2]+"/"+as[1]+"/"+as[5]);
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable BangCTHD;
