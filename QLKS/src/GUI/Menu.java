@@ -58,7 +58,7 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         layout = new CardLayout();
         MenuUI.setLayout(layout);
-        MenuUI.add("StartUp",new MainMenu());
+        //MenuUI.add("StartUp",new MainMenu());
         MenuUI.add("dsPhong", new DSPhong());
         MenuUI.add("HoaDon",new HoaDon(this));
         MenuUI.add("DatPhong",new DatPhong(this));
@@ -437,7 +437,6 @@ public class Menu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Menu(a).setVisible(true);
-                new MainMenu().setVisible(true);
             }
         });
     }

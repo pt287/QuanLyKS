@@ -47,10 +47,7 @@ public class DangNhap extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(600, 270));
 
-        jPanel1.setBackground(new java.awt.Color(220, 242, 197));
-        jPanel1.setForeground(new java.awt.Color(0, 16, 31));
         jPanel1.setPreferredSize(new java.awt.Dimension(500, 500));
         jPanel1.setLayout(null);
         jPanel1.add(TaiKhoanUI);
@@ -58,8 +55,6 @@ public class DangNhap extends javax.swing.JFrame {
         jPanel1.add(MatKhauUI);
         MatKhauUI.setBounds(145, 127, 170, 30);
 
-        DangNhapUI.setBackground(new java.awt.Color(220, 242, 197));
-        DangNhapUI.setForeground(new java.awt.Color(0, 16, 31));
         DangNhapUI.setText("Đăng Nhập");
         DangNhapUI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,14 +62,12 @@ public class DangNhap extends javax.swing.JFrame {
             }
         });
         jPanel1.add(DangNhapUI);
-        DangNhapUI.setBounds(140, 220, 110, 30);
+        DangNhapUI.setBounds(140, 220, 110, 23);
 
-        jLabel1.setForeground(new java.awt.Color(0, 16, 31));
         jLabel1.setText("Tài Khoản");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(50, 70, 60, 30);
 
-        jLabel2.setForeground(new java.awt.Color(0, 16, 31));
         jLabel2.setText("Mật Khẩu");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(50, 130, 60, 30);
@@ -93,7 +86,6 @@ public class DangNhap extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void DangNhapUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DangNhapUIActionPerformed
