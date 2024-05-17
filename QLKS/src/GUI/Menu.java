@@ -28,9 +28,10 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         layout = new CardLayout();
         MenuUI.setLayout(layout);
+        MenuUI.add("StartUp",new MainMenu());
         MenuUI.add("dsPhong", new DSPhong());
         MenuUI.add("HoaDon",new HoaDon(this));
-        MenuUI.add("DatPhong",new DatPhong());
+        MenuUI.add("DatPhong",new DatPhong(this));
         MenuUI.add("QuanLy", new QuanLy(a));
         MenuUI.add("DichVu",new DichVu(this));
         MenuUI.add("CPM",new CPMChart());
@@ -52,7 +53,6 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         LeTanMenu = new javax.swing.JPopupMenu();
-        DatPhong = new javax.swing.JMenuItem();
         DSPhong = new javax.swing.JMenuItem();
         HoaDon = new javax.swing.JMenuItem();
         QuanLyMenu = new javax.swing.JPopupMenu();
@@ -77,16 +77,6 @@ public class Menu extends javax.swing.JFrame {
 
         LeTanMenu.setBackground(new java.awt.Color(0, 16, 31));
         LeTanMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        DatPhong.setBackground(new java.awt.Color(0, 16, 31));
-        DatPhong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        DatPhong.setText("Đặt Phòng");
-        DatPhong.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DatPhongActionPerformed(evt);
-            }
-        });
-        LeTanMenu.add(DatPhong);
 
         DSPhong.setBackground(new java.awt.Color(0, 16, 31));
         DSPhong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -178,6 +168,11 @@ public class Menu extends javax.swing.JFrame {
 
         Logo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/1.jpg"))); // NOI18N
+        Logo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LogoMouseClicked(evt);
+            }
+        });
 
         LeTanPopupMenu.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         LeTanPopupMenu.setForeground(new java.awt.Color(255, 255, 204));
@@ -316,11 +311,6 @@ public class Menu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_LeTanPopupMenuMouseClicked
 
-    private void DatPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DatPhongActionPerformed
-        // TODO add your handling code here:
-        layout.show(MenuUI,"DatPhong");
-    }//GEN-LAST:event_DatPhongActionPerformed
-
     private void DSPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DSPhongActionPerformed
         // TODO add your handling code here:
         layout.show(MenuUI, "dsPhong");
@@ -381,6 +371,11 @@ public class Menu extends javax.swing.JFrame {
         layout.show(MenuUI,"DichVu");
     }//GEN-LAST:event_DichVuMouseClicked
 
+    private void LogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoMouseClicked
+        // TODO add your handling code here:
+        layout.show(MenuUI,"StartUp");
+    }//GEN-LAST:event_LogoMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -418,7 +413,16 @@ public class Menu extends javax.swing.JFrame {
     public void addDichVu(){
         layout.show(MenuUI, "DichVu");
     }
+    
     public void ThoatDichVu(){
+        layout.show(MenuUI, "HoaDon");
+    }
+    
+    public void addPhong(){
+        layout.show(MenuUI,"DatPhong");
+    }
+    
+    public void ThoatDatPhong(){
         layout.show(MenuUI,"HoaDon");
     }
 
@@ -427,7 +431,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem CPSAR;
     private javax.swing.JMenuItem DSPhong;
     private javax.swing.JButton DangXuat;
-    private javax.swing.JMenuItem DatPhong;
     private javax.swing.JLabel DichVu;
     private javax.swing.JMenuItem HoaDon;
     private javax.swing.JPopupMenu LeTanMenu;
