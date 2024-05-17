@@ -11,13 +11,17 @@ public class HoaDonBUS {
     static ArrayList<HoaDonDTO> dshd;
     public HoaDonBUS(){}
     HoaDonDAO data=new HoaDonDAO();
-    public void docDSPhong(){
+    public ArrayList docDSHD(){
         if(dshd!=null) dshd=new ArrayList<HoaDonDTO>();
         dshd=data.docDSHD();
+        return dshd;
     }
     public void them(HoaDonDTO hd){
         data.them(hd);
         dshd.add(hd);
+    }
+    public void sua(String MaHD,HoaDonDTO hd){
+        data.sua(MaHD, hd);
     }
     public int[] CPMBUS(){
         return data.ClientPerMonth();
