@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import BUS.HoaDonBUS;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -96,8 +97,8 @@ public class HoaDon extends javax.swing.JPanel {
         NgayTra = new com.toedter.calendar.JDateChooser();
         ButtonThemPhong = new javax.swing.JButton();
         ButtonTaoHD = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        TimKiemLich = new com.toedter.calendar.JDateChooser();
+        TimKiemLich1 = new com.toedter.calendar.JDateChooser();
 
         setPreferredSize(new java.awt.Dimension(1720, 1080));
 
@@ -217,6 +218,11 @@ public class HoaDon extends javax.swing.JPanel {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        BangHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BangHoaDonMouseClicked(evt);
             }
         });
         jScrollPane3.setViewportView(BangHoaDon);
@@ -383,9 +389,9 @@ public class HoaDon extends javax.swing.JPanel {
                                 .addGap(0, 0, 0)
                                 .addComponent(NhapTimKiem2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TimKiemLich, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))
+                                .addComponent(TimKiemLich1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))
                     .addGroup(HoaDonPanelLayout.createSequentialGroup()
                         .addGap(265, 265, 265)
                         .addComponent(LabelCTHD, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -407,8 +413,8 @@ public class HoaDon extends javax.swing.JPanel {
                             .addComponent(NhapTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(NhapTimKiem1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(NhapTimKiem2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TimKiemLich, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TimKiemLich1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -484,9 +490,9 @@ public class HoaDon extends javax.swing.JPanel {
     private void ButtonThemPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonThemPhongActionPerformed
         // TODO add your handling code here:
         if(BangHoaDon.getSelectedRow()>=0){
+            menu.setDatein(TimKiemLich.getDate());
+            menu.setDateout(TimKiemLich1.getDate());            
             menu.addPhong();
-            menu.setDatein(NgayNhan.getDate());
-            menu.setDateout(NgayTra.getDate());
         }
         
     }//GEN-LAST:event_ButtonThemPhongActionPerformed
@@ -568,6 +574,20 @@ public class HoaDon extends javax.swing.JPanel {
         TaoBangHd();
     }//GEN-LAST:event_ButtonChinhSuaHDActionPerformed
 
+    private void BangHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BangHoaDonMouseClicked
+        // TODO add your handling code here:
+        int a = BangHoaDon.getSelectedRow();
+        if(a>=0){
+            NhapTimKiem.setText(BangHoaDon.getValueAt(a, 0).toString());
+            NhapTimKiem1.setText(BangHoaDon.getValueAt(a, 1).toString());
+            NhapTimKiem2.setText(BangHoaDon.getValueAt(a, 2).toString());
+            Date datein = (Date) BangHoaDon.getModel().getValueAt(a, 3);
+            TimKiemLich.setDate(datein);
+            Date dateout = (Date) BangHoaDon.getModel().getValueAt(a,4);
+            TimKiemLich1.setDate(dateout);
+        }
+    }//GEN-LAST:event_BangHoaDonMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable BangCTHD;
@@ -589,8 +609,8 @@ public class HoaDon extends javax.swing.JPanel {
     private javax.swing.JTextField NhapTimKiem;
     private javax.swing.JTextField NhapTimKiem1;
     private javax.swing.JTextField NhapTimKiem2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser TimKiemLich;
+    private com.toedter.calendar.JDateChooser TimKiemLich1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
