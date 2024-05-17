@@ -5,8 +5,13 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import DTO.HoaDonDTO;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class HoaDonDAO {
     Connection con = ConnectionProvider.getCon();
     Statement st = null;
@@ -37,18 +42,23 @@ public class HoaDonDAO {
             st=con.createStatement();
             rs=st.executeQuery(qry);
             while(rs.next()){
+                SimpleDateFormat sqlfm = new SimpleDateFormat("yyyy-MM-dd");
                 HoaDonDTO hd = new HoaDonDTO();
                 hd.setMaHoaDon(rs.getInt(1));
                 hd.setMaNhanVien(rs.getString(2));
                 hd.setMaKhachHang(rs.getString(3));
-                hd.setNgayNhan(LocalDate.parse(rs.getString(4)));
-                hd.setNgayTra(LocalDate.parse(rs.getString(5)));
+                Date in = sqlfm.parse(rs.getString(4));
+                hd.setNgayNhan(in);
+                Date out = sqlfm.parse(rs.getString(5));
+                hd.setNgayTra(out);
                 hd.setTongTien(rs.getInt(6));
                 dshd.add(hd);
             }
         }
         catch(SQLException ex){
             //JOptionPane.ShowMessageDialog(null,"Lỗi đọc thông tin Sinh Viên!");
+        } catch (ParseException ex) {
+            //báo lỗi
         }
         return dshd;
     }
