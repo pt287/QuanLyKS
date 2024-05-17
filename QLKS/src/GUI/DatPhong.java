@@ -6,6 +6,7 @@ package GUI;
 
 import java.util.Date;
 import BUS.PhongBUS;
+import DTO.TGDTO;
 import DTO.Phong.PhongDTO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -15,15 +16,16 @@ public class DatPhong extends javax.swing.JPanel {
     ArrayList<PhongDTO> p = new ArrayList<>();
     PhongBUS data = new PhongBUS();
     Menu menu;
+    TGDTO tg;
      /**
      * Creates new form DatPhong
      */
-    public DatPhong(Menu m) {
+    public DatPhong(TGDTO a) {
         initComponents();        
-        this.menu=m;
-        if(menu.getDatein()!=null && menu.getDateout()!=null){
-            DateIn.setDate(menu.getDatein());
-            DateOut.setDate(menu.getDateout());
+        tg=a;
+        if(tg.getDatein()!=null && tg.getDateOut()!=null){
+            DateIn.setDate(tg.getDatein());
+            DateOut.setDate(tg.getDateOut());
         }
         
    }
@@ -353,8 +355,8 @@ public class DatPhong extends javax.swing.JPanel {
         for(int i = 0; i<PhongDaDat.getRowCount();i++){
             list.add(PhongDaDat.getValueAt(i, 0).toString());
         }
-        menu.setMaphong(list);
-        menu.ThoatDatPhong();
+        tg.setMaPhong(list);
+        menu.VeMenu(tg);
     }//GEN-LAST:event_ConfirmActionPerformed
         
     // Variables declaration - do not modify//GEN-BEGIN:variables

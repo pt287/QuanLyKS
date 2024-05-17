@@ -6,19 +6,21 @@ package GUI;
 
 import javax.swing.table.DefaultTableModel;
 
+import DTO.TGDTO;
+
 /**
  *
  * @author Phat
  */
 public class DichVu extends javax.swing.JPanel {
     Menu menu;
+    TGDTO tg;
     /**
      * Creates new form DichVu
      */
-    public DichVu(Menu menu) {
+    public DichVu(TGDTO a) {
         initComponents();
-        this.menu=menu;
-        
+        tg=a;
         DefaultTableModel table=new DefaultTableModel();
         BangDichVu.setModel(table);
         table.addColumn("Mã Dich Vụ");
@@ -276,7 +278,7 @@ public class DichVu extends javax.swing.JPanel {
 
     private void ButtonThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonThoatActionPerformed
         // TODO add your handling code here:
-        menu.ThoatDichVu();
+        menu.VeMenu(tg);
     }//GEN-LAST:event_ButtonThoatActionPerformed
 
 
