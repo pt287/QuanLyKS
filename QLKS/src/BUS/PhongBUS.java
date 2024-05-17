@@ -3,6 +3,7 @@ package BUS;
 import java.util.ArrayList;
 import DTO.Phong.PhongDTO;
 import DAO.PhongDAO;
+import java.util.Date;
 
 public class PhongBUS {
     static ArrayList<PhongDTO> dsphong;
@@ -22,11 +23,17 @@ public class PhongBUS {
         for(int i=0;i<dsphong.size();i++){
             PhongDTO a=dsphong.get(i);
             if (a.getMaPhong().equals(mp)) {
-                dsphong.set(i, p);
+                dsphong.add(i, p);
                 break;
             }
         }
     }
-    public void TimKiem_mp(String tk){
+    public ArrayList DatPhong (Date in, Date out){
+        ArrayList<PhongDTO> list = data.DatPhong(in, out);
+        return list;
+    }
+    public PhongDTO docphong (String MaPhong){
+        PhongDTO phong = data.docphong(MaPhong);
+        return phong;
     }
 }
