@@ -9,7 +9,6 @@ import java.util.Date;
 import DTO.HoaDonDTO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public class HoaDonDAO {
@@ -62,6 +61,19 @@ public class HoaDonDAO {
         }
         return dshd;
     }
+    
+    public void sua(String MaHD,HoaDonDTO hd){
+        try {
+            st=con.createStatement();
+            String qry = "Update HoaDon set ClientID = '";
+            qry = qry + hd.getMaKhachHang() + "', WkID='";
+            qry = qry + hd.getMaNhanVien() + "' where BillID =";
+            qry = qry + MaHD;
+        } catch (SQLException ex) {
+            //báo lỗi
+        }
+    }
+    
     public int[] ClientPerMonth(){
         int [] arr = new int[12];
         try{
