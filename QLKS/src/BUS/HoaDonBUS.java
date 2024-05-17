@@ -28,4 +28,15 @@ public class HoaDonBUS {
     public int[][] CPSAR(){
         return data.CPSAR();
     }
+    public ArrayList<HoaDonDTO> TimKiem(int mhd,String mnv,String mkh){
+        ArrayList<HoaDonDTO> hd=new ArrayList<HoaDonDTO>();
+        for (HoaDonDTO a:dshd){
+            if ((a.getMaHoaDon()==mhd || mhd==0) && 
+                (a.getMaKhachHang().contains(mkh) || mkh==null) && 
+                (a.getMaNhanVien().contains(mnv) || mnv==null)) {
+                hd.add(a);
+            }
+        }
+        return hd;
+    }
 }
