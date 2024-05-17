@@ -40,6 +40,9 @@ public class HoaDon extends javax.swing.JPanel {
         table.addColumn("Ngày trả");
         BangHoaDon.getTableHeader().setResizingAllowed(false);
         BangHoaDon.setColumnSelectionAllowed(false);
+        for(HoaDonDTO p:dshd){
+            table.addRow(new Object[]{p.getMaHoaDon(),p.getMaKhachHang(),p.getMaNhanVien(),p.getNgayNhan(),p.getNgayTra()});
+        }
 
     }
     public void TaoBangcthd(){
