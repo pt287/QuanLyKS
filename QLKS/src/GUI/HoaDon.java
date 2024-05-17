@@ -132,6 +132,11 @@ public class HoaDon extends javax.swing.JPanel {
         ButtonChinhSuaHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ButtonChinhSuaHD.setForeground(new java.awt.Color(0, 16, 31));
         ButtonChinhSuaHD.setText("Chỉnh Sửa Hóa Đơn");
+        ButtonChinhSuaHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonChinhSuaHDActionPerformed(evt);
+            }
+        });
 
         Button.setBackground(new java.awt.Color(220, 242, 197));
         Button.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -478,7 +483,12 @@ public class HoaDon extends javax.swing.JPanel {
 
     private void ButtonThemPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonThemPhongActionPerformed
         // TODO add your handling code here:
-        menu.addPhong();
+        if(BangHoaDon.getSelectedRow()>=0){
+            menu.addPhong();
+            menu.setDatein(NgayNhan.getDate());
+            menu.setDateout(NgayTra.getDate());
+        }
+        
     }//GEN-LAST:event_ButtonThemPhongActionPerformed
 
     private void ButtonTaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonTaoHDActionPerformed
@@ -521,6 +531,42 @@ public class HoaDon extends javax.swing.JPanel {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_ButtonActionPerformed
+
+    private void ButtonChinhSuaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonChinhSuaHDActionPerformed
+        // TODO add your handling code here:
+        if(BangHoaDon.getSelectedRow()>=0){
+            boolean isAfter = NgayTra.getDate().after(NgayNhan.getDate());
+            try{
+                 if(MaKhachHang.getText().length() == 8){
+                     if(MaNhanVien.getText().length() == 8){
+                         if(isAfter){
+                            hd.them(new HoaDonDTO(
+                                 0,
+                                 MaKhachHang.getText(),
+                                 MaNhanVien.getText(),
+                                 NgayNhan.getDate(),
+                                 NgayTra.getDate(),
+                                 0,
+                                 null
+                         ));
+                        }else{
+                     JOptionPane.showMessageDialog(this, "Ngày trả phải sau ngày nhận", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                 }
+                    }else{
+                     JOptionPane.showMessageDialog(this, "Mã nhân viên phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                 }
+
+                 }else{
+                     JOptionPane.showMessageDialog(this, "Mã khách hàng phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                 }   
+            }catch(Exception ex) {
+                ex.printStackTrace();
+            }
+        }else{
+                     JOptionPane.showMessageDialog(this, "Không có hóa đơn nào được chọn", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                 }
+        TaoBangHd();
+    }//GEN-LAST:event_ButtonChinhSuaHDActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
