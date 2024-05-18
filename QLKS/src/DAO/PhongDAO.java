@@ -8,8 +8,7 @@ import DTO.Phong.PhongDTO;
 import java.util.ArrayList;
 import DTO.Phong.PhongVipDTO;
 import DTO.Phong.PhongThuongDTO;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 public class PhongDAO {
     Connection con = ConnectionProvider.getCon();
     Statement st = null;
@@ -86,18 +85,32 @@ public class PhongDAO {
             ex.printStackTrace(); // In lỗi ra console hoặc ghi log
         }
     }
-    public ArrayList DatPhong(Date in, Date out){
+    public ArrayList DatPhong(LocalDate in, LocalDate out){
         ArrayList<PhongDTO> list = new ArrayList<>();
-        SimpleDateFormat sqlfm = new SimpleDateFormat("yyyy-MM-dd");
-        String DateIn = sqlfm.format(in);
-        String DateOut = sqlfm.format(out);
-        String qry = "Select R.RoomID, R.RoomPrice , R.RoomType, R.RoomNum From Phong as R, ChiTietHoaDon as BD, HoaDon as B Where (B.BillID = BD.BillID AND BD.RoomID = R.RoomID) AND (B.DateIn NOT BETWEEN '";
-        qry = qry + DateIn +"'AND'";
-        qry = qry + DateOut +"') AND (B.DateOUT NOT BETWEEN '";
-        qry = qry + DateIn +"' AND '";
-        qry = qry + DateOut + "') AND NOT(DateDIFF(B.DateIN,'";
-        qry = qry + DateIn + "')<0 AND DateDIFF(B.DateOUT,'";
-        qry = qry + DateOut + "'));";
+        String DateIn = in.toString();
+        String DateOut = out.toString();
+        try{
+            String qry = "Select R.RoomID, R.RoomPrice , R.RoomType, R.RoomNum From Phong as R, ChiTietHoaDon as BD, HoaDon as B Where (B.BillID = BD.BillID AND BD.RoomID = R.RoomID) AND (B.DateIn NOT BETWEEN '";
+            qry = qry + DateIn +"'AND'";
+            qry = qry + DateOut +"') AND (B.DateOUT NOT BETWEEN '";
+            qry = qry + DateIn +"' AND '";
+            qry = qry + DateOut + "') AND NOT(DateDIFF(B.DateIN,'";
+            qry = qry + DateIn + "')<0 AND DateDIFF(B.DateOUT,'";
+            qry = qry + DateOut + "'));";
+            st = con.createStatement();
+            rs= st.executeQuery(qry);
+            while (rs.next()){
+                PhongDTO d = new PhongDTO();
+                d.setMaPhong(rs.getString(1));
+                d.setDonGia(rs.getInt(2));
+                d.setSoPhong(rs.getString(4));
+                list.add(d);
+            }
+        }
+        catch(SQLException ex){
+            //báo lỗi
+        }
+        
         return list;
     }
     
