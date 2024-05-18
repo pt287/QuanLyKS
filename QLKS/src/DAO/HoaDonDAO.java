@@ -1,3 +1,4 @@
+
 package DAO;
 
 import java.sql.Connection;
@@ -7,31 +8,39 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import DTO.HoaDonDTO;
-import java.text.SimpleDateFormat;
+import DTO.HoaDonInDTO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public class HoaDonDAO {
     Connection con = ConnectionProvider.getCon();
     Statement st = null;
     ResultSet rs=null;
-    public void them(HoaDonDTO hd)
+    public HoaDonDTO them(HoaDonInDTO hdi)
     {
+        HoaDonDTO hdo = new HoaDonDTO();
         try {
             st=con.createStatement();
             st.executeUpdate("Set Foreign_key_checks = 0");
             String qry="Insert into HoaDon (WkID,ClientID,DateIn,DateOut,BillTotal) Values(";
-            qry = qry +"'" + hd.getMaNhanVien()+"',";
-            qry = qry +"'" + hd.getMaKhachHang()+"',";
-            qry = qry +"'" + hd.getNgayNhan() + "',";
-            qry = qry +"'" + hd.getNgayTra() +"',";
+            qry = qry +"'" + hdi.getMaNhanVien()+"',";
+            qry = qry +"'" + hdi.getMaKhachHang()+"',";
+            qry = qry +"'" + hdi.getNgayNhan() + "',";
+            qry = qry +"'" + hdi.getNgayTra() +"',";
             qry = qry + "null)";
             st.executeUpdate(qry);
             st.executeUpdate("Set Foreign_key_checks = 1");
+            rs = st.executeQuery("Count(*) from Hoadon");
+            hdo.setMaHoaDon(rs.getInt(1));
+            hdo.setMaKhachHang(hdi.getMaKhachHang());
+            hdo.setMaNhanVien(hdi.getMaNhanVien());
+            hdo.setNgayNhan(hdi.getNgayNhan());
+            hdo.setNgayTra(hdi.getNgayTra());
         }
         catch(SQLException ex){
             //JOPtionPane.ShowMessageDialog(null,"Lỗi ghi thông tin người dùng!");
             System.out.println("Lỗi ghi thông tin người dùng");
         }
+        return hdo;
     }
     public ArrayList docDSHD(){
         ArrayList dshd=new ArrayList<HoaDonDTO>();
@@ -40,7 +49,6 @@ public class HoaDonDAO {
             st=con.createStatement();
             rs=st.executeQuery(qry);
             while(rs.next()){
-                SimpleDateFormat sqlfm = new SimpleDateFormat("yyyy-MM-dd");
                 HoaDonDTO hd = new HoaDonDTO();
                 hd.setMaHoaDon(rs.getInt(1));
                 hd.setMaNhanVien(rs.getString(2));
