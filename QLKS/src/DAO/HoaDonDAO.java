@@ -30,7 +30,7 @@ public class HoaDonDAO {
             qry = qry + "null)";
             st.executeUpdate(qry);
             st.executeUpdate("Set Foreign_key_checks = 1");
-            rs = st.executeQuery("Count(*) from Hoadon");
+            rs = st.executeQuery("Max(BillID) from Hoadon");
             hdo.setMaHoaDon(rs.getInt(1));
             hdo.setMaKhachHang(hdi.getMaKhachHang());
             hdo.setMaNhanVien(hdi.getMaNhanVien());
