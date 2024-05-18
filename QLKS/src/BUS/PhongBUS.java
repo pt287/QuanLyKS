@@ -3,7 +3,7 @@ package BUS;
 import java.util.ArrayList;
 import DTO.Phong.PhongDTO;
 import DAO.PhongDAO;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class PhongBUS {
     static ArrayList<PhongDTO> dsphong;
@@ -28,7 +28,7 @@ public class PhongBUS {
             }
         }
     }
-    public ArrayList DatPhong (Date in, Date out){
+    public ArrayList DatPhong (LocalDate in, LocalDate out){
         ArrayList<PhongDTO> list = data.DatPhong(in, out);
         return list;
     }
