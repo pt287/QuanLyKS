@@ -5,6 +5,7 @@
 package BUS;
 import DTO.HoaDonDTO;
 import DAO.HoaDonDAO;
+import DTO.HoaDonInDTO;
 import java.util.ArrayList;
 
 public class HoaDonBUS {
@@ -16,9 +17,10 @@ public class HoaDonBUS {
         dshd=data.docDSHD();
         return dshd;
     }
-    public void them(HoaDonDTO hd){
-        data.them(hd);
-        dshd.add(hd);
+    public void them(HoaDonInDTO hdi){
+        HoaDonDTO hdo = data.them(hdi);
+        dshd.add(hdo);
+        //return hdo;
     }
     public void sua(String MaHD,HoaDonDTO hd){
         data.sua(MaHD, hd);
