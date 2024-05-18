@@ -6,6 +6,8 @@ package BUS;
 import DTO.HoaDonDTO;
 import DAO.HoaDonDAO;
 import DTO.HoaDonInDTO;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class HoaDonBUS {
@@ -44,5 +46,8 @@ public class HoaDonBUS {
             }
         }
         return hd;
+    }
+    public LocalDate[] ngayDat(){
+        return data.NgayDat();
     }
 }
