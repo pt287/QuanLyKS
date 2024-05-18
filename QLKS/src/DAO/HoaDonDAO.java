@@ -2,6 +2,7 @@
 package DAO;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -121,4 +122,19 @@ public class HoaDonDAO {
         }
         return arr;
     }
+    public LocalDate[] NgayDat(){
+        LocalDate[] a= new LocalDate[2];
+        try{
+            String sql = "SELECT DateIn, DateOut FROM HoaDon WHERE BillID = (SELECT MAX(BillID) FROM HoaDon)";
+            st = con.createStatement();
+            rs = st.executeQuery(sql);
+            while(rs.next()){
+                a[0] = LocalDate.parse(rs.getString("column1"));
+                a[1] = LocalDate.parse(rs.getString("column2"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return a;
+    } 
 }
