@@ -1,9 +1,10 @@
 package BUS;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import DTO.Phong.PhongDTO;
 import DAO.PhongDAO;
-import java.time.LocalDate;
+import java.util.Date;
 
 public class PhongBUS {
     static ArrayList<PhongDTO> dsphong;
@@ -23,7 +24,7 @@ public class PhongBUS {
         for(int i=0;i<dsphong.size();i++){
             PhongDTO a=dsphong.get(i);
             if (a.getMaPhong().equals(mp)) {
-                dsphong.add(i, p);
+                dsphong.set(i, p);
                 break;
             }
         }
