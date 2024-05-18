@@ -6,37 +6,34 @@ package GUI;
 
 import java.util.Date;
 import BUS.PhongBUS;
+import BUS.HoaDonBUS;
 import DTO.Phong.PhongDTO;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import java.time.format.DateTimeFormatter;
 
 public class DatPhong extends javax.swing.JPanel {
     ArrayList<PhongDTO> p = new ArrayList<>();
-    PhongBUS data = new PhongBUS();
+    PhongBUS dataRoom = new PhongBUS();
     Menu menu;
-    LocalDate DateOut;
-    LocalDate DateIn;
+    HoaDonBUS dataBill = new HoaDonBUS();
+    LocalDate[] Date = dataBill.ngayDat();
+    LocalDate DateIn = Date[0];
+    LocalDate DateOut = Date[1];
     //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
      /**
      * Creates new form DatPhong
      */
     public DatPhong(Menu m) {
-        //initComponents();        
+        initComponents();        
         this.menu=m;
-        if(menu.getDatein()!=null && menu.getDateout()!=null){
-            DateIn = menu.getDatein();
-            DateOut = menu.getDateout();
-            fieldDIn.setText(DateIn.toString());
-            fieldDOut.setText(DateOut.toString());
-        }
-        initComponents();
+        fieldDIn.setText(DateIn.toString());
+        fieldDOut.setText(DateOut.toString());
    }
 
-    public void CheckPhong(Date in, Date out,String type){
-        ArrayList<PhongDTO> list = data.DatPhong(in, out);
+    public void CheckPhong(String type){
+        ArrayList<PhongDTO> list = dataRoom.DatPhong(DateIn, DateOut);
         DefaultTableModel table = new DefaultTableModel();
         KQPhong.setModel(table);
         table.addColumn("Loại Phòng");
@@ -233,12 +230,6 @@ public class DatPhong extends javax.swing.JPanel {
             }
         });
 
-        fieldDIn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldDInActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -326,10 +317,8 @@ public class DatPhong extends javax.swing.JPanel {
 
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
         // TODO add your handling code here:
-        String LPhong = (String)BangPhong.getSelectedItem();
-        //Date in = ;
-        //Date out = ;
-        //CheckPhong(in, out, LPhong);
+        String LPhong = BangPhong.getSelectedItem().toString();
+        CheckPhong(LPhong);
     }//GEN-LAST:event_SearchActionPerformed
 
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
@@ -340,7 +329,7 @@ public class DatPhong extends javax.swing.JPanel {
         }
         else{
             String mp = KQPhong.getValueAt(a, 0).toString();
-            p.add(data.docphong(mp));
+            p.add(dataRoom.docphong(mp));
         }
         DatPhong();
     }//GEN-LAST:event_AddActionPerformed
@@ -367,10 +356,6 @@ public class DatPhong extends javax.swing.JPanel {
         menu.setMaphong(list);
         menu.ThoatDatPhong();
     }//GEN-LAST:event_ConfirmActionPerformed
-
-    private void fieldDInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldDInActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fieldDInActionPerformed
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Add;
