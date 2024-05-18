@@ -28,9 +28,8 @@ public class HoaDon extends javax.swing.JPanel {
     Menu menu;
     HoaDonBUS hd=new HoaDonBUS();
     ArrayList<HoaDonDTO> dshd;
-    LocalDate ngayNhan;
-    LocalDate ngayTra;
-    Boolean CheckTHD=true;
+    public LocalDate DateInFHD;
+    public LocalDate DateOutFHD;
     /**
      * Creates new form HoaDon
      */
@@ -164,11 +163,6 @@ public class HoaDon extends javax.swing.JPanel {
         ButtonXuatHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ButtonXuatHD.setForeground(new java.awt.Color(0, 16, 31));
         ButtonXuatHD.setText("Xuất Hóa Đơn");
-        ButtonXuatHD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonXuatHDActionPerformed(evt);
-            }
-        });
 
         ButtonThemDV.setBackground(new java.awt.Color(220, 242, 197));
         ButtonThemDV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -481,12 +475,7 @@ public class HoaDon extends javax.swing.JPanel {
 
     private void ButtonThemDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonThemDVActionPerformed
         // TODO add your handling code here:
-        if(!CheckTHD){
-            menu.addDichVu();
-        }else{
-            JOptionPane.showInternalConfirmDialog(this, "Không thể thêm dịch vụ", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        }
-        
+        menu.addDichVu();
     }//GEN-LAST:event_ButtonThemDVActionPerformed
 
     private void NhapTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NhapTimKiemKeyReleased
@@ -524,20 +513,7 @@ public class HoaDon extends javax.swing.JPanel {
 
     private void ButtonThemPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonThemPhongActionPerformed
         // TODO add your handling code here:
-        if(!CheckTHD){
-            int a = BangHoaDon.getSelectedRow();
-            if(a>=0){
-                ngayNhan = LocalDate.parse(BangHoaDon.getValueAt(a, 3).toString());
-                ngayTra = LocalDate.parse(BangHoaDon.getValueAt(a, 4).toString());
-                menu.setDatein(ngayNhan);
-                menu.setDateout(ngayTra);
-                menu.addPhong();
-            }
-        }else{
-            JOptionPane.showInternalConfirmDialog(this, "Không thể thêm phòng", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        }
-        
-        
+        menu.addPhong();
     }//GEN-LAST:event_ButtonThemPhongActionPerformed
 
     private void ButtonTaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonTaoHDActionPerformed
@@ -546,28 +522,26 @@ public class HoaDon extends javax.swing.JPanel {
         LocalDate ngaytra=LocalDate.of(Integer.parseInt(NhapNamTra.getText()),Integer.parseInt(NhapThangTra.getText()),Integer.parseInt(NhapNgayTra.getText()));
         boolean isAfter = ngaytra.isAfter(ngaynhan);
         try{
-            if(CheckTHD){
-                if(MaKhachHang.getText().length() == 8){
-                    if(MaNhanVien.getText().length() == 8){
-                        if(isAfter){
-                            CheckTHD=false;
-                            hd.them(new HoaDonInDTO(MaKhachHang.getText(),MaNhanVien.getText(),ngaynhan,ngaytra));
-                        }else{
-                            JOptionPane.showMessageDialog(this, "Ngày trả phải sau ngày nhận", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                        }
+             if(MaKhachHang.getText().length() == 8){
+                 if(MaNhanVien.getText().length() == 8){
+                     if(isAfter){
+                        hd.them(new HoaDonInDTO(MaKhachHang.getText(),MaNhanVien.getText(),ngaynhan,ngaytra));
+                   
                     }else{
-                        JOptionPane.showMessageDialog(this, "Mã nhân viên phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                    }
+                 JOptionPane.showMessageDialog(this, "Ngày trả phải sau ngày nhận", "Lỗi", JOptionPane.ERROR_MESSAGE);
+             }
                 }else{
-                    JOptionPane.showMessageDialog(this, "Mã khách hàng phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                }
-            }else{
-                JOptionPane.showMessageDialog(this, "Không thể tạo hóa đơn", "Lỗi",  JOptionPane.ERROR_MESSAGE);
-            }
+                 JOptionPane.showMessageDialog(this, "Mã nhân viên phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
+             }
+                     
+             }else{
+                 JOptionPane.showMessageDialog(this, "Mã khách hàng phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
+             }   
         }catch(Exception ex) {
             ex.printStackTrace();
         }
-        ngayNhan=ngaynhan;
+//        DateInFHD=ngaynhan;
+//        DateOutFHD=ngaytra;
         dshd = hd.docDSHD();
         TaoBangHd();
     }//GEN-LAST:event_ButtonTaoHDActionPerformed
@@ -618,21 +592,16 @@ public class HoaDon extends javax.swing.JPanel {
     }//GEN-LAST:event_ButtonChinhSuaHDActionPerformed
 
     private void BangHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BangHoaDonMouseClicked
-        // TODO add your handling code here:
+         //TODO add your handling code here:
         int a = BangHoaDon.getSelectedRow();
         if(a>=0){
             NhapTimKiem.setText(BangHoaDon.getValueAt(a, 0).toString());
             NhapTimKiem1.setText(BangHoaDon.getValueAt(a, 1).toString());
             NhapTimKiem2.setText(BangHoaDon.getValueAt(a, 2).toString());
-            ngayNhan = LocalDate.parse(BangHoaDon.getValueAt(a, 3).toString());
-            ngayTra = LocalDate.parse(BangHoaDon.getValueAt(a, 4).toString());
+            DateInFHD = LocalDate.parse(BangHoaDon.getValueAt(a, 3).toString());
+            DateOutFHD = LocalDate.parse(BangHoaDon.getValueAt(a, 4).toString());
         }
     }//GEN-LAST:event_BangHoaDonMouseClicked
-
-    private void ButtonXuatHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonXuatHDActionPerformed
-        // TODO add your handling code here:
-        CheckTHD=true;
-    }//GEN-LAST:event_ButtonXuatHDActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
