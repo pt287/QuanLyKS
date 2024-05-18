@@ -7,25 +7,32 @@ package GUI;
 import java.util.Date;
 import BUS.PhongBUS;
 import DTO.Phong.PhongDTO;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.time.format.DateTimeFormatter;
 
 public class DatPhong extends javax.swing.JPanel {
     ArrayList<PhongDTO> p = new ArrayList<>();
     PhongBUS data = new PhongBUS();
     Menu menu;
+    LocalDate DateOut;
+    LocalDate DateIn;
+    //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
      /**
      * Creates new form DatPhong
      */
     public DatPhong(Menu m) {
-        initComponents();        
+        //initComponents();        
         this.menu=m;
         if(menu.getDatein()!=null && menu.getDateout()!=null){
-            DateIn.setDate(menu.getDatein());
-            DateOut.setDate(menu.getDateout());
+            DateIn = menu.getDatein();
+            DateOut = menu.getDateout();
+            fieldDIn.setText(DateIn.toString());
+            fieldDOut.setText(DateOut.toString());
         }
-        
+        initComponents();
    }
 
     public void CheckPhong(Date in, Date out,String type){
@@ -78,11 +85,11 @@ public class DatPhong extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         PhongDaDat = new javax.swing.JTable();
         DSPhongDaDat = new javax.swing.JLabel();
-        DateIn = new com.toedter.calendar.JDateChooser();
-        DateOut = new com.toedter.calendar.JDateChooser();
         Search = new javax.swing.JButton();
         Sub = new javax.swing.JButton();
         Confirm = new javax.swing.JButton();
+        fieldDIn = new javax.swing.JTextField();
+        fieldDOut = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(1720, 1080));
 
@@ -199,8 +206,6 @@ public class DatPhong extends javax.swing.JPanel {
         DSPhongDaDat.setText("Danh Sách Phòng Đã Đặt");
         DSPhongDaDat.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 16, 31))); // NOI18N
 
-        DateOut.setEnabled(false);
-
         Search.setText("Tìm Kiếm");
         Search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,6 +233,12 @@ public class DatPhong extends javax.swing.JPanel {
             }
         });
 
+        fieldDIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldDInActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -245,13 +256,13 @@ public class DatPhong extends javax.swing.JPanel {
                                 .addComponent(LoaiPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(BangPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(75, 75, 75)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(NgayNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(DateIn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(NgayNhan, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                                .addComponent(fieldDIn))
                             .addGap(67, 67, 67)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(NgayTra, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(DateOut, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(NgayTra, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                                .addComponent(fieldDOut))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Search, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -277,10 +288,10 @@ public class DatPhong extends javax.swing.JPanel {
                             .addComponent(NgayNhan)
                             .addComponent(LoaiPhong))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BangPhong)
-                            .addComponent(DateIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(DateOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(fieldDIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldDOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(DSPhongDaDat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -316,9 +327,9 @@ public class DatPhong extends javax.swing.JPanel {
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
         // TODO add your handling code here:
         String LPhong = (String)BangPhong.getSelectedItem();
-        Date in = DateIn.getDate();
-        Date out = DateOut.getDate();
-        CheckPhong(in, out, LPhong);
+        //Date in = ;
+        //Date out = ;
+        //CheckPhong(in, out, LPhong);
     }//GEN-LAST:event_SearchActionPerformed
 
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
@@ -356,14 +367,16 @@ public class DatPhong extends javax.swing.JPanel {
         menu.setMaphong(list);
         menu.ThoatDatPhong();
     }//GEN-LAST:event_ConfirmActionPerformed
+
+    private void fieldDInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldDInActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldDInActionPerformed
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Add;
     private javax.swing.JComboBox<String> BangPhong;
     private javax.swing.JButton Confirm;
     private javax.swing.JLabel DSPhongDaDat;
-    private com.toedter.calendar.JDateChooser DateIn;
-    private com.toedter.calendar.JDateChooser DateOut;
     private javax.swing.JTable KQPhong;
     private javax.swing.JLabel LoaiPhong;
     private javax.swing.JLabel NgayNhan;
@@ -371,6 +384,8 @@ public class DatPhong extends javax.swing.JPanel {
     private javax.swing.JTable PhongDaDat;
     private javax.swing.JButton Search;
     private javax.swing.JButton Sub;
+    private javax.swing.JTextField fieldDIn;
+    private javax.swing.JTextField fieldDOut;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

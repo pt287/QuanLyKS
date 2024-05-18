@@ -6,6 +6,7 @@ package GUI;
 
 import GUI.DichVu;
 import DTO.HoaDonDTO;
+import DTO.HoaDonInDTO;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,7 +28,8 @@ public class HoaDon extends javax.swing.JPanel {
     Menu menu;
     HoaDonBUS hd=new HoaDonBUS();
     ArrayList<HoaDonDTO> dshd;
-    
+    LocalDate ngayNhan;
+    LocalDate ngayTra;
     /**
      * Creates new form HoaDon
      */
@@ -37,7 +39,7 @@ public class HoaDon extends javax.swing.JPanel {
         this.menu = menu;
         TaoBangHd();
         TaoBangcthd();
-        
+
         
 
         
@@ -511,8 +513,12 @@ public class HoaDon extends javax.swing.JPanel {
 
     private void ButtonThemPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonThemPhongActionPerformed
         // TODO add your handling code here:
-        if(BangHoaDon.getSelectedRow()>=0){
-                        
+        int a = BangHoaDon.getSelectedRow();
+        if(a>=0){
+            ngayNhan = LocalDate.parse(BangHoaDon.getValueAt(a, 3).toString());
+            ngayTra = LocalDate.parse(BangHoaDon.getValueAt(a, 4).toString());
+            menu.setDatein(ngayNhan);
+            menu.setDateout(ngayTra);
             menu.addPhong();
         }
         
@@ -527,15 +533,7 @@ public class HoaDon extends javax.swing.JPanel {
              if(MaKhachHang.getText().length() == 8){
                  if(MaNhanVien.getText().length() == 8){
                      if(isAfter){
-                        hd.them(new HoaDonDTO(
-                             0,
-                             MaKhachHang.getText(),
-                             MaNhanVien.getText(),
-                             ngaynhan,
-                             ngaytra,
-                             0,
-                             null
-                        ));
+                        hd.them(new HoaDonInDTO(MaKhachHang.getText(),MaNhanVien.getText(),ngaynhan,ngaytra));
                    
                     }else{
                  JOptionPane.showMessageDialog(this, "Ngày trả phải sau ngày nhận", "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -550,6 +548,8 @@ public class HoaDon extends javax.swing.JPanel {
         }catch(Exception ex) {
             ex.printStackTrace();
         }
+        ngayNhan=ngaynhan;
+        dshd = hd.docDSHD();
         TaoBangHd();
     }//GEN-LAST:event_ButtonTaoHDActionPerformed
 
@@ -605,7 +605,8 @@ public class HoaDon extends javax.swing.JPanel {
             NhapTimKiem.setText(BangHoaDon.getValueAt(a, 0).toString());
             NhapTimKiem1.setText(BangHoaDon.getValueAt(a, 1).toString());
             NhapTimKiem2.setText(BangHoaDon.getValueAt(a, 2).toString());
-            
+            ngayNhan = LocalDate.parse(BangHoaDon.getValueAt(a, 3).toString());
+            ngayTra = LocalDate.parse(BangHoaDon.getValueAt(a, 4).toString());
         }
     }//GEN-LAST:event_BangHoaDonMouseClicked
 
