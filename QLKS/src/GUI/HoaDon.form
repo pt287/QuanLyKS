@@ -31,7 +31,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="HoaDonPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="220" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -65,26 +65,28 @@
                           <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="480" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="ButtonChinhSuaHD" min="-2" max="-2" attributes="0"/>
-                                      <Component id="ButtonTaoHD" min="-2" pref="163" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="ButtonChinhSuaHD" min="-2" max="-2" attributes="0"/>
+                                          <Component id="ButtonTaoHD" min="-2" pref="163" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="ButtonThemPhong" max="32767" attributes="0"/>
+                                          <Component id="Button" pref="150" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="ButtonThemDV" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
+                                          <Component id="ButtonXuatHD" min="-2" pref="163" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="ButtonThemPhong" max="32767" attributes="0"/>
-                                      <Component id="Button" pref="150" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="ButtonThemDV" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
-                                      <Component id="ButtonXuatHD" min="-2" pref="163" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="NhapTimKiem" min="-2" pref="104" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -447,11 +449,28 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel4" pref="121" max="32767" attributes="0"/>
-                              <Component id="jLabel3" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabel4" pref="121" max="32767" attributes="0"/>
+                                  <Component id="jLabel3" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="NhapNgayNhan" pref="72" max="32767" attributes="0"/>
+                                  <Component id="NhapNgayTra" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="NhapThangNhan" alignment="1" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="NhapThangTra" alignment="1" min="-2" pref="72" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="NhapNamNhan" pref="90" max="32767" attributes="0"/>
+                                  <Component id="NhapNamTra" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel1" pref="121" max="32767" attributes="0"/>
                                   <Component id="jLabel2" max="32767" attributes="0"/>
@@ -463,7 +482,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="57" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -483,9 +502,23 @@
                           <Component id="jLabel2" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel3" alignment="3" max="32767" attributes="0"/>
+                              <Component id="NhapNgayNhan" alignment="3" pref="32" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="NhapNamNhan" alignment="0" max="32767" attributes="0"/>
+                          <Component id="NhapThangNhan" alignment="0" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel4" alignment="3" max="32767" attributes="0"/>
+                              <Component id="NhapNgayTra" alignment="3" pref="32" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="NhapNamTra" alignment="0" max="32767" attributes="0"/>
+                          <Component id="NhapThangTra" alignment="0" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace pref="14" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -590,6 +623,18 @@
             <Component class="javax.swing.JTextField" name="MaKhachHang">
             </Component>
             <Component class="javax.swing.JTextField" name="MaNhanVien">
+            </Component>
+            <Component class="javax.swing.JTextField" name="NhapNgayNhan">
+            </Component>
+            <Component class="javax.swing.JTextField" name="NhapNgayTra">
+            </Component>
+            <Component class="javax.swing.JTextField" name="NhapThangNhan">
+            </Component>
+            <Component class="javax.swing.JTextField" name="NhapThangTra">
+            </Component>
+            <Component class="javax.swing.JTextField" name="NhapNamNhan">
+            </Component>
+            <Component class="javax.swing.JTextField" name="NhapNamTra">
             </Component>
           </SubComponents>
         </Container>
