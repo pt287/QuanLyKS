@@ -129,8 +129,8 @@ public class HoaDonDAO {
             st = con.createStatement();
             rs = st.executeQuery(sql);
             while(rs.next()){
-                a[0] = LocalDate.parse(rs.getString("column1"));
-                a[1] = LocalDate.parse(rs.getString("column2"));
+                a[0] = LocalDate.parse(rs.getString(1));
+                a[1] = LocalDate.parse(rs.getString(2));
             }
         } catch (SQLException e) {
             e.printStackTrace();
