@@ -99,13 +99,7 @@ public class PhongDAO {
         String DateIn = in.toString();
         String DateOut = out.toString();
         try{
-            String qry = "Select R.RoomID, R.RoomPrice , R.RoomType, R.RoomNum From Phong as R, ChiTietHoaDon as BD, HoaDon as B Where (B.BillID = BD.BillID AND BD.RoomID = R.RoomID) AND (B.DateIn NOT BETWEEN '";
-            qry = qry + DateIn +"'AND'";
-            qry = qry + DateOut +"') AND (B.DateOUT NOT BETWEEN '";
-            qry = qry + DateIn +"' AND '";
-            qry = qry + DateOut + "') AND NOT(DateDIFF(B.DateIN,'";
-            qry = qry + DateIn + "')<0 AND DateDIFF(B.DateOUT,'";
-            qry = qry + DateOut + "')>0);";
+            String qry = "SELECT R.RoomID, R.RoomPrice, R.RoomType, R.RoomNum,R.RoomSTT FROM Phong AS R WHERE R.RoomID NOT IN (SELECT BD.RoomID FROM ChiTietHoaDon AS BD INNER JOIN HoaDon AS B ON BD.BillID = B.BillID WHERE (B.DateIn BETWEEN '"+DateIn+"' AND '"+DateOut+"') OR (B.DateOUT BETWEEN '"+DateIn+"' AND '"+DateOut+"') OR (B.DateIN < '"+DateIn+"' AND B.DateOUT > '"+DateOut+"'))";
             st = con.createStatement();
             rs= st.executeQuery(qry);
             while (rs.next()){
@@ -113,6 +107,7 @@ public class PhongDAO {
                 d.setMaPhong(rs.getString(1));
                 d.setDonGia(rs.getInt(2));
                 d.setSoPhong(rs.getString(4));
+                d.setTinhTrang(rs.getString(5));
                 list.add(d);
             }
         }
