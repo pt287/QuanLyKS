@@ -24,39 +24,12 @@ public class Menu extends javax.swing.JFrame {
     CardLayout layout;
     String TaiKhoan="";
     NguoiDungBUS nd=new NguoiDungBUS();
-    LocalDate datein;
-    LocalDate dateout;
-    ArrayList<String> maphong;
-
-    public ArrayList<String> getMaphong() {
-        return maphong;
-    }
-
-    public void setMaphong(ArrayList<String> maphong) {
-        this.maphong = maphong;
-    }
-
-    
-    public LocalDate getDatein() {
-        return datein;
-    }
-
-    public void setDatein(LocalDate datein) {
-        this.datein = datein;
-    }
-
-    public LocalDate getDateout() {
-        return dateout;
-    }
-
-    public void setDateout(LocalDate dateout) {
-        this.dateout = dateout;
-    }
     /**
      * Creates new form Menu
      */
     public Menu(String a) {
         initComponents();
+        TaiKhoan=a;
         layout = new CardLayout();
         MenuUI.setLayout(layout);
         //MenuUI.add("StartUp",new MainMenu());
@@ -73,7 +46,7 @@ public class Menu extends javax.swing.JFrame {
         MenuUI.add("RR",new RR());
         MenuUI.add("SR",new SR());
         TenND.setText(nd.Ten(a));
-        TaiKhoan=a;
+        
     }
 
     /**
@@ -502,4 +475,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
+
+    public String getTaiKhoan() {
+        return TaiKhoan;
+    }
 }
