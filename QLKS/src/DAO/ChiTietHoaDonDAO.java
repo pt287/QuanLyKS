@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import DTO.ChiTietHoaDonDTO;
+import DTO.ChiTietHoaDonInDTO;
 import GUICHART.RoomRatio.RoomRatioModel;
 import GUICHART.ServiceRatio.SvcRatioModel;
 public class ChiTietHoaDonDAO {
@@ -22,39 +23,48 @@ public class ChiTietHoaDonDAO {
             //báo lỗi
         }
     }
-    public void them(ChiTietHoaDonDTO cthd)
+    public ChiTietHoaDonDTO them(ChiTietHoaDonInDTO cthdin)
     {
+        ChiTietHoaDonDTO cthdout = new ChiTietHoaDonDTO();
         try {
             st=con.createStatement();
             st.executeUpdate("Set Foreign_key_checks = 0");
             int giatien = 0;
             String qry="Insert into ChiTietHoaDon(BillID, SvcID, RoomID, BDPRICE) Values(";
-            qry = qry + "'" + cthd.getMaHoaDon() + "',";
-            if(cthd.getMaDichVu()==null){
+            qry = qry + "'" + cthdin.getMaHoaDon() + "',";
+            if(cthdin.getMaDichVu()==null){
                 qry = qry + "null,";
             } else {
-                qry = qry + "'" + cthd.getMaDichVu() + "',";
-                rs=st.executeQuery("Select SvcPrice From Dichvu Where SvcID = '" + cthd.getMaDichVu() + "';");
+                qry = qry + "'" + cthdin.getMaDichVu() + "',";
+                rs=st.executeQuery("Select SvcPrice From Dichvu Where SvcID = '" + cthdin.getMaDichVu() + "';");
                 giatien = giatien + rs.getInt(1);
             }
-            if(cthd.getMaPhong()==null){
+            if(cthdin.getMaPhong()==null){
                 qry = qry + "null,";
             } else {
-                qry = qry + "'" + cthd.getMaPhong() + "',";
-                rs=st.executeQuery("Select RoomPrice From Phong Where RoomID = '" + cthd.getMaPhong() + "';");
+                qry = qry + "'" + cthdin.getMaPhong() + "',";
+                rs=st.executeQuery("Select RoomPrice From Phong Where RoomID = '" + cthdin.getMaPhong() + "';");
                 giatien = giatien + rs.getInt(1);
             }
             qry= qry + giatien +")";
             st.executeUpdate(qry);
             st.executeUpdate("Set Foreign_key_checks = 1");
-            UpdateMoney(cthd.getMaHoaDon());
+            rs = st.executeQuery("Select MAX(BILLID) FROM CHITIETHOADON");
+            while(rs.next())
+                cthdout.setMaHoaDon(rs.getInt(1));
+            cthdout.setMaHoaDon(cthdin.getMaHoaDon());
+            cthdout.setMaDichVu(cthdin.getMaDichVu());
+            cthdout.setMaPhong(cthdin.getMaPhong());
+            cthdout.setTien(giatien);
+            UpdateMoney(cthdout.getMaHoaDon());
         }
         catch(SQLException ex){
             //JOPtionPane.ShowMessageDialog(null,"Lỗi ghi thông tin người dùng!");
             System.out.println("Lỗi ghi thông tin người dùng");
         }
+        return cthdout;
     }
-    public ArrayList docDSHD(){
+    public ArrayList docDSCTHD(){
         ArrayList dscthd=new ArrayList<ChiTietHoaDonDTO>();
         try{
             String qry="select * from ChiTietHoaDon";
