@@ -28,6 +28,9 @@ public class CPSAR extends javax.swing.JPanel {
     CardLayout layout;
     public CPSAR() {
         initComponents();
+        CPSARchart.setFont(new java.awt.Font("sansserif",0,14));
+        CPSARchart.addLegend("Dịch Vụ", Color.decode("#C46B51"));
+        CPSARchart.addLegend("Phòng", Color.decode("#4E7566"));
         DataChart();
         DataTable();
         layout=new CardLayout();
@@ -59,9 +62,6 @@ public class CPSAR extends javax.swing.JPanel {
     
     
     private void DataChart(){
-        CPSARchart.setFont(new java.awt.Font("sansserif",0,14));
-        CPSARchart.addLegend("Dịch Vụ", Color.decode("#C46B51"));
-        CPSARchart.addLegend("Phòng", Color.decode("#4E7566"));
         ArrayList<ModelDataCPSAR> list = setData();
         for(int i=0;i<=list.size()-1;i++){
             ModelDataCPSAR d = list.get(i);
@@ -77,12 +77,13 @@ public class CPSAR extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         CPSARtable = new javax.swing.JTable();
         CPSARchart = new GUICHART.barchart.Chart();
+        Refresh = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(220, 242, 197));
         setPreferredSize(new java.awt.Dimension(1720, 1020));
 
         CPSARtable.setBackground(new java.awt.Color(220, 242, 197));
-        CPSARtable.setFont(new java.awt.Font("Segoe UI", 0, 26)); // NOI18N
+        CPSARtable.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         CPSARtable.setForeground(new java.awt.Color(0, 16, 31));
         CPSARtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,7 +111,7 @@ public class CPSAR extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        CPSARtable.setRowHeight(76);
+        CPSARtable.setRowHeight(57);
         jScrollPane2.setViewportView(CPSARtable);
         if (CPSARtable.getColumnModel().getColumnCount() > 0) {
             CPSARtable.getColumnModel().getColumn(0).setResizable(false);
@@ -121,32 +122,55 @@ public class CPSAR extends javax.swing.JPanel {
         CPSARchart.setBackground(new java.awt.Color(220, 242, 197));
         CPSARchart.setForeground(new java.awt.Color(0, 16, 31));
 
+        Refresh.setBackground(new java.awt.Color(0, 16, 31));
+        Refresh.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Refresh.setForeground(new java.awt.Color(220, 242, 197));
+        Refresh.setText("Làm Mới");
+        Refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(CPSARchart, javax.swing.GroupLayout.PREFERRED_SIZE, 942, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Refresh)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(CPSARchart, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
-                    .addComponent(CPSARchart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 37, Short.MAX_VALUE))
+                .addComponent(Refresh)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CPSARchart, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 21, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshActionPerformed
+        // TODO add your handling code here:
+        CPSARchart.clear();
+        DataTable();
+        DataChart();
+    }//GEN-LAST:event_RefreshActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private GUICHART.barchart.Chart CPSARchart;
     private javax.swing.JTable CPSARtable;
+    private javax.swing.JButton Refresh;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
