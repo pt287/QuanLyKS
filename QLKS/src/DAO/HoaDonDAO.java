@@ -30,8 +30,9 @@ public class HoaDonDAO {
             qry = qry + "null)";
             st.executeUpdate(qry);
             st.executeUpdate("Set Foreign_key_checks = 1");
-            rs = st.executeQuery("Max(BillID) from Hoadon");
-            hdo.setMaHoaDon(rs.getInt(1));
+            rs = st.executeQuery("Select MAX(BILLID) FROM HOADON");
+            while(rs.next())
+                hdo.setMaHoaDon(rs.getInt(1));
             hdo.setMaKhachHang(hdi.getMaKhachHang());
             hdo.setMaNhanVien(hdi.getMaNhanVien());
             hdo.setNgayNhan(hdi.getNgayNhan());
@@ -137,4 +138,19 @@ public class HoaDonDAO {
         }
         return a;
     } 
+    
+    public int MaxMHD(){
+        int max = 0;
+        try{
+            String sql = "SELECT BillID FROM HoaDon WHERE BillID = (SELECT MAX(BillID) FROM HoaDon)";
+            st = con.createStatement();
+            rs = st.executeQuery(sql);
+            while(rs.next()){
+                max = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return max;
+    }
 }
