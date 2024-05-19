@@ -79,4 +79,22 @@ public class DichVuDAO {
             //báo lỗi
         }
     }
+    public DichVuDTO docdichvu(String MaDichVu){
+        DichVuDTO dichvu = new DichVuDTO();
+        try{
+            String qry = "Select * from DichVu Where SvcID ='";
+            qry = qry + MaDichVu +"'";
+            st = con.createStatement();
+            rs = st.executeQuery(qry);
+            while(rs.next()){
+                dichvu.setMaDichVu(MaDichVu);
+                dichvu.setTen(rs.getString(2));
+                dichvu.setGia(rs.getInt(3));
+            }
+        }
+        catch(SQLException ex){
+            //báo lỗi
+        }
+        return dichvu;
+    }
 }
