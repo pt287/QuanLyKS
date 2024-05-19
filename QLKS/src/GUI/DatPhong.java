@@ -348,17 +348,26 @@ public class DatPhong extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"Chưa chọn phòng!","Lỗi",JOptionPane.ERROR_MESSAGE);
         }
         else{
-            
-            String mp = KQPhong.getValueAt(a, 0).toString();
-            PhongDTO pick = dataRoom.docphong(mp);
-            PhongDat.add(pick);
-            for(int i=0;i<PhongChuaDat.size();i++){
-                PhongDTO check = PhongChuaDat.get(i);
-                if(check.getMaPhong().equals(mp))
-                    PhongChuaDat.remove(i);
+            String mp = KQPhong.getValueAt(a, 1).toString();  
+            boolean checkdup = false;
+            for(int i=0;i<PhongDat.size();i++){
+                PhongDTO check = PhongDat.get(i);
+                if(check.getMaPhong().equals(mp)){
+                    JOptionPane.showMessageDialog(this,"Phòng này đã chọn!","Lỗi",JOptionPane.ERROR_MESSAGE);
+                    checkdup=true;
+                    break;
+                }
+            }
+            if(!checkdup){
+                for(int i=0;i<PhongChuaDat.size();i++){
+                    PhongDTO check = PhongChuaDat.get(i);
+                    if(check.getMaPhong().equals(mp)){
+                        PhongDat.add(dataRoom.docphong(mp));
+                        break;
+                    }
+                }
             }
             DatPhong();
-            CheckPhong(mp.substring(0, 3));
         }
     }//GEN-LAST:event_AddActionPerformed
 
@@ -369,10 +378,14 @@ public class DatPhong extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"Chưa chọn phòng!","Lỗi",JOptionPane.ERROR_MESSAGE);
         }
         else{
-            String mp = KQPhong.getValueAt(a, 0).toString();
-            PhongDaDat.remove(a);
+            String mp = KQPhong.getValueAt(a, 1).toString();
+            for(int i=0;i<PhongDat.size();i++){
+                PhongDTO check = PhongDat.get(i);
+                if(check.getMaPhong().equals(mp))
+                    PhongDat.remove(i);
+            }
+            DatPhong();
         }
-        DatPhong();
     }//GEN-LAST:event_SubActionPerformed
 
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
