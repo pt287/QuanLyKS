@@ -31,19 +31,38 @@ public class KhachHangDAO {
     public ArrayList<KhachHangDTO> docDSKH(){
         ArrayList<KhachHangDTO> dskh=new ArrayList<KhachHangDTO>();
         try{
-            String qry="select * from khachhang";
+            String qry="select * from KhachHang";
             st=con.createStatement();
             rs=st.executeQuery(qry);
-            KhachHangDTO kh = new KhachHangDTO();
-            kh.setMaKhachHang(rs.getString(1));
-            kh.setTen(rs.getString(2));
-            kh.setSoDienThoai(rs.getString(3));
-            kh.setCCCD(rs.getString(4));
-            dskh.add(kh);
+            while (rs.next()) {
+                KhachHangDTO kh = new KhachHangDTO();
+                kh.setMaKhachHang(rs.getString(1));
+                kh.setTen(rs.getString(2));
+                kh.setSoDienThoai(rs.getString(3));
+                kh.setCCCD(rs.getString(4));
+                dskh.add(kh);               
+            }
         }
         catch(SQLException ex){
-            //JOptionPane.ShowMessageDialog(null,"Lỗi đọc thông tin Sinh Viên!");
+            System.out.println("fuck");
         }
         return dskh;
+    }
+    public void Sua(KhachHangDTO a){
+        try {
+            st = con.createStatement();
+            st.executeUpdate("SET FOREIGN_KEY_CHECKS = 0");
+    
+            String qry = "UPDATE KhachHang SET " +
+                "ClientName = '" + a.getTen() + "', " +
+                "ClientPhoneNum = '" + a.getSoDienThoai() + "', " +
+                "ClientCID = '" + a.getCCCD() + "' " +
+                "WHERE ClientID = '" + a.getMaKhachHang() + "';";
+            st.executeUpdate(qry);
+            st.executeUpdate("SET FOREIGN_KEY_CHECKS = 1");
+        } catch (SQLException ex) {
+            // Xử lý ngoại lệ
+            ex.printStackTrace(); // In lỗi ra console hoặc ghi log
+        }
     }
 }

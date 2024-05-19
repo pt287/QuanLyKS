@@ -67,10 +67,12 @@ public class DichVuDAO {
         }
     }
     
-    public void sua(String MaDV, int GiaTien){
+    public void sua(DichVuDTO a){
         try{
             st=con.createStatement();
-            String qry="Update dichvu set SvcPrice = " + GiaTien +" Where SvcID = '" + MaDV + "'";
+            String qry="Update dichvu set SvcPrice = " + a.getGia() + "', " +
+                                        "SvcName = '" + a.getTen() + "' " +
+                                        " Where SvcID = '" + a.getMaDichVu() + "'";
             st.executeUpdate(qry);
         }
         catch(SQLException ex){
