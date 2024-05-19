@@ -533,7 +533,6 @@ public class QuanLy extends javax.swing.JPanel {
 
     private void BangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BangMouseClicked
         // TODO add your handling code here:
-        dsnd=nd.docDSND();
         for(NguoiDungDTO a:dsnd){
             if(a.getMaNguoiDung().equals(Bang.getValueAt(Bang.getSelectedRow(), 0).toString())){
                 if(a.getMaNguoiDung().contains("NV")){

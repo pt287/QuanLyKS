@@ -99,7 +99,7 @@ public final class MainMenu extends javax.swing.JPanel {
         int p=this.Slide.getX();
         
         if(p>-1){
-            Animacion.Animacion.mover_izquierda(900, 200, 1, 2, Slide);
+            //Animacion.Animacion.mover_izquierda(900, 200, 1, 2, Slide);
         }
         position=position+1;
         if(position>takeimage().length){

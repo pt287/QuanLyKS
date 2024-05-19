@@ -382,13 +382,9 @@ public class DatPhong extends javax.swing.JPanel {
         }
         else{
             String mp = KQPhong.getValueAt(a, 1).toString();
-            for(int i=0;i<PhongDat.size();i++){
-                PhongDTO check = PhongDat.get(i);
-                if(check.getMaPhong().equals(mp))
-                    PhongDat.remove(i);
+            PhongDat.remove(a);
             }
-            DatPhong();
-        }
+        DatPhong();
     }//GEN-LAST:event_SubActionPerformed
 
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
@@ -401,6 +397,10 @@ public class DatPhong extends javax.swing.JPanel {
             BDadd.setMaDichVu("");
             dataBD.them(BDadd);
         }
+        PhongDat=new ArrayList<>();
+        CheckPhong("");
+        DatPhong();
+        dataBD.UpdateMoney(dataBill.MaHDmax());
         menu.ThoatDatPhong();
     }//GEN-LAST:event_ConfirmActionPerformed
 

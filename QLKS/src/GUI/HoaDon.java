@@ -5,6 +5,7 @@
 package GUI;
 
 import GUI.DichVu;
+import DTO.ChiTietHoaDonDTO;
 import DTO.HoaDonDTO;
 import DTO.HoaDonInDTO;
 import DTO.KhachHangDTO;
@@ -13,6 +14,8 @@ import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
+
+import BUS.ChiTietHoaDonBUS;
 import BUS.HoaDonBUS;
 import BUS.KhachHangBUS;
 
@@ -32,8 +35,10 @@ import javax.swing.JOptionPane;
 public class HoaDon extends javax.swing.JPanel {
     Menu menu;
     HoaDonBUS hd=new HoaDonBUS();
+    ChiTietHoaDonBUS cthd=new ChiTietHoaDonBUS();
     KhachHangBUS kh=new KhachHangBUS();
     ArrayList<HoaDonDTO> dshd;
+    ArrayList<ChiTietHoaDonDTO> dscthd;
     LocalDate DateInFHD;
     LocalDate DateOutFHD;
     /**
@@ -44,14 +49,10 @@ public class HoaDon extends javax.swing.JPanel {
         dshd= hd.docDSHD();
         this.menu = menu;
         TaoBangHd();
-        TaoBangcthd();
         MaNhanVien.setText(menu.getTaiKhoan());
         for(KhachHangDTO k:kh.Doc()){
             jComboBoxKH.addItem(k.getMaKhachHang());
-        }
-        
-
-        
+        }        
     }
     public void TaoBangHd(){
         DefaultTableModel table= new DefaultTableModel();
@@ -97,7 +98,7 @@ public class HoaDon extends javax.swing.JPanel {
         LabelCTHD = new javax.swing.JLabel();
         LabelTKHD = new javax.swing.JLabel();
         NhapTimKiem = new javax.swing.JTextField();
-        ButtonChinhSuaHD = new javax.swing.JButton();
+        ButtonXoa = new javax.swing.JButton();
         Button = new javax.swing.JButton();
         ButtonXuatHD = new javax.swing.JButton();
         ButtonThemDV = new javax.swing.JButton();
@@ -155,13 +156,13 @@ public class HoaDon extends javax.swing.JPanel {
             }
         });
 
-        ButtonChinhSuaHD.setBackground(new java.awt.Color(220, 242, 197));
-        ButtonChinhSuaHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ButtonChinhSuaHD.setForeground(new java.awt.Color(0, 16, 31));
-        ButtonChinhSuaHD.setText("Chỉnh Sửa Hóa Đơn");
-        ButtonChinhSuaHD.addActionListener(new java.awt.event.ActionListener() {
+        ButtonXoa.setBackground(new java.awt.Color(220, 242, 197));
+        ButtonXoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ButtonXoa.setForeground(new java.awt.Color(0, 16, 31));
+        ButtonXoa.setText("Xoá");
+        ButtonXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonChinhSuaHDActionPerformed(evt);
+                ButtonXoaActionPerformed(evt);
             }
         });
 
@@ -229,17 +230,17 @@ public class HoaDon extends javax.swing.JPanel {
         BangHoaDon.setForeground(new java.awt.Color(0, 16, 31));
         BangHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Mã Hóa Đơn", "Mã Khách Hàng", "Mã Nhân Viên", "null", "Title 5"
+                "Mã Hóa Đơn", "Mã Khách Hàng", "Mã Nhân Viên", "null", "Title 5", "Title 6"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -426,9 +427,9 @@ public class HoaDon extends javax.swing.JPanel {
                         .addGroup(HoaDonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(HoaDonPanelLayout.createSequentialGroup()
                                 .addGap(7, 7, 7)
-                                .addGroup(HoaDonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(ButtonChinhSuaHD)
-                                    .addComponent(ButtonTaoHD, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(HoaDonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(ButtonTaoHD, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                    .addComponent(ButtonXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(HoaDonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(ButtonThemPhong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -440,11 +441,11 @@ public class HoaDon extends javax.swing.JPanel {
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane3)
                             .addGroup(HoaDonPanelLayout.createSequentialGroup()
-                                .addComponent(NhapTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(NhapTimKiem1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(NhapTimKiem2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(NhapTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(NhapTimKiem1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(NhapTimKiem2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1))))
                     .addGroup(HoaDonPanelLayout.createSequentialGroup()
@@ -475,7 +476,7 @@ public class HoaDon extends javax.swing.JPanel {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(HoaDonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ButtonChinhSuaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ButtonXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ButtonXuatHD, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
@@ -564,10 +565,10 @@ public class HoaDon extends javax.swing.JPanel {
                     }
                 }else{
                         JOptionPane.showMessageDialog(this, "Mã khách hàng phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                     }   
+                    }   
                   
-                 }catch(Exception ex) {
-                ex.printStackTrace();
+                }catch(Exception ex) {
+                    ex.printStackTrace();
             }
             TaoBangHd();
         }catch(NumberFormatException e){
@@ -584,7 +585,7 @@ public class HoaDon extends javax.swing.JPanel {
         
     }//GEN-LAST:event_ButtonActionPerformed
 
-    private void ButtonChinhSuaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonChinhSuaHDActionPerformed
+    private void ButtonXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonXoaActionPerformed
         // TODO add your handling code here:
         int a=BangHoaDon.getSelectedRow();
         if (a!=-1) {           
@@ -592,32 +593,34 @@ public class HoaDon extends javax.swing.JPanel {
         }
         dscthd=new ArrayList<>();
         TaoBangcthd();
-    }//GEN-LAST:event_ButtonChinhSuaHDActionPerformed
+    }//GEN-LAST:event_ButtonXoaActionPerformed
 
     private void BangHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BangHoaDonMouseClicked
          //TODO add your handling code here:
-         int a = BangHoaDon.getSelectedRow();
-         if(a>=0){
-             MaKhachHang.setText(BangHoaDon.getValueAt(a, 1).toString());
-             MaNhanVien.setText(BangHoaDon.getValueAt(a, 2).toString());
-             String Nn = BangHoaDon.getValueAt(a, 3).toString();
-             String Nt = (BangHoaDon.getValueAt(a, 4).toString());
-             String[] Nns=Nn.split("-");
-             String[] Nts=Nt.split("-");
-             NhapNgayNhan.setText(Nns[2]);
-             NhapNamNhan.setText(Nns[0]);
-             NhapThangNhan.setText(Nns[1]);
-             NhapNamTra.setText(Nts[0]);
-             NhapNgayTra.setText(Nts[2]);
-             NhapThangTra.setText(Nts[1]);
-         }
-         dscthd=cthd.docDSCTHD(BangHoaDon.getValueAt(a, 0).toString());
-         TaoBangcthd();
+        int a = BangHoaDon.getSelectedRow();
+        if(a>=0){
+            MaKhachHang.setText(BangHoaDon.getValueAt(a, 1).toString());
+            MaNhanVien.setText(BangHoaDon.getValueAt(a, 2).toString());
+            String Nn = BangHoaDon.getValueAt(a, 3).toString();
+            String Nt = (BangHoaDon.getValueAt(a, 4).toString());
+            String[] Nns=Nn.split("-");
+            String[] Nts=Nt.split("-");
+            NhapNgayNhan.setText(Nns[2]);
+            NhapNamNhan.setText(Nns[0]);
+            NhapThangNhan.setText(Nns[1]);
+            NhapNamTra.setText(Nts[0]);
+            NhapNgayTra.setText(Nts[2]);
+            NhapThangTra.setText(Nts[1]);
+        }
+        dscthd=cthd.docDSCTHD(BangHoaDon.getValueAt(a, 0).toString());
+        TaoBangcthd();
     }//GEN-LAST:event_BangHoaDonMouseClicked
 
     private void jComboBoxKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxKHActionPerformed
         // TODO add your handling code here:
-        MaKhachHang.setText(jComboBoxKH.getSelectedItem().toString());
+        if (jComboBoxKH.getSelectedIndex()!=-1) {
+            MaKhachHang.setText(jComboBoxKH.getSelectedItem().toString());           
+        }
     }//GEN-LAST:event_jComboBoxKHActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -641,10 +644,10 @@ public class HoaDon extends javax.swing.JPanel {
     private javax.swing.JTable BangCTHD;
     private javax.swing.JTable BangHoaDon;
     private javax.swing.JButton Button;
-    private javax.swing.JButton ButtonChinhSuaHD;
     private javax.swing.JButton ButtonTaoHD;
     private javax.swing.JButton ButtonThemDV;
     private javax.swing.JButton ButtonThemPhong;
+    private javax.swing.JButton ButtonXoa;
     private javax.swing.JButton ButtonXuatHD;
     private javax.swing.JPanel HoaDonPanel;
     private javax.swing.JLabel LabelCTHD;
