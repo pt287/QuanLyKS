@@ -59,13 +59,14 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         layout = new CardLayout();
         MenuUI.setLayout(layout);
-        MenuUI.add("StartUp",new MainMenu());
+        //MenuUI.add("StartUp",new MainMenu());
         MenuUI.add("dsPhong", new DSPhong());
         MenuUI.add("HoaDon",new HoaDon(this));
         MenuUI.add("DatPhong",new DatPhong(this));
         MenuUI.add("QuanLy", new QuanLy(a));
-        MenuUI.add("DatDichVu",new DatDichVu(this));
-        MenuUI.add("DichVu",new DichVu());
+        MenuUI.add("DatDichVu",new DichVu(this));
+        MenuUI.add("DichVu",new DSDichVu());
+        MenuUI.add("KhachHang",new KhachHang());
         MenuUI.add("CPM",new CPMChart());
         MenuUI.add("MPM",new MPMChart());
         MenuUI.add("CPSAR",new CPSAR());
@@ -194,7 +195,6 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1920, 1080));
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         jPanel2.setBackground(new java.awt.Color(0, 16, 31));
         jPanel2.setPreferredSize(new java.awt.Dimension(200, 1080));
@@ -234,6 +234,11 @@ public class Menu extends javax.swing.JFrame {
         KhachHang.setForeground(new java.awt.Color(220, 242, 197));
         KhachHang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         KhachHang.setText("Khách Hàng");
+        KhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                KhachHangMouseClicked(evt);
+            }
+        });
 
         ThongKe.setBackground(new java.awt.Color(0, 16, 31));
         ThongKe.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -414,7 +419,13 @@ public class Menu extends javax.swing.JFrame {
 
     private void DichVuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DichVuMouseClicked
         // TODO add your handling code here:
+        layout.show(MenuUI, "DichVu");
     }//GEN-LAST:event_DichVuMouseClicked
+
+    private void KhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KhachHangMouseClicked
+        // TODO add your handling code here:
+        layout.show(MenuUI, "KhachHang");
+    }//GEN-LAST:event_KhachHangMouseClicked
 
     /**
      * @param args the command line arguments
