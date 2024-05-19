@@ -18,8 +18,7 @@ public class PhongVipDTO extends PhongDTO{
         MaPhongAn = maPhongAn;
     }
 
-    public PhongVipDTO() {
-    }
+    public PhongVipDTO() {}
 
     public String getMaPhongAn() {
         return MaPhongAn;

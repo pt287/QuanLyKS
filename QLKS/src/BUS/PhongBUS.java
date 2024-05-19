@@ -3,6 +3,9 @@ package BUS;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import DTO.Phong.PhongDTO;
+import DTO.Phong.PhongThuongDTO;
+import DTO.Phong.PhongVipDTO;
+import Excel.ModelExcelIn;
 import DAO.PhongDAO;
 import java.util.Date;
 
@@ -36,5 +39,20 @@ public class PhongBUS {
     public PhongDTO docphong (String MaPhong){
         PhongDTO phong = data.docphong(MaPhong);
         return phong;
+    }
+    public void DocExcel(ArrayList<ModelExcelIn> a){
+        int dem=1;
+        for(ModelExcelIn p:a){
+            if(p.getRType().contains("VIP")){
+                PhongVipDTO pv=new PhongVipDTO(p.getRType() + String.valueOf(dem), p.getRNum(), "R", "", p.getRPrice(),"");
+                data.them(pv);
+                dsphong.add(pv);
+            }else{
+                PhongThuongDTO pt=new PhongThuongDTO(p.getRType() + dem, p.getRNum(), "R", "", p.getRPrice(), p.getRType());
+                data.them(pt);
+                dsphong.add(pt);
+            }
+            dem++;
+        }
     }
 }
