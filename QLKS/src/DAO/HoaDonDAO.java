@@ -138,7 +138,6 @@ public class HoaDonDAO {
         }
         return a;
     } 
-    
     public int MaxMHD(){
         int max = 0;
         try{
