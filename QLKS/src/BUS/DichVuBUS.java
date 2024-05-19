@@ -39,4 +39,8 @@ public class DichVuBUS {
             }
         }
     }
+    public DichVuDTO docdichvu (String MaDichVu){
+        DichVuDTO dichvu = data.docdichvu(MaDichVu);
+        return dichvu;
+    }
 }
