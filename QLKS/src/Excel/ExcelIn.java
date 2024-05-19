@@ -17,36 +17,83 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.lang.Integer;
+import org.apache.poi.ss.usermodel.CellValue;
+import org.apache.poi.ss.usermodel.FormulaEvaluator;
 /**
  *
  * @author TuiLaZit
  */
 public class ExcelIn {
-    public ArrayList NhapPhong(){
+    public ArrayList<ModelExcelIn> NhapPhong(String a) {
         ArrayList<ModelExcelIn> list = new ArrayList<ModelExcelIn>();
-        try{
-            FileInputStream excelFile = new FileInputStream(new File("excelRoom.xlsx"));
+        try {
+            FileInputStream excelFile = new FileInputStream(new File(a));
             Workbook wb = new XSSFWorkbook(excelFile);
             Sheet datatypeSheet = wb.getSheetAt(0);
             DataFormatter fmt = new DataFormatter();
             Iterator<Row> iterator = datatypeSheet.iterator();
-            Row firstRow = iterator.next();
-            Cell firstCell = firstRow.getCell(0);
-            while(iterator.hasNext()){
-                Row currentRow= iterator.next();
+            FormulaEvaluator formu=wb.getCreationHelper().createFormulaEvaluator();
+            
+            if (iterator.hasNext()) {
+                iterator.next(); // Bỏ qua dòng tiêu đề
+            }
+            
+            while (iterator.hasNext()) {
+                Row currentRow = iterator.next();
                 ModelExcelIn RModel = new ModelExcelIn();
-                RModel.setRType(currentRow.getCell(0).getStringCellValue());
-                RModel.setRNum(currentRow.getCell(1).getStringCellValue());
-                RModel.setRPrice(Integer.parseInt(fmt.formatCellValue(currentRow.getCell(3))));
+
+                Cell cellRType = currentRow.getCell(0);
+                Cell cellRNum = currentRow.getCell(1);
+                Cell cellRPrice = currentRow.getCell(2);
+
+                if (cellRType != null) {
+                    RModel.setRType(fmt.formatCellValue(cellRType));
+                    System.out.println();
+                }
+                if (cellRNum != null) {
+                    RModel.setRNum(fmt.formatCellValue(cellRNum));
+                }
+                if (cellRPrice != null) {
+                    try {
+                        double str = (double) getCellValue(cellRPrice,formu);
+                        RModel.setRPrice((int)str);
+                    } catch (NumberFormatException e) {
+                        // Xử lý ngoại lệ cho định dạng số
+                        RModel.setRPrice(0); // hoặc bất kỳ giá trị mặc định nào
+                    }
+                }
+
                 list.add(RModel);
             }
             wb.close();
-        } catch(FileNotFoundException e){
-            //báo lỗi
+            excelFile.close();
+        } catch (FileNotFoundException e) {
+            // Xử lý ngoại lệ khi không tìm thấy tệp
+            e.printStackTrace();
+        } catch (IOException e) {
+            // Xử lý ngoại lệ IO
+            e.printStackTrace();
         }
-        catch(IOException e){
-            //báo lỗi
-        }
+
         return list;
     }
+    private static Object getCellValue(Cell cell, FormulaEvaluator evaluator) {  
+        CellValue cellValue = evaluator.evaluate(cell);  
+        switch (cellValue.getCellTypeEnum()) {  
+          case BOOLEAN:  
+            return cellValue.getBooleanValue();  
+          case NUMERIC:  
+            return cellValue.getNumberValue();  
+          case STRING:  
+            return cellValue.getStringValue();  
+          case BLANK:  
+            return "";  
+          case ERROR:  
+            return cellValue.getError(cell.getErrorCellValue()).getStringValue();  
+          // CELL_TYPE_FORMULA will never happen  
+          case FORMULA:  
+            default:  
+              return null;  
+        }  
+      }
 }

@@ -9,9 +9,9 @@ package Excel;
  * @author TuiLaZit
  */
 public class ModelExcelIn {
-    private String RType;
-    private String RNum;
-    private int RPrice;
+    private String RType;//loai phong
+    private String RNum;//so phong
+    private int RPrice;//gia
 
     public ModelExcelIn() {
     }
