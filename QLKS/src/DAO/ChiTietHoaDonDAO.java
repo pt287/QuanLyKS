@@ -123,4 +123,17 @@ public class ChiTietHoaDonDAO {
         }
         return SRlist;
     }
+    public void Xoa(String mhd){
+        try{
+            st=con.createStatement();
+            st.executeUpdate("Set Foreign_key_checks = 0");
+            String qry="Delete from ChiTietHoaDon where BillID = ";
+            qry = qry + "'"+mhd +"'";
+            st.executeUpdate(qry);
+            st.executeUpdate("Set Foreign_key_checks = 1");
+        }
+        catch(SQLException ex){
+            //báo lỗi
+        }
+    }
 }
