@@ -61,10 +61,11 @@ public class HoaDon extends javax.swing.JPanel {
         table.addColumn("Mã nhân viên");
         table.addColumn("Ngày nhận");
         table.addColumn("Ngày trả");
+        table.addColumn("Giá");
         BangHoaDon.getTableHeader().setResizingAllowed(false);
         BangHoaDon.setColumnSelectionAllowed(false);
         for(HoaDonDTO p:dshd){
-            table.addRow(new Object[]{p.getMaHoaDon(),p.getMaKhachHang(),p.getMaNhanVien(),p.getNgayNhan(),p.getNgayTra()});
+            table.addRow(new Object[]{p.getMaHoaDon(),p.getMaKhachHang(),p.getMaNhanVien(),p.getNgayNhan(),p.getNgayTra(),p.getTongTien()});
         }
 
     }
@@ -73,9 +74,14 @@ public class HoaDon extends javax.swing.JPanel {
         BangCTHD.setModel(table);
         table.addColumn("Mã Phòng");
         table.addColumn("Mã Dich Vụ");
+        table.addColumn("Mã Phòng ");
         table.addColumn("Giá");
         BangCTHD.getTableHeader().setResizingAllowed(false);
         BangCTHD.setColumnSelectionAllowed(false);
+        for(ChiTietHoaDonDTO a:dscthd){
+            table.addRow(new Object[]{a.getMaChiTietHoaDon(),a.getMaDichVu(),a.getMaPhong(),a.getTien()});
+        }
+
     }
 
     /**
@@ -580,57 +586,33 @@ public class HoaDon extends javax.swing.JPanel {
 
     private void ButtonChinhSuaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonChinhSuaHDActionPerformed
         // TODO add your handling code here:
-//        if(BangHoaDon.getSelectedRow()>=0){
-//            boolean isAfter = NgayTra.getDate().after(NgayNhan.getDate());
-//            try{
-//                 if(MaKhachHang.getText().length() == 8){
-//                     if(MaNhanVien.getText().length() == 8){
-//                         if(isAfter){
-//                            hd.sua(,new HoaDonDTO(
-//                                 0,
-//                                 MaKhachHang.getText(),
-//                                 MaNhanVien.getText(),
-//                                 NgayNhan.getDate(),
-//                                 NgayTra.getDate(),
-//                                 0,
-//                                 null
-//                         ));
-//                        }else{
-//                     JOptionPane.showMessageDialog(this, "Ngày trả phải sau ngày nhận", "Lỗi", JOptionPane.ERROR_MESSAGE);
-//                 }
-//                    }else{
-//                     JOptionPane.showMessageDialog(this, "Mã nhân viên phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
-//                 }
-//
-//                 }else{
-//                     JOptionPane.showMessageDialog(this, "Mã khách hàng phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
-//                 }   
-//            }catch(Exception ex) {
-//                ex.printStackTrace();
-//            }
-//        }else{
-//                     JOptionPane.showMessageDialog(this, "Không có hóa đơn nào được chọn", "Lỗi", JOptionPane.ERROR_MESSAGE);
-//                 }
-//        TaoBangHd();
+        int a=BangHoaDon.getSelectedRow();
+        if (a!=-1) {           
+            cthd.Xoa(BangHoaDon.getValueAt(a, 0).toString());
+        }
+        dscthd=new ArrayList<>();
+        TaoBangcthd();
     }//GEN-LAST:event_ButtonChinhSuaHDActionPerformed
 
     private void BangHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BangHoaDonMouseClicked
          //TODO add your handling code here:
-        int a = BangHoaDon.getSelectedRow();
-        if(a>=0){
-            MaKhachHang.setText(BangHoaDon.getValueAt(a, 1).toString());
-            MaNhanVien.setText(BangHoaDon.getValueAt(a, 2).toString());
-            String Nn = BangHoaDon.getValueAt(a, 3).toString();
-            String Nt = (BangHoaDon.getValueAt(a, 4).toString());
-            String[] Nns=Nn.split("-");
-            String[] Nts=Nt.split("-");
-            NhapNgayNhan.setText(Nns[2]);
-            NhapNamNhan.setText(Nns[0]);
-            NhapThangNhan.setText(Nns[1]);
-            NhapNamTra.setText(Nts[0]);
-            NhapNgayTra.setText(Nts[2]);
-            NhapThangTra.setText(Nts[1]);
-        }
+         int a = BangHoaDon.getSelectedRow();
+         if(a>=0){
+             MaKhachHang.setText(BangHoaDon.getValueAt(a, 1).toString());
+             MaNhanVien.setText(BangHoaDon.getValueAt(a, 2).toString());
+             String Nn = BangHoaDon.getValueAt(a, 3).toString();
+             String Nt = (BangHoaDon.getValueAt(a, 4).toString());
+             String[] Nns=Nn.split("-");
+             String[] Nts=Nt.split("-");
+             NhapNgayNhan.setText(Nns[2]);
+             NhapNamNhan.setText(Nns[0]);
+             NhapThangNhan.setText(Nns[1]);
+             NhapNamTra.setText(Nts[0]);
+             NhapNgayTra.setText(Nts[2]);
+             NhapThangTra.setText(Nts[1]);
+         }
+         dscthd=cthd.docDSCTHD(BangHoaDon.getValueAt(a, 0).toString());
+         TaoBangcthd();
     }//GEN-LAST:event_BangHoaDonMouseClicked
 
     private void jComboBoxKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxKHActionPerformed
@@ -640,7 +622,17 @@ public class HoaDon extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        // cap nhap gia
+        for(int i=0;i<BangHoaDon.getRowCount();i++){
+            cthd.UpdateMoney( (int) BangHoaDon.getValueAt(i, 0));
+        }
+        //cap nhap dshd
         dshd=hd.docDSHD();
+        //cap nhap combobox
+        jComboBoxKH.removeAllItems();
+        for(KhachHangDTO k:kh.Doc()){
+            jComboBoxKH.addItem(k.getMaKhachHang());
+        } 
         TaoBangHd();
     }//GEN-LAST:event_jButton1ActionPerformed
 
