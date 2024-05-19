@@ -4,9 +4,11 @@
  */
 package GUI;
 
+import BUS.ChiTietHoaDonBUS;
 import java.util.Date;
 import BUS.PhongBUS;
 import BUS.HoaDonBUS;
+import DTO.ChiTietHoaDonInDTO;
 import DTO.Phong.PhongDTO;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ public class DatPhong extends javax.swing.JPanel {
     PhongBUS dataRoom = new PhongBUS();
     Menu menu;
     HoaDonBUS dataBill = new HoaDonBUS();
+    ChiTietHoaDonBUS dataBD = new ChiTietHoaDonBUS();
     LocalDate DateIn;
     LocalDate DateOut;
     //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -390,11 +393,13 @@ public class DatPhong extends javax.swing.JPanel {
 
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
         // TODO add your handling code here:
-        ArrayList<String> list = new ArrayList<>();
-        for(int i = 0; i<PhongDaDat.getRowCount();i++){
-            list.add(PhongDaDat.getValueAt(i, 0).toString());
+        for(int i=0;i<PhongDat.size();i++){
+            PhongDTO addR = PhongDat.get(i);
+            ChiTietHoaDonInDTO BDadd = new ChiTietHoaDonInDTO();
+            BDadd.setMaPhong(addR.getMaPhong());
+            BDadd.setMaHoaDon(dataBill.MaHDmax());
+            dataBD.them(BDadd);
         }
-        menu.setMaphong(list);
         menu.ThoatDatPhong();
     }//GEN-LAST:event_ConfirmActionPerformed
 
