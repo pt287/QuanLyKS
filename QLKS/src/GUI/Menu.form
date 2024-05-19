@@ -191,7 +191,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="ThongKe" alignment="1" max="32767" attributes="0"/>
-                      <Component id="DichVu" alignment="1" max="32767" attributes="0"/>
+                      <Component id="KhachHang" alignment="1" max="32767" attributes="0"/>
                       <Component id="Logo" max="32767" attributes="0"/>
                       <Component id="QuanLyPopupMenu" alignment="1" max="32767" attributes="0"/>
                       <Component id="LeTanPopupMenu" alignment="1" max="32767" attributes="0"/>
@@ -219,7 +219,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="QuanLyPopupMenu" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="DichVu" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="KhachHang" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="ThongKe" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="264" max="-2" attributes="0"/>
@@ -277,7 +277,7 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="QuanLyPopupMenuMouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="DichVu">
+        <Component class="javax.swing.JLabel" name="KhachHang">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="1f" green="10" red="0" type="rgb"/>
@@ -289,10 +289,10 @@
               <Color blue="c5" green="f2" red="dc" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="D&#x1ecb;ch V&#x1ee5;"/>
+            <Property name="text" type="java.lang.String" value="Kh&#xe1;ch H&#xe0;ng"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="DichVuMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="KhachHangMouseClicked"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="ThongKe">
