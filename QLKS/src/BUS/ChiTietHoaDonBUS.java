@@ -35,4 +35,10 @@ public class ChiTietHoaDonBUS {
     public ArrayList SvcRatio(){
         return data.SvcRatio();
     }
+    public void Xoa(String mhd){
+        data.Xoa(mhd);
+    }
+    public void UpdateMoney(int i){
+        data.UpdateMoney(i);
+    }
 }

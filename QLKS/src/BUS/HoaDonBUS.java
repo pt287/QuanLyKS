@@ -22,6 +22,7 @@ public class HoaDonBUS {
     public void them(HoaDonInDTO hdi){
         HoaDonDTO hdo = data.them(hdi);
         dshd.add(hdo);
+        //return hdo;
     }
     public void sua(String MaHD,HoaDonDTO hd){
         data.sua(MaHD, hd);
@@ -39,8 +40,8 @@ public class HoaDonBUS {
         ArrayList<HoaDonDTO> hd=new ArrayList<HoaDonDTO>();
         for (HoaDonDTO a:dshd){
             if ((a.getMaHoaDon()==mhd || mhd==0) && 
-                (a.getMaKhachHang().contains(mkh) || mkh==null) && 
-                (a.getMaNhanVien().contains(mnv) || mnv==null)) {
+                (a.getMaKhachHang().toLowerCase().contains(mkh) || mkh==null) && 
+                (a.getMaNhanVien().toLowerCase().contains(mnv) || mnv==null)) {
                 hd.add(a);
             }
         }
@@ -49,7 +50,6 @@ public class HoaDonBUS {
     public LocalDate[] ngayDat(){
         return data.NgayDat();
     }
-    
     public int MaHDmax(){
         int n = data.MaxMHD();
         return n;
