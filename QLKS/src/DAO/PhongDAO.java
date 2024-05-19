@@ -40,6 +40,8 @@ public class PhongDAO {
             }
             st.executeUpdate(qry);
             st.executeUpdate("Set Foreign_key_checks = 1");
+            rs.close();
+            st.close();
         }
         catch(SQLException ex){
         }
@@ -66,6 +68,8 @@ public class PhongDAO {
                     dsp.add(pt);
                 }
             }
+            rs.close();
+            st.close();
         }
         catch(SQLException ex){
             //JOptionPane.ShowMessageDialog(null,"Lỗi đọc thông tin Sinh Viên!");
@@ -89,6 +93,7 @@ public class PhongDAO {
             qry = qry + "WHERE RoomID = '" + p.getMaPhong() + "'";
             st.executeUpdate(qry);
             st.executeUpdate("SET FOREIGN_KEY_CHECKS = 1");
+            st.close();
         } catch (SQLException ex) {
             // Xử lý ngoại lệ
             ex.printStackTrace(); // In lỗi ra console hoặc ghi log
@@ -109,6 +114,8 @@ public class PhongDAO {
                 d.setSoPhong(rs.getString(4));
                 d.setTinhTrang(rs.getString(5));
                 list.add(d);
+                rs.close();
+                st.close();
             }
         }
         catch(SQLException ex){
@@ -120,19 +127,22 @@ public class PhongDAO {
     
     public PhongDTO docphong(String MaPhong){
         PhongDTO phong = new PhongDTO();
-        try{
-            String qry = "Select * from Phong Where RoomID ='";
-            qry = qry + MaPhong +"'";
+        String qry = "SELECT * FROM Phong WHERE RoomID = '" + MaPhong + "'";
+        try {
             st = con.createStatement();
             rs = st.executeQuery(qry);
-            phong.setMaPhong(MaPhong);
-            phong.setSoPhong(rs.getString(1));
-            phong.setGhiChu(null);
-            phong.setDonGia(rs.getInt(5));
-            phong.setTinhTrang(rs.getString(3));
+        
+            if (rs.next()) {
+                phong.setMaPhong(rs.getString("RoomID"));
+                phong.setSoPhong(rs.getString("RoomNum"));
+                phong.setDonGia(rs.getInt("RoomPrice"));
         }
+        rs.close();
+        st.close();
+    }
         catch(SQLException ex){
             //báo lỗi
+            System.out.println("loi");
         }
         return phong;
     }

@@ -99,6 +99,7 @@ public class StartUpDAO {
                         INSERT INTO NGUOIDUNG VALUES('ADMIN000','admin','admin','admin','000000000000','0000000000',1);
                         Set foreign_key_checks = 1;
                                        """);
+            st.close();
         }
         catch(SQLException ex){
             //JOPtionPane.ShowMessageDialog(null,"Lỗi chạy lần đầu!");

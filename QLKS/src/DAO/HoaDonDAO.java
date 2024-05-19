@@ -37,6 +37,8 @@ public class HoaDonDAO {
             hdo.setMaNhanVien(hdi.getMaNhanVien());
             hdo.setNgayNhan(hdi.getNgayNhan());
             hdo.setNgayTra(hdi.getNgayTra());
+            rs.close();
+            st.close();
         }
         catch(SQLException ex){
             //JOPtionPane.ShowMessageDialog(null,"Lỗi ghi thông tin người dùng!");
@@ -60,6 +62,8 @@ public class HoaDonDAO {
                 hd.setTongTien(rs.getInt(6));
                 dshd.add(hd);
             }
+            rs.close();
+            st.close();
         }catch(SQLException ex){
             //JOptionPane.ShowMessageDialog(null,"Lỗi đọc thông tin Sinh Viên!");
         }
@@ -74,6 +78,7 @@ public class HoaDonDAO {
             qry = qry + hd.getMaKhachHang() + "', WkID='";
             qry = qry + hd.getMaNhanVien() + "' where BillID =";
             qry = qry + MaHD;
+            st.close();
         } catch (SQLException ex) {
             //báo lỗi
         }
@@ -87,6 +92,8 @@ public class HoaDonDAO {
             while(rs.next()){
                 arr[rs.getInt(1)-1] = rs.getInt(2);
             }
+            rs.close();
+            st.close();
         }
         catch(SQLException ex){
             //báo lỗi
@@ -102,6 +109,8 @@ public class HoaDonDAO {
             while(rs.next()){
                 arr[rs.getInt(1)-1] = rs.getInt(2);
             }
+            rs.close();
+            st.close();
         }
         catch(SQLException ex){
             //báo lỗi
@@ -117,6 +126,8 @@ public class HoaDonDAO {
                 arr[rs.getInt(1)-1][0]=rs.getInt(2);
                 arr[rs.getInt(1)-1][1]=rs.getInt(3);
             }
+            rs.close();
+            rs.close();
         }
         catch(SQLException ex){
             
@@ -133,6 +144,8 @@ public class HoaDonDAO {
                 a[0] = LocalDate.parse(rs.getString(1));
                 a[1] = LocalDate.parse(rs.getString(2));
             }
+            rs.close();
+            st.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -147,6 +160,8 @@ public class HoaDonDAO {
             while(rs.next()){
                 max = rs.getInt(1);
             }
+            rs.close();
+            st.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

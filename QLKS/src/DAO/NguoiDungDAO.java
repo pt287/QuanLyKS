@@ -8,6 +8,8 @@ import DTO.NguoiDung.NguoiDungDTO;
 import DTO.NguoiDung.QuanLyDTO;
 import DTO.NguoiDung.NhanVienDTO;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class NguoiDungDAO {
     Connection con = ConnectionProvider.getCon();
     Statement st = null;
@@ -16,9 +18,13 @@ public class NguoiDungDAO {
     public void updateCountManager(String mql){
         try{
             st=con.createStatement();
-            ResultSet rsc = st.executeQuery("select Count(*) FROM nhanvien WHERE MngID = '" + mql+"'");
-            String upql = "update quanly set MngCount = " + rsc.getInt(1) + " WHERE MngID = '" + mql +"';";
-            st.executeUpdate(upql);
+            rs = st.executeQuery("select Count(*) FROM nhanvien WHERE MngID = '" + mql+"'");
+            while(rs.next()){
+                String upql = "update quanly set MngCount = " + rs.getInt(1) + " WHERE MngID = '" + mql +"';";
+                st.executeUpdate(upql);
+            }
+            rs.close();
+            st.close();
         }catch(SQLException ex){
             //báo lỗi
         }
@@ -54,18 +60,16 @@ public class NguoiDungDAO {
                         "'" + nv.getMaNguoiDung() + "'," +
                         "'" + nv.getVaiTro() + "')";
                 st.executeUpdate(qrynv);
-                updateCountManager(nv.getMaQuanLy(), st); // Chuyển Statement vào phương thức updateCountManager
+                updateCountManager(nv.getMaQuanLy()); // Chuyển Statement vào phương thức updateCountManager
             }
     
             st.executeUpdate("SET FOREIGN_KEY_CHECKS = 1");
+            st.close();
         } catch (SQLException ex) {
             ex.printStackTrace(); // In lỗi ra console hoặc ghi log
         }
     }
-    private void updateCountManager(String maQuanLy, Statement st) throws SQLException {
-        String updateQry = "UPDATE QuanLy SET MngCount = (SELECT COUNT(*) FROM NhanVien WHERE MngID = '" + maQuanLy + "') WHERE MngID = '" + maQuanLy + "'";
-        st.executeUpdate(updateQry);
-    }
+
     public ArrayList<NguoiDungDTO> docDSND(){
         ArrayList<NguoiDungDTO> dsnd = new ArrayList<NguoiDungDTO>();
         try{
@@ -101,6 +105,8 @@ public class NguoiDungDAO {
                     dsnd.add(nv);
                 }
             }
+            rs.close();
+            st.close();
         } catch(SQLException ex){
             // Xử lý ngoại lệ
             System.out.println("Không thể truy vấn dữ liệu người dùng");
@@ -125,6 +131,8 @@ public class NguoiDungDAO {
                     return rs.getString(1);
                 }
             }
+            rs.close();
+            st.close();
         }  
         catch(SQLException ex){
         //báo lỗi
@@ -139,6 +147,7 @@ public class NguoiDungDAO {
             qry = qry + "'"+mnd +"'";
             st.executeUpdate(qry);
             st.executeUpdate("Set Foreign_key_checks = 1");
+            st.close();
         }
         catch(SQLException ex){
             //báo lỗi
@@ -175,6 +184,8 @@ public class NguoiDungDAO {
             }
     
             st.executeUpdate("SET FOREIGN_KEY_CHECKS = 1");
+            rs.close();
+            st.close();
         } catch (SQLException ex) {
             // Xử lý ngoại lệ
             ex.printStackTrace(); // In lỗi ra console hoặc ghi log
@@ -189,6 +200,8 @@ public class NguoiDungDAO {
                 int count = rs.getInt(1);
                 return count > 0;
             }
+            rs.close();
+            st.close();
         } catch (SQLException ex) {
             ex.printStackTrace(); // Xử lý ngoại lệ
         }
@@ -203,6 +216,8 @@ public class NguoiDungDAO {
                 int count = rs.getInt(1);
                 return count > 0;
             }
+            rs.close();
+            st.close();
         } catch (SQLException ex) {
             ex.printStackTrace(); // Xử lý ngoại lệ
         }
@@ -216,6 +231,8 @@ public class NguoiDungDAO {
             if (rs.next()) {
                 return rs.getString(4);
             }
+            rs.close();
+            st.close();
         } catch (SQLException ex) {
             ex.printStackTrace(); // Xử lý ngoại lệ
         }

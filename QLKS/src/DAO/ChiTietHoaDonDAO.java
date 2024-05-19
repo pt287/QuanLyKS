@@ -19,6 +19,8 @@ public class ChiTietHoaDonDAO {
             st=con.createStatement();
             rs=st.executeQuery("select SUM(BDPrice) from chitiethoadon Where BillID = " + mhd);
             st.executeUpdate("update hoadon set BillTotal = " + rs.getInt(1)+ " where BillID = " + mhd);
+            rs.close();
+            st.close();
         } catch(SQLException ex){
             //báo lỗi
         }
