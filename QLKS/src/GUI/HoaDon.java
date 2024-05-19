@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
 import BUS.HoaDonBUS;
+import DTO.ChiTietHoaDonDTO;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -67,6 +68,7 @@ public class HoaDon extends javax.swing.JPanel {
         table.addColumn("Giá");
         BangCTHDDV.getTableHeader().setResizingAllowed(false);
         BangCTHDDV.setColumnSelectionAllowed(false);
+        
     }
     public void TaoBangcthddv(){
         DefaultTableModel table=new DefaultTableModel();
@@ -106,7 +108,6 @@ public class HoaDon extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        MaKhachHang = new javax.swing.JTextField();
         MaNhanVien = new javax.swing.JTextField();
         NhapNgayNhan = new javax.swing.JTextField();
         NhapNgayTra = new javax.swing.JTextField();
@@ -114,6 +115,7 @@ public class HoaDon extends javax.swing.JPanel {
         NhapThangTra = new javax.swing.JTextField();
         NhapNamNhan = new javax.swing.JTextField();
         NhapNamTra = new javax.swing.JTextField();
+        MaKhachHang = new javax.swing.JComboBox<>();
         ButtonThemPhong = new javax.swing.JButton();
         ButtonTaoHD = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
@@ -309,6 +311,8 @@ public class HoaDon extends javax.swing.JPanel {
         jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel4.setPreferredSize(new java.awt.Dimension(90, 32));
 
+        MaKhachHang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -343,7 +347,7 @@ public class HoaDon extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(MaNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
-                            .addComponent(MaKhachHang))))
+                            .addComponent(MaKhachHang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -353,8 +357,8 @@ public class HoaDon extends javax.swing.JPanel {
                 .addComponent(LabelDatPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(MaKhachHang)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MaKhachHang))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(MaNhanVien)
@@ -464,15 +468,14 @@ public class HoaDon extends javax.swing.JPanel {
                         .addGroup(HoaDonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(HoaDonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(HoaDonPanelLayout.createSequentialGroup()
-                                    .addGap(7, 7, 7)
-                                    .addGroup(HoaDonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(ButtonChinhSuaHD)
-                                        .addComponent(ButtonTaoHD, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(HoaDonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(ButtonChinhSuaHD, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                                        .addComponent(ButtonTaoHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addGroup(HoaDonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(ButtonThemPhong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(Button, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                                    .addGap(12, 12, 12)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addGroup(HoaDonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(ButtonThemDV, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(ButtonXuatHD, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -611,28 +614,27 @@ public class HoaDon extends javax.swing.JPanel {
         boolean isAfter = ngaytra.isAfter(ngaynhan);
         try{
             if(CheckTHD){
-                if(MaKhachHang.getText().length() == 8){
                     if(MaNhanVien.getText().length() == 8){
                         if(isAfter){
                             CheckTHD=false;
-                            hd.them(new HoaDonInDTO(MaKhachHang.getText(),MaNhanVien.getText(),ngaynhan,ngaytra));          
+                            hd.them(new HoaDonInDTO(
+                                    MaKhachHang.getSelectedItem().toString(),
+                                    MaNhanVien.getText(),
+                                    ngaynhan,
+                                    ngaytra));          
                         }else{
                     JOptionPane.showMessageDialog(this, "Ngày trả phải sau ngày nhận", "Lỗi", JOptionPane.ERROR_MESSAGE);
                 }
                     }else{
                     JOptionPane.showMessageDialog(this, "Mã nhân viên phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
                 }          
-                }else{
-                    JOptionPane.showMessageDialog(this, "Mã khách hàng phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                }
+
             }else{
                 JOptionPane.showMessageDialog(this, "Không thể tạo hóa đơn", "Lỗi", JOptionPane.ERROR_MESSAGE);
             }
         }catch(Exception ex) {
             ex.printStackTrace();
         }
-//        DateInFHD=ngaynhan;
-//        DateOutFHD=ngaytra;
         dshd = hd.docDSHD();
         TaoBangHd();
     }//GEN-LAST:event_ButtonTaoHDActionPerformed
@@ -645,42 +647,6 @@ public class HoaDon extends javax.swing.JPanel {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_ButtonActionPerformed
-
-    private void ButtonChinhSuaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonChinhSuaHDActionPerformed
-        // TODO add your handling code here:
-//        if(BangHoaDon.getSelectedRow()>=0){
-//            boolean isAfter = NgayTra.getDate().after(NgayNhan.getDate());
-//            try{
-//                 if(MaKhachHang.getText().length() == 8){
-//                     if(MaNhanVien.getText().length() == 8){
-//                         if(isAfter){
-//                            hd.sua(,new HoaDonDTO(
-//                                 0,
-//                                 MaKhachHang.getText(),
-//                                 MaNhanVien.getText(),
-//                                 NgayNhan.getDate(),
-//                                 NgayTra.getDate(),
-//                                 0,
-//                                 null
-//                         ));
-//                        }else{
-//                     JOptionPane.showMessageDialog(this, "Ngày trả phải sau ngày nhận", "Lỗi", JOptionPane.ERROR_MESSAGE);
-//                 }
-//                    }else{
-//                     JOptionPane.showMessageDialog(this, "Mã nhân viên phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
-//                 }
-//
-//                 }else{
-//                     JOptionPane.showMessageDialog(this, "Mã khách hàng phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
-//                 }   
-//            }catch(Exception ex) {
-//                ex.printStackTrace();
-//            }
-//        }else{
-//                     JOptionPane.showMessageDialog(this, "Không có hóa đơn nào được chọn", "Lỗi", JOptionPane.ERROR_MESSAGE);
-//                 }
-//        TaoBangHd();
-    }//GEN-LAST:event_ButtonChinhSuaHDActionPerformed
 
     private void BangHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BangHoaDonMouseClicked
          //TODO add your handling code here:
@@ -699,6 +665,47 @@ public class HoaDon extends javax.swing.JPanel {
         CheckTHD=true;
     }//GEN-LAST:event_ButtonXuatHDActionPerformed
 
+    private void ButtonChinhSuaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonChinhSuaHDActionPerformed
+        // TODO add your handling code here:
+        LocalDate ngaynhan=LocalDate.of(Integer.parseInt(NhapNamNhan.getText()),Integer.parseInt(NhapThangNhan.getText()),Integer.parseInt(NhapNgayNhan.getText()));
+        LocalDate ngaytra=LocalDate.of(Integer.parseInt(NhapNamTra.getText()),Integer.parseInt(NhapThangTra.getText()),Integer.parseInt(NhapNgayTra.getText()));
+        HoaDonInDTO a= null;
+        if(BangHoaDon.getSelectedRow()>=0){
+            boolean isAfter = ngaytra.isAfter(ngaynhan);
+            try{
+                    if(MaNhanVien.getText().length() == 8){
+                        if(isAfter){
+                            a= new HoaDonInDTO(
+                                    MaKhachHang.getSelectedItem().toString(),
+                                    MaNhanVien.getText(),
+                                    ngaynhan,
+                                    ngaytra);
+                        }else{
+                            JOptionPane.showMessageDialog(this, "Ngày trả phải sau ngày nhận", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Mã nhân viên phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                    }
+
+
+            }catch(Exception ex) {
+                ex.printStackTrace();
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Không có hóa đơn nào được chọn", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (a != null) {
+            try {
+                hd.sua(BangHoaDon.getValueAt(BangHoaDon.getSelectedRow(), 0).toString(), a);
+                JOptionPane.showMessageDialog(this, "Sửa thành công ", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Xảy ra lỗi trong quá trình sửa", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        TaoBangHd();
+    }//GEN-LAST:event_ButtonChinhSuaHDActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable BangCTHDDV;
@@ -714,7 +721,7 @@ public class HoaDon extends javax.swing.JPanel {
     private javax.swing.JLabel LabelCTHD;
     private javax.swing.JLabel LabelDatPhong;
     private javax.swing.JLabel LabelTKHD;
-    private javax.swing.JTextField MaKhachHang;
+    private javax.swing.JComboBox<String> MaKhachHang;
     private javax.swing.JTextField MaNhanVien;
     private javax.swing.JTextField NhapNamNhan;
     private javax.swing.JTextField NhapNamTra;
