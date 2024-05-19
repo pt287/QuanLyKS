@@ -32,19 +32,23 @@ public class ChiTietHoaDonDAO {
             int giatien = 0;
             String qry="Insert into ChiTietHoaDon(BillID, SvcID, RoomID, BDPRICE) Values(";
             qry = qry + "'" + cthdin.getMaHoaDon() + "',";
-            if(cthdin.getMaDichVu()==null){
+            if(cthdin.getMaDichVu().equals("")){
                 qry = qry + "null,";
             } else {
                 qry = qry + "'" + cthdin.getMaDichVu() + "',";
                 rs=st.executeQuery("Select SvcPrice From Dichvu Where SvcID = '" + cthdin.getMaDichVu() + "';");
-                giatien = giatien + rs.getInt(1);
+                while(rs.next())
+                    giatien = giatien + rs.getInt(1);
+                rs.close();
             }
-            if(cthdin.getMaPhong()==null){
+            if(cthdin.getMaPhong().equals("")){
                 qry = qry + "null,";
             } else {
                 qry = qry + "'" + cthdin.getMaPhong() + "',";
                 rs=st.executeQuery("Select RoomPrice From Phong Where RoomID = '" + cthdin.getMaPhong() + "';");
-                giatien = giatien + rs.getInt(1);
+                while(rs.next())
+                    giatien = giatien + rs.getInt(1);
+                rs.close();
             }
             qry= qry + giatien +")";
             st.executeUpdate(qry);
