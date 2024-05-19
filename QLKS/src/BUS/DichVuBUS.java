@@ -16,7 +16,7 @@ public class DichVuBUS {
     static ArrayList<DichVuDTO> dsdv;
     public DichVuBUS(){}
     DichVuDAO data = new DichVuDAO();
-    public ArrayList docDSDV(){
+    public ArrayList<DichVuDTO> docDSDV(){
         if(dsdv!=null) dsdv = new ArrayList<DichVuDTO>();
         dsdv=data.docDV();
         return dsdv;
@@ -28,7 +28,15 @@ public class DichVuBUS {
     public void xoa (String MaDV){
         data.xoa(MaDV);
     }
-    public void sua(String MaDV,int GiaTien){
-        data.sua(MaDV, GiaTien);
+    public void sua(DichVuDTO a){
+        data.sua(a);
+        for (int i=0;i<dsdv.size();i++){
+            DichVuDTO dv=dsdv.get(i);
+            if (dv.getMaDichVu().equals(a.getMaDichVu())) {
+                dsdv.set(i, a);
+                return;
+                
+            }
+        }
     }
 }
