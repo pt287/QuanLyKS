@@ -21,7 +21,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="DichVuPanel" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="DichVuPanel" pref="1708" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -50,56 +54,53 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="304" pref="304" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" pref="150" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="358" max="-2" attributes="0"/>
+                          <Component id="DVDaDat" min="-2" pref="150" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="152" pref="152" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jScrollPane1" linkSize="1" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
-                                  <Component id="ButtonXN" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                                  <Component id="ButtonThoat" min="-2" pref="150" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ButtonThem" min="-2" pref="146" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="ButtonXoa" min="-2" pref="146" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="ButtonXacNhan" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="305" max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" pref="150" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="388" max="-2" attributes="0"/>
-                          <Component id="ChiTietDV" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" linkSize="1" min="-2" pref="430" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="616" max="32767" attributes="0"/>
+                  <EmptySpace pref="582" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="44" pref="44" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="ChiTietDV" alignment="3" max="32767" attributes="0"/>
+                      <Component id="DVDaDat" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="500" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="jScrollPane1" linkSize="2" min="-2" pref="604" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="ButtonXN" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="ButtonThoat" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="ButtonXacNhan" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="ButtonThem" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="ButtonXoa" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <Component id="jScrollPane2" linkSize="2" min="-2" pref="305" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="373" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="314" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -121,31 +122,25 @@
                   <Color blue="1f" green="10" red="0" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="0">
-                    <Column editable="false" title="Ch&#x1ecd;n" type="java.lang.Boolean"/>
-                    <Column editable="true" title="M&#xe3; D&#x1ecb;ch V&#x1ee5;" type="java.lang.String"/>
-                    <Column editable="true" title="T&#xea;n D&#x1ecb;ch V&#x1ee5;" type="java.lang.String"/>
-                    <Column editable="true" title="Gi&#xe1;" type="java.lang.Integer"/>
+                  <Table columnCount="3" rowCount="0">
+                    <Column editable="false" title="M&#xe3; D&#x1ecb;ch V&#x1ee5;" type="java.lang.String"/>
+                    <Column editable="false" title="T&#xea;n D&#x1ecb;ch V&#x1ee5;" type="java.lang.String"/>
+                    <Column editable="false" title="Gi&#xe1;" type="java.lang.Integer"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="75" minWidth="0" prefWidth="-1" resizable="true">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -181,7 +176,43 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="ButtonXN">
+        <Component class="javax.swing.JButton" name="ButtonThem">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c5" green="f2" red="dc" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="1f" green="10" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="DVDaDat">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c5" green="f2" red="dc" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="1f" green="10" red="0" type="rgb"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="D&#x1ecb;ch V&#x1ee5; &#x110;&#xe3; &#x110;&#x1eb7;t"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder>
+                  <Color PropertyName="color" blue="1f" green="10" red="0" type="rgb"/>
+                </LineBorder>
+              </Border>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="ButtonXacNhan">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="c5" green="f2" red="dc" type="rgb"/>
@@ -194,86 +225,18 @@
             </Property>
             <Property name="text" type="java.lang.String" value="X&#xe1;c Nh&#x1ead;n"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonXacNhanActionPerformed"/>
+          </Events>
         </Component>
-        <Container class="javax.swing.JPanel" name="jPanel1">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="c5" green="f2" red="dc" type="rgb"/>
-            </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder>
-                  <Color PropertyName="color" blue="1f" green="10" red="0" type="rgb"/>
-                </LineBorder>
-              </Border>
-            </Property>
-          </Properties>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
 
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="35" pref="35" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="ButtonThemDV" min="-2" pref="150" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="ButtonXoaDV" min="-2" pref="150" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="LabelMaDV" max="32767" attributes="0"/>
-                                  <Component id="LabelTenDV" alignment="0" pref="90" max="32767" attributes="0"/>
-                                  <Component id="LabelGiaDV" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="TFMaDV" min="-2" pref="250" max="-2" attributes="0"/>
-                                  <Component id="TFTenDV" min="-2" pref="250" max="-2" attributes="0"/>
-                                  <Component id="TFGiaDV" min="-2" pref="250" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
-                              <Component id="ButtonChinhSuaDV" min="-2" pref="150" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="35" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="TFMaDV" pref="30" max="32767" attributes="0"/>
-                          <Component id="LabelMaDV" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="LabelTenDV" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="TFTenDV" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="LabelGiaDV" max="32767" attributes="0"/>
-                          <Component id="TFGiaDV" pref="30" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="ButtonThemDV" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="ButtonXoaDV" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                      <Component id="ButtonChinhSuaDV" min="-2" pref="35" max="-2" attributes="0"/>
-                      <EmptySpace pref="82" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="LabelMaDV">
+            <Component class="javax.swing.JTable" name="BangDVDD">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="c5" green="f2" red="dc" type="rgb"/>
@@ -281,130 +244,40 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="1f" green="10" red="0" type="rgb"/>
                 </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="M&#xe3; D&#x1ecb;ch V&#x1ee5;"/>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder>
-                      <Color PropertyName="color" blue="1f" green="10" red="0" type="rgb"/>
-                    </LineBorder>
-                  </Border>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="3" rowCount="4">
+                    <Column editable="false" title="M&#xe3; D&#x1ecb;ch V&#x1ee5;" type="java.lang.String"/>
+                    <Column editable="false" title="T&#xea;n D&#x1ecb;ch V&#x1ee5;" type="java.lang.String"/>
+                    <Column editable="false" title="Gi&#xe1;" type="java.lang.String"/>
+                  </Table>
                 </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="LabelTenDV">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="c5" green="f2" red="dc" type="rgb"/>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                  </TableColumnModel>
                 </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1f" green="10" red="0" type="rgb"/>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="T&#xea;n D&#x1ecb;ch V&#x1ee5;"/>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder>
-                      <Color PropertyName="color" blue="1f" green="10" red="0" type="rgb"/>
-                    </LineBorder>
-                  </Border>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="LabelGiaDV">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="c5" green="f2" red="dc" type="rgb"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1f" green="10" red="0" type="rgb"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Gi&#xe1;"/>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder>
-                      <Color PropertyName="color" blue="1f" green="10" red="0" type="rgb"/>
-                    </LineBorder>
-                  </Border>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="TFMaDV">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="c5" green="f2" red="dc" type="rgb"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1f" green="10" red="0" type="rgb"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="TFTenDV">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="c5" green="f2" red="dc" type="rgb"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1f" green="10" red="0" type="rgb"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="TFGiaDV">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="c5" green="f2" red="dc" type="rgb"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1f" green="10" red="0" type="rgb"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="ButtonThemDV">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="c5" green="f2" red="dc" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1f" green="10" red="0" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="ButtonXoaDV">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="c5" green="f2" red="dc" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1f" green="10" red="0" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="ButtonChinhSuaDV">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="c5" green="f2" red="dc" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1f" green="10" red="0" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Ch&#x1ec9;nh S&#x1eed;a"/>
               </Properties>
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="ChiTietDV">
+        <Component class="javax.swing.JButton" name="ButtonXoa">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="c5" green="f2" red="dc" type="rgb"/>
@@ -415,32 +288,10 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="1f" green="10" red="0" type="rgb"/>
             </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Chi Ti&#x1ebf;t D&#x1ecb;ch V&#x1ee5;"/>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder>
-                  <Color PropertyName="color" blue="1f" green="10" red="0" type="rgb"/>
-                </LineBorder>
-              </Border>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="ButtonThoat">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="c5" green="f2" red="dc" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="1f" green="10" red="0" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
+            <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonThoatActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonXoaActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -10,15 +10,19 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Phat
  */
-public class DichVu extends javax.swing.JPanel {
+public class DatDichVu extends javax.swing.JPanel {
     Menu menu;
     /**
      * Creates new form DichVu
      */
-    public DichVu(Menu menu) {
+    public DatDichVu(Menu menu) {
         initComponents();
         this.menu=menu;
         
+        
+    }
+    
+    public void CheckDV(){
         DefaultTableModel table=new DefaultTableModel();
         BangDichVu.setModel(table);
         table.addColumn("Mã Dich Vụ");
@@ -27,7 +31,16 @@ public class DichVu extends javax.swing.JPanel {
         BangDichVu.getTableHeader().setResizingAllowed(false);
         BangDichVu.setColumnSelectionAllowed(false);
     }
-
+    
+    public void DichVuDD(){
+        DefaultTableModel table=new DefaultTableModel();
+        BangDVDD.setModel(table);
+        table.addColumn("Mã Dịch Vụ");
+        table.addColumn("Tên Dịch Vụ");
+        table.addColumn("Giá");
+        BangDVDD.getTableHeader().setResizingAllowed(false);
+        BangDVDD.setColumnSelectionAllowed(false);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,19 +54,12 @@ public class DichVu extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         BangDichVu = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        ButtonXN = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        LabelMaDV = new javax.swing.JLabel();
-        LabelTenDV = new javax.swing.JLabel();
-        LabelGiaDV = new javax.swing.JLabel();
-        TFMaDV = new javax.swing.JTextField();
-        TFTenDV = new javax.swing.JTextField();
-        TFGiaDV = new javax.swing.JTextField();
-        ButtonThemDV = new javax.swing.JButton();
-        ButtonXoaDV = new javax.swing.JButton();
-        ButtonChinhSuaDV = new javax.swing.JButton();
-        ChiTietDV = new javax.swing.JLabel();
-        ButtonThoat = new javax.swing.JButton();
+        ButtonThem = new javax.swing.JButton();
+        DVDaDat = new javax.swing.JLabel();
+        ButtonXacNhan = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        BangDVDD = new javax.swing.JTable();
+        ButtonXoa = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1720, 1080));
 
@@ -68,14 +74,14 @@ public class DichVu extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Chọn", "Mã Dịch Vụ", "Tên Dịch Vụ", "Giá"
+                "Mã Dịch Vụ", "Tên Dịch Vụ", "Giá"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, true
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -88,8 +94,9 @@ public class DichVu extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(BangDichVu);
         if (BangDichVu.getColumnModel().getColumnCount() > 0) {
-            BangDichVu.getColumnModel().getColumn(0).setMinWidth(0);
-            BangDichVu.getColumnModel().getColumn(0).setMaxWidth(75);
+            BangDichVu.getColumnModel().getColumn(0).setResizable(false);
+            BangDichVu.getColumnModel().getColumn(1).setResizable(false);
+            BangDichVu.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jLabel1.setBackground(new java.awt.Color(220, 242, 197));
@@ -99,120 +106,70 @@ public class DichVu extends javax.swing.JPanel {
         jLabel1.setText("Bảng Dịch Vụ");
         jLabel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 16, 31))); // NOI18N
 
-        ButtonXN.setBackground(new java.awt.Color(220, 242, 197));
-        ButtonXN.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ButtonXN.setForeground(new java.awt.Color(0, 16, 31));
-        ButtonXN.setText("Xác Nhận");
+        ButtonThem.setBackground(new java.awt.Color(220, 242, 197));
+        ButtonThem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ButtonThem.setForeground(new java.awt.Color(0, 16, 31));
+        ButtonThem.setText("Thêm");
 
-        jPanel1.setBackground(new java.awt.Color(220, 242, 197));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 16, 31)));
+        DVDaDat.setBackground(new java.awt.Color(220, 242, 197));
+        DVDaDat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        DVDaDat.setForeground(new java.awt.Color(0, 16, 31));
+        DVDaDat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DVDaDat.setText("Dịch Vụ Đã Đặt");
+        DVDaDat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 16, 31)));
 
-        LabelMaDV.setBackground(new java.awt.Color(220, 242, 197));
-        LabelMaDV.setForeground(new java.awt.Color(0, 16, 31));
-        LabelMaDV.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LabelMaDV.setText("Mã Dịch Vụ");
-        LabelMaDV.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 16, 31)));
-
-        LabelTenDV.setBackground(new java.awt.Color(220, 242, 197));
-        LabelTenDV.setForeground(new java.awt.Color(0, 16, 31));
-        LabelTenDV.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LabelTenDV.setText("Tên Dịch Vụ");
-        LabelTenDV.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 16, 31)));
-
-        LabelGiaDV.setBackground(new java.awt.Color(220, 242, 197));
-        LabelGiaDV.setForeground(new java.awt.Color(0, 16, 31));
-        LabelGiaDV.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LabelGiaDV.setText("Giá");
-        LabelGiaDV.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 16, 31)));
-
-        TFMaDV.setBackground(new java.awt.Color(220, 242, 197));
-        TFMaDV.setForeground(new java.awt.Color(0, 16, 31));
-
-        TFTenDV.setBackground(new java.awt.Color(220, 242, 197));
-        TFTenDV.setForeground(new java.awt.Color(0, 16, 31));
-
-        TFGiaDV.setBackground(new java.awt.Color(220, 242, 197));
-        TFGiaDV.setForeground(new java.awt.Color(0, 16, 31));
-
-        ButtonThemDV.setBackground(new java.awt.Color(220, 242, 197));
-        ButtonThemDV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ButtonThemDV.setForeground(new java.awt.Color(0, 16, 31));
-        ButtonThemDV.setText("Thêm");
-
-        ButtonXoaDV.setBackground(new java.awt.Color(220, 242, 197));
-        ButtonXoaDV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ButtonXoaDV.setForeground(new java.awt.Color(0, 16, 31));
-        ButtonXoaDV.setText("Xóa");
-
-        ButtonChinhSuaDV.setBackground(new java.awt.Color(220, 242, 197));
-        ButtonChinhSuaDV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ButtonChinhSuaDV.setForeground(new java.awt.Color(0, 16, 31));
-        ButtonChinhSuaDV.setText("Chỉnh Sửa");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(ButtonThemDV, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ButtonXoaDV, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(LabelMaDV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(LabelTenDV, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                            .addComponent(LabelGiaDV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TFMaDV, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TFTenDV, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TFGiaDV, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(ButtonChinhSuaDV, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(TFMaDV, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(LabelMaDV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(75, 75, 75)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LabelTenDV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TFTenDV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(75, 75, 75)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(LabelGiaDV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(TFGiaDV, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                .addGap(70, 70, 70)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ButtonThemDV, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButtonXoaDV, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66)
-                .addComponent(ButtonChinhSuaDV, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
-        );
-
-        ChiTietDV.setBackground(new java.awt.Color(220, 242, 197));
-        ChiTietDV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ChiTietDV.setForeground(new java.awt.Color(0, 16, 31));
-        ChiTietDV.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ChiTietDV.setText("Chi Tiết Dịch Vụ");
-        ChiTietDV.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 16, 31)));
-
-        ButtonThoat.setBackground(new java.awt.Color(220, 242, 197));
-        ButtonThoat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ButtonThoat.setForeground(new java.awt.Color(0, 16, 31));
-        ButtonThoat.setText("Thoát");
-        ButtonThoat.addActionListener(new java.awt.event.ActionListener() {
+        ButtonXacNhan.setBackground(new java.awt.Color(220, 242, 197));
+        ButtonXacNhan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ButtonXacNhan.setForeground(new java.awt.Color(0, 16, 31));
+        ButtonXacNhan.setText("Xác Nhận");
+        ButtonXacNhan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonThoatActionPerformed(evt);
+                ButtonXacNhanActionPerformed(evt);
+            }
+        });
+
+        BangDVDD.setBackground(new java.awt.Color(220, 242, 197));
+        BangDVDD.setForeground(new java.awt.Color(0, 16, 31));
+        BangDVDD.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Mã Dịch Vụ", "Tên Dịch Vụ", "Giá"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(BangDVDD);
+        if (BangDVDD.getColumnModel().getColumnCount() > 0) {
+            BangDVDD.getColumnModel().getColumn(0).setResizable(false);
+            BangDVDD.getColumnModel().getColumn(1).setResizable(false);
+            BangDVDD.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        ButtonXoa.setBackground(new java.awt.Color(220, 242, 197));
+        ButtonXoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ButtonXoa.setForeground(new java.awt.Color(0, 16, 31));
+        ButtonXoa.setText("Xóa");
+        ButtonXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonXoaActionPerformed(evt);
             }
         });
 
@@ -223,50 +180,57 @@ public class DichVu extends javax.swing.JPanel {
             .addGroup(DichVuPanelLayout.createSequentialGroup()
                 .addGroup(DichVuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DichVuPanelLayout.createSequentialGroup()
-                        .addGroup(DichVuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(DichVuPanelLayout.createSequentialGroup()
-                                .addGap(190, 190, 190)
-                                .addComponent(ButtonXN, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(81, 81, 81)
-                                .addComponent(ButtonThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(DichVuPanelLayout.createSequentialGroup()
-                                .addGap(152, 152, 152)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(70, 70, 70)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DichVuPanelLayout.createSequentialGroup()
-                        .addGap(305, 305, 305)
+                        .addGap(304, 304, 304)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(388, 388, 388)
-                        .addComponent(ChiTietDV, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(616, Short.MAX_VALUE))
+                        .addGap(358, 358, 358)
+                        .addComponent(DVDaDat, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(DichVuPanelLayout.createSequentialGroup()
+                        .addGap(152, 152, 152)
+                        .addGroup(DichVuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(DichVuPanelLayout.createSequentialGroup()
+                                .addComponent(ButtonThem, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ButtonXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ButtonXacNhan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(70, 70, 70)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(582, Short.MAX_VALUE))
         );
+
+        DichVuPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jScrollPane1, jScrollPane2});
+
         DichVuPanelLayout.setVerticalGroup(
             DichVuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DichVuPanelLayout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(44, 44, 44)
                 .addGroup(DichVuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ChiTietDV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(DVDaDat, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(DichVuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DichVuPanelLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DichVuPanelLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(DichVuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ButtonXN, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ButtonThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(373, Short.MAX_VALUE))
+                            .addComponent(ButtonXacNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ButtonThem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ButtonXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(314, 314, 314))
         );
+
+        DichVuPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jScrollPane1, jScrollPane2});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(DichVuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(DichVuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1708, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,29 +238,26 @@ public class DichVu extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ButtonThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonThoatActionPerformed
+    private void ButtonXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonXacNhanActionPerformed
         // TODO add your handling code here:
         menu.ThoatDichVu();
-    }//GEN-LAST:event_ButtonThoatActionPerformed
+    }//GEN-LAST:event_ButtonXacNhanActionPerformed
+
+    private void ButtonXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonXoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonXoaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable BangDVDD;
     private javax.swing.JTable BangDichVu;
-    private javax.swing.JButton ButtonChinhSuaDV;
-    private javax.swing.JButton ButtonThemDV;
-    private javax.swing.JButton ButtonThoat;
-    private javax.swing.JButton ButtonXN;
-    private javax.swing.JButton ButtonXoaDV;
-    private javax.swing.JLabel ChiTietDV;
+    private javax.swing.JButton ButtonThem;
+    private javax.swing.JButton ButtonXacNhan;
+    private javax.swing.JButton ButtonXoa;
+    private javax.swing.JLabel DVDaDat;
     private javax.swing.JPanel DichVuPanel;
-    private javax.swing.JLabel LabelGiaDV;
-    private javax.swing.JLabel LabelMaDV;
-    private javax.swing.JLabel LabelTenDV;
-    private javax.swing.JTextField TFGiaDV;
-    private javax.swing.JTextField TFMaDV;
-    private javax.swing.JTextField TFTenDV;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

@@ -64,7 +64,8 @@ public class Menu extends javax.swing.JFrame {
         MenuUI.add("HoaDon",new HoaDon(this));
         MenuUI.add("DatPhong",new DatPhong(this));
         MenuUI.add("QuanLy", new QuanLy(a));
-        MenuUI.add("DichVu",new DichVu(this));
+        MenuUI.add("DatDichVu",new DatDichVu(this));
+        MenuUI.add("DichVu",new DichVu());
         MenuUI.add("CPM",new CPMChart());
         MenuUI.add("MPM",new MPMChart());
         MenuUI.add("CPSAR",new CPSAR());
@@ -104,6 +105,7 @@ public class Menu extends javax.swing.JFrame {
         ThongKe = new javax.swing.JLabel();
         DangXuat = new javax.swing.JButton();
         TenND = new javax.swing.JLabel();
+        DichVu = new javax.swing.JLabel();
         MenuUI = new javax.swing.JPanel();
 
         LeTanMenu.setBackground(new java.awt.Color(0, 16, 31));
@@ -232,11 +234,6 @@ public class Menu extends javax.swing.JFrame {
         KhachHang.setForeground(new java.awt.Color(220, 242, 197));
         KhachHang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         KhachHang.setText("Khách Hàng");
-        KhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                KhachHangMouseClicked(evt);
-            }
-        });
 
         ThongKe.setBackground(new java.awt.Color(0, 16, 31));
         ThongKe.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -262,17 +259,28 @@ public class Menu extends javax.swing.JFrame {
         TenND.setForeground(new java.awt.Color(220, 242, 197));
         TenND.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        DichVu.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        DichVu.setForeground(new java.awt.Color(220, 242, 197));
+        DichVu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DichVu.setText("Dịch Vụ");
+        DichVu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DichVuMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(KhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(QuanLyPopupMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(LeTanPopupMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(LeTanPopupMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DichVu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ThongKe, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -294,8 +302,10 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(KhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(DichVu, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(ThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(264, 264, 264)
+                .addGap(211, 211, 211)
                 .addComponent(TenND, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(DangXuat)
@@ -324,7 +334,7 @@ public class Menu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
                 .addComponent(MenuUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -397,15 +407,14 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_QuanLyPopupMenuMouseClicked
 
-    private void KhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KhachHangMouseClicked
-        // TODO add your handling code here:
-        layout.show(MenuUI,"DichVu");
-    }//GEN-LAST:event_KhachHangMouseClicked
-
     private void LogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoMouseClicked
         // TODO add your handling code here:
         layout.show(MenuUI,"StartUp");
     }//GEN-LAST:event_LogoMouseClicked
+
+    private void DichVuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DichVuMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DichVuMouseClicked
 
     /**
      * @param args the command line arguments
@@ -442,7 +451,7 @@ public class Menu extends javax.swing.JFrame {
         });
     }
     public void addDichVu(){
-        layout.show(MenuUI, "DichVu");
+        layout.show(MenuUI, "DatDichVu");
     }
     
     public void ThoatDichVu(){
@@ -462,6 +471,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem CPSAR;
     private javax.swing.JMenuItem DSPhong;
     private javax.swing.JButton DangXuat;
+    private javax.swing.JLabel DichVu;
     private javax.swing.JMenuItem HoaDon;
     private javax.swing.JLabel KhachHang;
     private javax.swing.JPopupMenu LeTanMenu;
