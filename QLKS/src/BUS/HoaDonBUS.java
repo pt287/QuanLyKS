@@ -22,7 +22,6 @@ public class HoaDonBUS {
     public void them(HoaDonInDTO hdi){
         HoaDonDTO hdo = data.them(hdi);
         dshd.add(hdo);
-        //return hdo;
     }
     public void sua(String MaHD,HoaDonDTO hd){
         data.sua(MaHD, hd);
@@ -49,5 +48,10 @@ public class HoaDonBUS {
     }
     public LocalDate[] ngayDat(){
         return data.NgayDat();
+    }
+    
+    public int MaHDmax(){
+        int n = data.MaxMHD();
+        return n;
     }
 }
