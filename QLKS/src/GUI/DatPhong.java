@@ -398,6 +398,7 @@ public class DatPhong extends javax.swing.JPanel {
             ChiTietHoaDonInDTO BDadd = new ChiTietHoaDonInDTO();
             BDadd.setMaPhong(addR.getMaPhong());
             BDadd.setMaHoaDon(dataBill.MaHDmax());
+            BDadd.setMaDichVu("");
             dataBD.them(BDadd);
         }
         menu.ThoatDatPhong();
