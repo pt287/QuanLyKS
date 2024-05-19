@@ -44,6 +44,7 @@ public class MPMChart extends javax.swing.JPanel {
     
     private void DataTable(){
         ArrayList<ModelDataMPM> list = setData();
+        initComponents();
         DefaultTableModel table = new DefaultTableModel();
         MPMTable.setModel(table);
         table.addColumn("Tháng ");
@@ -55,9 +56,9 @@ public class MPMChart extends javax.swing.JPanel {
     }
     
     private void DataChart(){
-        MPMchart.setTitle("Lượng hóa đơn trên tháng");
+        MPMchart.setTitle("Lượng tiền trên tháng");
         MPMchart.addLegend("hóa đơn", Color.decode("#C46B51"), Color.decode("#C46B51"));
-        List<ModelDataMPM> list = setData();
+        ArrayList<ModelDataMPM> list = setData();
         for(int i=0;i<=list.size()-1;i++){
             ModelDataMPM d= list.get(i);
             String name = "Tháng " + d.getMonth();
@@ -72,6 +73,7 @@ public class MPMChart extends javax.swing.JPanel {
         MPMchart = new GUICHART.raven.curvechart.CurveLineChart();
         jScrollPane1 = new javax.swing.JScrollPane();
         MPMTable = new javax.swing.JTable();
+        Refresh = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(220, 242, 197));
         setPreferredSize(new java.awt.Dimension(1720, 1020));
@@ -79,7 +81,7 @@ public class MPMChart extends javax.swing.JPanel {
         MPMchart.setForeground(new java.awt.Color(0, 16, 31));
 
         MPMTable.setBackground(new java.awt.Color(220, 242, 197));
-        MPMTable.setFont(new java.awt.Font("Segoe UI", 0, 26)); // NOI18N
+        MPMTable.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         MPMTable.setForeground(new java.awt.Color(0, 16, 31));
         MPMTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,38 +102,58 @@ public class MPMChart extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        MPMTable.setRowHeight(76);
+        MPMTable.setRowHeight(57);
         jScrollPane1.setViewportView(MPMTable);
+
+        Refresh.setBackground(new java.awt.Color(0, 16, 31));
+        Refresh.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Refresh.setForeground(new java.awt.Color(220, 242, 197));
+        Refresh.setText("Làm Mới");
+        Refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(MPMchart, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 838, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(MPMchart, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Refresh))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {MPMchart, jScrollPane1});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(MPMchart, javax.swing.GroupLayout.PREFERRED_SIZE, 937, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 937, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(Refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(MPMchart, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshActionPerformed
+        // TODO add your handling code here:
+        MPMchart.clear();
+        DataTable();
+        DataChart();
+    }//GEN-LAST:event_RefreshActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable MPMTable;
     private GUICHART.raven.curvechart.CurveLineChart MPMchart;
+    private javax.swing.JButton Refresh;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
