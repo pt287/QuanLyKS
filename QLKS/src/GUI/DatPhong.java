@@ -14,13 +14,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class DatPhong extends javax.swing.JPanel {
-    ArrayList<PhongDTO> p = new ArrayList<>();
+    ArrayList<PhongDTO> PhongDat = new ArrayList<>();
+    ArrayList<PhongDTO> PhongChuaDat = new ArrayList<>();
     PhongBUS dataRoom = new PhongBUS();
     Menu menu;
     HoaDonBUS dataBill = new HoaDonBUS();
-    LocalDate[] Date = dataBill.ngayDat();
-    LocalDate DateIn = Date[0];
-    LocalDate DateOut = Date[1];
+    LocalDate DateIn;
+    LocalDate DateOut;
     //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
      /**
      * Creates new form DatPhong
@@ -28,25 +28,32 @@ public class DatPhong extends javax.swing.JPanel {
     public DatPhong(Menu m) {
         initComponents();        
         this.menu=m;
-        fieldDIn.setText(DateIn.toString());
-        fieldDOut.setText(DateOut.toString());
+        UpdateDate();
    }
 
     public void CheckPhong(String type){
-        ArrayList<PhongDTO> list = dataRoom.DatPhong(DateIn, DateOut);
+        PhongChuaDat = dataRoom.DatPhong(DateIn, DateOut);
         DefaultTableModel table = new DefaultTableModel();
         KQPhong.setModel(table);
         table.addColumn("Loại Phòng");
         table.addColumn("Mã phòng");
         table.addColumn("Số Phòng");
         table.addColumn("Giá Tiền");
-        for(int i=0;i<=list.size()-1;i++){
-            PhongDTO d = list.get(i);
+        for(int i=0;i<=PhongChuaDat.size()-1;i++){
+            PhongDTO d = PhongChuaDat.get(i);
             String LPhong = d.getMaPhong().substring(0, 3);
             if(LPhong.equals(type)&&d.getTinhTrang().equals("R")){
                 table.addRow(new Object[]{LPhong,d.getMaPhong(),d.getSoPhong(),d.getDonGia()});
             }
         }
+    }
+    
+    public void UpdateDate(){
+        LocalDate[] Date = dataBill.ngayDat();
+        DateIn = Date[0];
+        DateOut = Date[1];
+        fieldDIn.setText(DateIn.toString());
+        fieldDOut.setText(DateOut.toString());
     }
     
     public void DatPhong(){
@@ -56,8 +63,8 @@ public class DatPhong extends javax.swing.JPanel {
         table.addColumn("Mã phòng");
         table.addColumn("Số Phòng");
         table.addColumn("Giá Tiền");
-        for(int i=0;i<=p.size()-1;i++){
-            PhongDTO d = p.get(i);
+        for(int i=0;i<=PhongDat.size()-1;i++){
+            PhongDTO d = PhongDat.get(i);
             String LPhong = d.getMaPhong().substring(0, 3);
             table.addRow(new Object[]{LPhong,d.getMaPhong(),d.getSoPhong(),d.getDonGia()});
         }
@@ -87,6 +94,7 @@ public class DatPhong extends javax.swing.JPanel {
         Confirm = new javax.swing.JButton();
         fieldDIn = new javax.swing.JTextField();
         fieldDOut = new javax.swing.JTextField();
+        Refresh = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1720, 1080));
 
@@ -230,6 +238,13 @@ public class DatPhong extends javax.swing.JPanel {
             }
         });
 
+        Refresh.setText("Làm mới");
+        Refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -255,7 +270,9 @@ public class DatPhong extends javax.swing.JPanel {
                                 .addComponent(NgayTra, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                                 .addComponent(fieldDOut))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Search, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Search, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                                .addComponent(Refresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -286,7 +303,10 @@ public class DatPhong extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(DSPhongDaDat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(Search, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Search)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Refresh)))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
@@ -328,10 +348,18 @@ public class DatPhong extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"Chưa chọn phòng!","Lỗi",JOptionPane.ERROR_MESSAGE);
         }
         else{
+            
             String mp = KQPhong.getValueAt(a, 0).toString();
-            p.add(dataRoom.docphong(mp));
+            PhongDTO pick = dataRoom.docphong(mp);
+            PhongDat.add(pick);
+            for(int i=0;i<PhongChuaDat.size();i++){
+                PhongDTO check = PhongChuaDat.get(i);
+                if(check.getMaPhong().equals(mp))
+                    PhongChuaDat.remove(i);
+            }
+            DatPhong();
+            CheckPhong(mp.substring(0, 3));
         }
-        DatPhong();
     }//GEN-LAST:event_AddActionPerformed
 
     private void SubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubActionPerformed
@@ -342,7 +370,7 @@ public class DatPhong extends javax.swing.JPanel {
         }
         else{
             String mp = KQPhong.getValueAt(a, 0).toString();
-            p.remove(a);
+            PhongDaDat.remove(a);
         }
         DatPhong();
     }//GEN-LAST:event_SubActionPerformed
@@ -356,6 +384,11 @@ public class DatPhong extends javax.swing.JPanel {
         menu.setMaphong(list);
         menu.ThoatDatPhong();
     }//GEN-LAST:event_ConfirmActionPerformed
+
+    private void RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshActionPerformed
+        // TODO add your handling code here:
+        UpdateDate();
+    }//GEN-LAST:event_RefreshActionPerformed
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Add;
@@ -367,6 +400,7 @@ public class DatPhong extends javax.swing.JPanel {
     private javax.swing.JLabel NgayNhan;
     private javax.swing.JLabel NgayTra;
     private javax.swing.JTable PhongDaDat;
+    private javax.swing.JButton Refresh;
     private javax.swing.JButton Search;
     private javax.swing.JButton Sub;
     private javax.swing.JTextField fieldDIn;
