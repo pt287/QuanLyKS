@@ -68,10 +68,10 @@ public class ChiTietHoaDonDAO {
         }
         return cthdout;
     }
-    public ArrayList docDSCTHD(){
+    public ArrayList docDSCTHD(String str){
         ArrayList dscthd=new ArrayList<ChiTietHoaDonDTO>();
         try{
-            String qry="select * from ChiTietHoaDon";
+            String qry="select * from ChiTietHoaDon WHERE BillID = '" + str + "'";
             st=con.createStatement();
             rs=st.executeQuery(qry);
             while(rs.next()){
