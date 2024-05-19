@@ -16,9 +16,9 @@ public class ChiTietHoaDonBUS {
     public ChiTietHoaDonBUS(){}
     ChiTietHoaDonDAO data = new ChiTietHoaDonDAO();
     
-    public ArrayList docDSCTHD(){
+    public ArrayList docDSCTHD(String str){
         if(dscthd!=null) dscthd = new ArrayList<ChiTietHoaDonDTO>();
-        dscthd=data.docDSCTHD();
+        dscthd=data.docDSCTHD(str);
         return dscthd;
     }
     
