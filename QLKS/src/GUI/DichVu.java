@@ -4,25 +4,39 @@
  */
 package GUI;
 
+import BUS.ChiTietHoaDonBUS;
+import BUS.DichVuBUS;
+import BUS.HoaDonBUS;
+import DTO.ChiTietHoaDonInDTO;
+import DTO.DichVuDTO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Phat
  */
-public class DatDichVu extends javax.swing.JPanel {
+public class DichVu extends javax.swing.JPanel {
     Menu menu;
+    ArrayList<DichVuDTO> dsdv=new ArrayList<>();
+    ArrayList<DichVuDTO> dvdd=new ArrayList<>();
+    DichVuBUS datadv=new DichVuBUS();
+    HoaDonBUS dataBill=new HoaDonBUS();
+    ChiTietHoaDonBUS dataBD=new ChiTietHoaDonBUS();
     /**
      * Creates new form DichVu
      */
-    public DatDichVu(Menu menu) {
+    public DichVu(Menu menu) {
+        
         initComponents();
         this.menu=menu;
-        
+        CheckDV();
         
     }
     
     public void CheckDV(){
+        dsdv=datadv.docDSDV();
         DefaultTableModel table=new DefaultTableModel();
         BangDichVu.setModel(table);
         table.addColumn("Mã Dich Vụ");
@@ -30,6 +44,10 @@ public class DatDichVu extends javax.swing.JPanel {
         table.addColumn("Giá");
         BangDichVu.getTableHeader().setResizingAllowed(false);
         BangDichVu.setColumnSelectionAllowed(false);
+        for(int i=0;i<=dsdv.size()-1;i++){
+            DichVuDTO p=dsdv.get(i);
+            table.addRow(new Object[]{p.getMaDichVu(),p.getTen(),p.getGia()});
+        }
     }
     
     public void DichVuDD(){
@@ -40,6 +58,10 @@ public class DatDichVu extends javax.swing.JPanel {
         table.addColumn("Giá");
         BangDVDD.getTableHeader().setResizingAllowed(false);
         BangDVDD.setColumnSelectionAllowed(false);
+        for(int i=0;i<=dvdd.size()-1;i++){
+            DichVuDTO p=dvdd.get(i);
+            table.addRow(new Object[]{p.getMaDichVu(),p.getTen(),p.getGia()});
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -110,6 +132,11 @@ public class DatDichVu extends javax.swing.JPanel {
         ButtonThem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ButtonThem.setForeground(new java.awt.Color(0, 16, 31));
         ButtonThem.setText("Thêm");
+        ButtonThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonThemActionPerformed(evt);
+            }
+        });
 
         DVDaDat.setBackground(new java.awt.Color(220, 242, 197));
         DVDaDat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -132,10 +159,7 @@ public class DatDichVu extends javax.swing.JPanel {
         BangDVDD.setForeground(new java.awt.Color(0, 16, 31));
         BangDVDD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Mã Dịch Vụ", "Tên Dịch Vụ", "Giá"
@@ -190,13 +214,13 @@ public class DatDichVu extends javax.swing.JPanel {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(DichVuPanelLayout.createSequentialGroup()
                                 .addComponent(ButtonThem, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ButtonXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ButtonXacNhan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ButtonXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(70, 70, 70)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(582, Short.MAX_VALUE))
+                        .addGroup(DichVuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ButtonXacNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(594, Short.MAX_VALUE))
         );
 
         DichVuPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jScrollPane1, jScrollPane2});
@@ -214,11 +238,13 @@ public class DatDichVu extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(DichVuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ButtonXacNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ButtonThem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ButtonXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(314, 314, 314))
+                    .addGroup(DichVuPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ButtonXacNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(326, Short.MAX_VALUE))
         );
 
         DichVuPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jScrollPane1, jScrollPane2});
@@ -227,10 +253,7 @@ public class DatDichVu extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(DichVuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1708, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(DichVuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,12 +263,58 @@ public class DatDichVu extends javax.swing.JPanel {
 
     private void ButtonXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonXacNhanActionPerformed
         // TODO add your handling code here:
+        for(int i=0;i<dsdv.size();i++){
+            DichVuDTO addR = dsdv.get(i);
+            ChiTietHoaDonInDTO BDadd = new ChiTietHoaDonInDTO();
+            BDadd.setMaPhong("");
+            BDadd.setMaHoaDon(dataBill.MaHDmax());
+            BDadd.setMaDichVu(addR.getMaDichVu());
+            dataBD.them(BDadd);
+        }
         menu.ThoatDichVu();
     }//GEN-LAST:event_ButtonXacNhanActionPerformed
 
     private void ButtonXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonXoaActionPerformed
         // TODO add your handling code here:
+        int a = BangDVDD.getSelectedRow();
+        if(a==-1){
+            JOptionPane.showMessageDialog(this,"Chưa chọn dịch vụ!","Lỗi",JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            dvdd.remove(a);
+            DichVuDD();
+        }
     }//GEN-LAST:event_ButtonXoaActionPerformed
+
+    private void ButtonThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonThemActionPerformed
+        // TODO add your handling code here:
+        int a = BangDichVu.getSelectedRow();
+        if(a==-1){
+            JOptionPane.showMessageDialog(this,"Chưa chọn dịch vụ!","Lỗi",JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            String m = BangDichVu.getValueAt(a, 0).toString();  
+            boolean checkdup = false;
+            for(int i=0;i<dvdd.size();i++){
+                DichVuDTO check = dvdd.get(i);
+                if(check.getMaDichVu().equals(m)){
+                    JOptionPane.showMessageDialog(this,"Dịch vụ này đã chọn này đã chọn!","Lỗi",JOptionPane.ERROR_MESSAGE);
+                    checkdup=true;
+                    break;
+                }
+            }
+            if(!checkdup){
+                for(int i=0;i<dsdv.size();i++){
+                    DichVuDTO check = dsdv.get(i);
+                    if(check.getMaDichVu().equals(m)){
+                        dvdd.add(datadv.docdichvu(m));
+                        break;
+                    }
+                }
+            }
+            DichVuDD();
+        }
+    }//GEN-LAST:event_ButtonThemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
