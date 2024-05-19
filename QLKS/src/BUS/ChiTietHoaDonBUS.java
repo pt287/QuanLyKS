@@ -15,7 +15,7 @@ public class ChiTietHoaDonBUS {
     static ArrayList<ChiTietHoaDonDTO> dscthd;
     public ChiTietHoaDonBUS(){}
     ChiTietHoaDonDAO data = new ChiTietHoaDonDAO();
-   
+    
     public ArrayList docDSCTHD(){
         if(dscthd!=null) dscthd = new ArrayList<ChiTietHoaDonDTO>();
         dscthd=data.docDSCTHD();
@@ -23,6 +23,7 @@ public class ChiTietHoaDonBUS {
     }
     
     public void them(ChiTietHoaDonInDTO cthdi){
+        if(dscthd==null) dscthd = new ArrayList<ChiTietHoaDonDTO>();
         ChiTietHoaDonDTO cthdo = data.them(cthdi);
         dscthd.add(cthdo);
     }
