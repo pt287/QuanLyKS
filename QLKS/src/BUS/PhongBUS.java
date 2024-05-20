@@ -13,6 +13,7 @@ public class PhongBUS {
     static ArrayList<PhongDTO> dsphong;
     PhongDAO data=new PhongDAO();
     public PhongBUS(){}
+    
     public ArrayList<PhongDTO> docDSPhong(){  
         if(dsphong!=null) dsphong=new ArrayList<PhongDTO>();
         dsphong=data.docDSP();
@@ -44,11 +45,11 @@ public class PhongBUS {
         int dem=1;
         for(ModelExcelIn p:a){
             if(p.getRType().contains("VIP")){
-                PhongVipDTO pv=new PhongVipDTO(p.getRType() + String.valueOf(dem), p.getRNum(), "R", "", p.getRPrice(),"");
+                PhongVipDTO pv=new PhongVipDTO(p.getRType() + p.getRNum(), p.getRNum(), "R", "", p.getRPrice(),"");
                 data.them(pv);
                 dsphong.add(pv);
             }else{
-                PhongThuongDTO pt=new PhongThuongDTO(p.getRType() + dem, p.getRNum(), "R", "", p.getRPrice(), p.getRType());
+                PhongThuongDTO pt=new PhongThuongDTO(p.getRType() +p.getRNum(), p.getRNum(), "R", "", p.getRPrice(), p.getRType());
                 data.them(pt);
                 dsphong.add(pt);
             }
