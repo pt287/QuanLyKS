@@ -28,7 +28,7 @@ public class DichVuDAO {
             qry = qry + dv.getGia() +")";
             st.executeUpdate(qry);
             st.executeUpdate("Set Foreign_key_checks = 1");
-            st.close();
+//            st.close();
         }
         catch (SQLException ex){
             //báo lỗi
@@ -47,8 +47,8 @@ public class DichVuDAO {
                 dv.setGia(rs.getInt(3));
                 dsdv.add(dv);
             }
-            rs.close();
-            st.close();
+//            rs.close();
+//            st.close();
         }
         catch(SQLException ex){
             //báo lỗi
@@ -64,7 +64,7 @@ public class DichVuDAO {
             qry = qry + "'"+MaDV +"'";
             st.executeUpdate(qry);
             st.executeUpdate("Set Foreign_key_checks = 1");
-            st.close();
+//            st.close();
         }
         catch(SQLException ex){
             //báo lỗi
@@ -78,7 +78,7 @@ public class DichVuDAO {
                                         "SvcName = '" + a.getTen() + "' " +
                                         " Where SvcID = '" + a.getMaDichVu() + "'";
             st.executeUpdate(qry);
-            st.close();
+//            st.close();
         }
         catch(SQLException ex){
             //báo lỗi
@@ -96,8 +96,8 @@ public class DichVuDAO {
                 dichvu.setTen(rs.getString(2));
                 dichvu.setGia(rs.getInt(3));
             }
-            rs.close();
-            st.close();
+//            rs.close();
+//            st.close();
         }
         catch(SQLException ex){
             //báo lỗi

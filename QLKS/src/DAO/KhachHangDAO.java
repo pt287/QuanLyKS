@@ -22,7 +22,7 @@ public class KhachHangDAO {
             qry = qry + "'" + kh.getCCCD() + "')";
             st.executeUpdate(qry);
             st.executeUpdate("Set Foreign_key_checks = 1");
-            st.close();
+//            st.close();
         }
         catch(SQLException ex){
             //JOPtionPane.ShowMessageDialog(null,"Lỗi ghi thông tin người dùng!");
@@ -43,15 +43,15 @@ public class KhachHangDAO {
                 kh.setCCCD(rs.getString(4));
                 dskh.add(kh);
             }
-            rs.close();
-            st.close();
+//            rs.close();
+//            st.close();
         }
         catch(SQLException ex){
             //JOptionPane.ShowMessageDialog(null,"Lỗi đọc thông tin Sinh Viên!");
         }
         return dskh;
     }
-        public void Sua(KhachHangDTO a){
+    public void Sua(KhachHangDTO a){
         try {
             st = con.createStatement();
             st.executeUpdate("SET FOREIGN_KEY_CHECKS = 0");
@@ -63,11 +63,10 @@ public class KhachHangDAO {
                 "WHERE ClientID = '" + a.getMaKhachHang() + "'";
             st.executeUpdate(qry);
             st.executeUpdate("SET FOREIGN_KEY_CHECKS = 1");
-            st.close();
+//            st.close();
         } catch (SQLException ex) {
             // Xử lý ngoại lệ
             ex.printStackTrace(); // In lỗi ra console hoặc ghi log
         }
     }
-}
 }

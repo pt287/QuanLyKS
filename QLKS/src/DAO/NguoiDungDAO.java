@@ -23,8 +23,8 @@ public class NguoiDungDAO {
                 String upql = "update quanly set MngCount = " + rs.getInt(1) + " WHERE MngID = '" + mql +"';";
                 st.executeUpdate(upql);
             }
-            rs.close();
-            st.close();
+//            rs.close();
+//            st.close();
         }catch(SQLException ex){
             //báo lỗi
         }
@@ -64,7 +64,7 @@ public class NguoiDungDAO {
             }
     
             st.executeUpdate("SET FOREIGN_KEY_CHECKS = 1");
-            st.close();
+//            st.close();
         } catch (SQLException ex) {
             ex.printStackTrace(); // In lỗi ra console hoặc ghi log
         }
@@ -105,8 +105,8 @@ public class NguoiDungDAO {
                     dsnd.add(nv);
                 }
             }
-            rs.close();
-            st.close();
+//            rs.close();
+//            st.close();
         } catch(SQLException ex){
             // Xử lý ngoại lệ
             System.out.println("Không thể truy vấn dữ liệu người dùng");
@@ -131,8 +131,8 @@ public class NguoiDungDAO {
                     return rs.getString(1);
                 }
             }
-            rs.close();
-            st.close();
+//            rs.close();
+//            st.close();
         }  
         catch(SQLException ex){
         //báo lỗi
@@ -147,7 +147,7 @@ public class NguoiDungDAO {
             qry = qry + "'"+mnd +"'";
             st.executeUpdate(qry);
             st.executeUpdate("Set Foreign_key_checks = 1");
-            st.close();
+//            st.close();
         }
         catch(SQLException ex){
             //báo lỗi
@@ -184,8 +184,8 @@ public class NguoiDungDAO {
             }
     
             st.executeUpdate("SET FOREIGN_KEY_CHECKS = 1");
-            rs.close();
-            st.close();
+//            rs.close();
+//            st.close();
         } catch (SQLException ex) {
             // Xử lý ngoại lệ
             ex.printStackTrace(); // In lỗi ra console hoặc ghi log
@@ -200,8 +200,8 @@ public class NguoiDungDAO {
                 int count = rs.getInt(1);
                 return count > 0;
             }
-            rs.close();
-            st.close();
+//            rs.close();
+//            st.close();
         } catch (SQLException ex) {
             ex.printStackTrace(); // Xử lý ngoại lệ
         }
@@ -216,8 +216,8 @@ public class NguoiDungDAO {
                 int count = rs.getInt(1);
                 return count > 0;
             }
-            rs.close();
-            st.close();
+//            rs.close();
+//            st.close();
         } catch (SQLException ex) {
             ex.printStackTrace(); // Xử lý ngoại lệ
         }
@@ -231,8 +231,8 @@ public class NguoiDungDAO {
             if (rs.next()) {
                 return rs.getString(4);
             }
-            rs.close();
-            st.close();
+//            rs.close();
+//            st.close();
         } catch (SQLException ex) {
             ex.printStackTrace(); // Xử lý ngoại lệ
         }

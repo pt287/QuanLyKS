@@ -2,6 +2,8 @@ package BUS;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import DTO.KhachHangDTO;
 import DTO.Phong.PhongDTO;
 import DTO.Phong.PhongThuongDTO;
 import DTO.Phong.PhongVipDTO;
@@ -55,5 +57,18 @@ public class PhongBUS {
             }
             dem++;
         }
+    }
+    public ArrayList<PhongDTO> TimKiem(String mp, String sp, String lp, String tt, int gt, int gd){
+        ArrayList<PhongDTO> arr=new ArrayList<>();
+        for (PhongDTO a:dsphong){
+            if ((a.getMaPhong().substring(0, 3).toLowerCase().contains(lp) || lp==null) && 
+                (a.getMaPhong().toLowerCase().contains(mp) || mp==null) && 
+                (a.getSoPhong().toLowerCase().contains(sp) || sp==null) &&
+                (a.getTinhTrang().toLowerCase().contains(tt) || tt==null) &&
+                (a.getDonGia()>=gt && (a.getDonGia()<= gd || gd==-1))) {
+                arr.add(a);
+            }
+        }
+        return arr;
     }
 }
