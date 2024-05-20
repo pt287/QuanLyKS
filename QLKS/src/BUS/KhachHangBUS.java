@@ -7,6 +7,7 @@ package BUS;
 import java.util.ArrayList;
 
 import DAO.KhachHangDAO;
+import DTO.HoaDonDTO;
 import DTO.KhachHangDTO;
 import DTO.Phong.PhongDTO;
 
@@ -35,5 +36,17 @@ public class KhachHangBUS {
                 break;
             }
         }
+    }
+    public ArrayList<KhachHangDTO> TimKiem(String mkh,String ten,String sdt,String cccd){
+        ArrayList<KhachHangDTO> ds= new ArrayList<>();
+        for (KhachHangDTO a:dskh){
+            if ((a.getMaKhachHang().toLowerCase().contains(mkh) || mkh==null) && 
+                (a.getTen().toLowerCase().contains(ten) || ten==null) && 
+                (a.getSoDienThoai().toLowerCase().contains(sdt) || sdt==null) &&
+                (a.getCCCD().toLowerCase().contains(cccd) || cccd==null)) {
+                ds.add(a);
+            }
+        }
+        return ds;
     }
 }
