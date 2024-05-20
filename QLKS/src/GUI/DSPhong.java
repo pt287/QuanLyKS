@@ -81,6 +81,14 @@ public class DSPhong extends javax.swing.JPanel {
         JLabel007 = new javax.swing.JLabel();
         XuatExcel = new javax.swing.JButton();
         NhapExcel = new javax.swing.JButton();
+        tk1 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        tk2 = new javax.swing.JTextField();
+        tk3 = new javax.swing.JTextField();
+        tk4 = new javax.swing.JTextField();
+        tkgia1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        tkgia3 = new javax.swing.JTextField();
 
         setMinimumSize(new java.awt.Dimension(1920, 1080));
         setPreferredSize(new java.awt.Dimension(1720, 1080));
@@ -306,25 +314,86 @@ public class DSPhong extends javax.swing.JPanel {
             }
         });
 
+        tk1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tk1KeyReleased(evt);
+            }
+        });
+
+        jTextField5.setText("jTextField1");
+
+        tk2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tk2KeyReleased(evt);
+            }
+        });
+
+        tk3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tk3KeyReleased(evt);
+            }
+        });
+
+        tk4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tk4KeyReleased(evt);
+            }
+        });
+
+        tkgia1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tkgia1KeyReleased(evt);
+            }
+        });
+
+        jLabel1.setText("Đến:");
+
+        tkgia3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tkgia3KeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(290, 290, 290)
-                        .addComponent(TextDSP, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(NhapExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(XuatExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(tk1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tk2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tk3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tk4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tkgia1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tkgia3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(290, 290, 290)
+                        .addComponent(TextDSP, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                        .addComponent(NhapExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(XuatExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)))
                 .addComponent(PanelChinhSua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(645, Short.MAX_VALUE))
+                .addContainerGap(650, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,15 +406,36 @@ public class DSPhong extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PanelChinhSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 10, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(tk1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tk2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tk3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tk4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tkgia1)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tkgia3)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(410, 410, 410))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -446,6 +536,114 @@ public class DSPhong extends javax.swing.JPanel {
         TaoBang();
     }//GEN-LAST:event_NhapExcelActionPerformed
 
+    private void tk1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tk1KeyReleased
+        // TODO add your handling code here:
+        String lp=tk1.getText().toLowerCase();
+        String mp=tk2.getText().toLowerCase();
+        String sp=tk3.getText().toLowerCase();
+        String tt=tk4.getText().toLowerCase();
+        int gt,gd;
+        try{
+            gt=Integer.parseInt(tkgia1.getText());
+            gd=Integer.parseInt(tkgia3.getText());
+        }catch(NumberFormatException e){
+            gt=0;
+            gd=-1;
+        }
+        dsphong=phong.TimKiem(lp, mp, sp, tt, gt, gd);
+        TaoBang();
+    }//GEN-LAST:event_tk1KeyReleased
+
+    private void tk2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tk2KeyReleased
+        // TODO add your handling code here:
+        String lp=tk1.getText().toLowerCase();
+        String mp=tk2.getText().toLowerCase();
+        String sp=tk3.getText().toLowerCase();
+        String tt=tk4.getText().toLowerCase();
+        int gt,gd;
+        try{
+            gt=Integer.parseInt(tkgia1.getText());
+            gd=Integer.parseInt(tkgia3.getText());
+        }catch(NumberFormatException e){
+            gt=0;
+            gd=-1;
+        }
+        dsphong=phong.TimKiem(lp, mp, sp, tt, gt, gd);
+        TaoBang();
+    }//GEN-LAST:event_tk2KeyReleased
+
+    private void tk3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tk3KeyReleased
+        // TODO add your handling code here:
+        String lp=tk1.getText().toLowerCase();
+        String mp=tk2.getText().toLowerCase();
+        String sp=tk3.getText().toLowerCase();
+        String tt=tk4.getText().toLowerCase();
+        int gt,gd;
+        try{
+            gt=Integer.parseInt(tkgia1.getText());
+            gd=Integer.parseInt(tkgia3.getText());
+        }catch(NumberFormatException e){
+            gt=0;
+            gd=-1;
+        }
+        dsphong=phong.TimKiem(lp, mp, sp, tt, gt, gd);
+        TaoBang();
+    }//GEN-LAST:event_tk3KeyReleased
+
+    private void tk4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tk4KeyReleased
+        // TODO add your handling code here:
+        String lp=tk1.getText().toLowerCase();
+        String mp=tk2.getText().toLowerCase();
+        String sp=tk3.getText().toLowerCase();
+        String tt=tk4.getText().toLowerCase();
+        int gt=0,gd=-1;
+        try{
+            gt=Integer.parseInt(tkgia1.getText());
+            gd=Integer.parseInt(tkgia3.getText());
+        }catch(NumberFormatException e){
+            gt=0;
+            gd=-1;
+        }
+        dsphong=phong.TimKiem(lp, mp, sp, tt, gt, gd);
+        TaoBang();
+    }//GEN-LAST:event_tk4KeyReleased
+
+    private void tkgia1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tkgia1KeyReleased
+        // TODO add your handling code here:
+        String lp=tk1.getText().toLowerCase();
+        String mp=tk2.getText().toLowerCase();
+        String sp=tk3.getText().toLowerCase();
+        String tt=tk4.getText().toLowerCase();
+        int gt,gd;
+        try{
+            gt=Integer.parseInt(tkgia1.getText());
+            gd=Integer.parseInt(tkgia3.getText());
+        }catch(NumberFormatException e){
+            gt=0;
+            gd=-1;
+        }
+        dsphong=phong.TimKiem(lp, mp, sp, tt, gt, gd);
+        TaoBang();
+    }//GEN-LAST:event_tkgia1KeyReleased
+
+    private void tkgia3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tkgia3KeyReleased
+        // TODO add your handling code here:
+        String lp=tk1.getText().toLowerCase();
+        String mp=tk2.getText().toLowerCase();
+        String sp=tk3.getText().toLowerCase();
+        String tt=tk4.getText().toLowerCase();
+        int gt,gd;
+        try{
+            gt=Integer.parseInt(tkgia1.getText());
+            gd=Integer.parseInt(tkgia3.getText());
+        }catch(NumberFormatException e){
+            gt=0;
+            gd=-1;
+        }
+        dsphong=phong.TimKiem(lp, mp, sp, tt, gt, gd);
+        TaoBang();
+    }//GEN-LAST:event_tkgia3KeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable BangDSPhong;
@@ -466,7 +664,15 @@ public class DSPhong extends javax.swing.JPanel {
     private javax.swing.JLabel TextTinhTrang;
     private javax.swing.JComboBox<String> TinhTrang;
     private javax.swing.JButton XuatExcel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField tk1;
+    private javax.swing.JTextField tk2;
+    private javax.swing.JTextField tk3;
+    private javax.swing.JTextField tk4;
+    private javax.swing.JTextField tkgia1;
+    private javax.swing.JTextField tkgia3;
     // End of variables declaration//GEN-END:variables
 }

@@ -44,7 +44,7 @@ public class DatPhong extends javax.swing.JPanel {
         for(int i=0;i<=PhongChuaDat.size()-1;i++){
             PhongDTO d = PhongChuaDat.get(i);
             String LPhong = d.getMaPhong().substring(0, 3);
-            if(LPhong.equals(type)){
+            if(LPhong.contains(type)){
                 table.addRow(new Object[]{LPhong,d.getMaPhong(),d.getSoPhong(),d.getDonGia()});
             }
         }
@@ -406,7 +406,7 @@ public class DatPhong extends javax.swing.JPanel {
     private void RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshActionPerformed
         // TODO add your handling code here:
         UpdateDate();
-        PhongChuaDat = dataRoom.DatPhong(DateIn, DateOut); 
+        PhongChuaDat = dataRoom.DatPhong(DateIn, DateOut);
     }//GEN-LAST:event_RefreshActionPerformed
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
