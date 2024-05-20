@@ -31,12 +31,11 @@ public class DichVu extends javax.swing.JPanel {
         
         initComponents();
         this.menu=menu;
+        dsdv=datadv.docDSDV();
         CheckDV();
-        
     }
     
     public void CheckDV(){
-        dsdv=datadv.docDSDV();
         DefaultTableModel table=new DefaultTableModel();
         BangDichVu.setModel(table);
         table.addColumn("Mã Dich Vụ");
@@ -253,8 +252,8 @@ public class DichVu extends javax.swing.JPanel {
 
     private void ButtonXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonXacNhanActionPerformed
         // TODO add your handling code here:
-        for(int i=0;i<dsdv.size();i++){
-            DichVuDTO addR = dsdv.get(i);
+        for(int i=0;i<dvdd.size();i++){
+            DichVuDTO addR = dvdd.get(i);
             ChiTietHoaDonInDTO BDadd = new ChiTietHoaDonInDTO();
             BDadd.setMaPhong("");
             BDadd.setMaHoaDon(dataBill.MaHDmax());
@@ -283,23 +282,12 @@ public class DichVu extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"Chưa chọn dịch vụ!","Lỗi",JOptionPane.ERROR_MESSAGE);
         }
         else{
-            String m = BangDichVu.getValueAt(a, 0).toString();  
-            boolean checkdup = false;
-            for(int i=0;i<dvdd.size();i++){
-                DichVuDTO check = dvdd.get(i);
+            String m = BangDichVu.getValueAt(a, 0).toString();
+            for(int i=0;i<dsdv.size();i++){
+                DichVuDTO check = dsdv.get(i);
                 if(check.getMaDichVu().equals(m)){
-                    JOptionPane.showMessageDialog(this,"Dịch vụ này đã chọn này đã chọn!","Lỗi",JOptionPane.ERROR_MESSAGE);
-                    checkdup=true;
+                    dvdd.add(datadv.docdichvu(m));
                     break;
-                }
-            }
-            if(!checkdup){
-                for(int i=0;i<dsdv.size();i++){
-                    DichVuDTO check = dsdv.get(i);
-                    if(check.getMaDichVu().equals(m)){
-                        dvdd.add(datadv.docdichvu(m));
-                        break;
-                    }
                 }
             }
             DichVuDD();
