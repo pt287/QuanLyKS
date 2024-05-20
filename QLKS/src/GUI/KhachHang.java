@@ -102,6 +102,30 @@ public class KhachHang extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(0, 16, 31));
         jLabel1.setText("Danh Sách Khách Hàng");
 
+        TK1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TK1KeyReleased(evt);
+            }
+        });
+
+        TK2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TK2KeyReleased(evt);
+            }
+        });
+
+        TK3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TK3KeyReleased(evt);
+            }
+        });
+
+        TK4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TK4KeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -360,6 +384,30 @@ public class KhachHang extends javax.swing.JPanel {
         }
         TaoBang();
     }//GEN-LAST:event_SuaButtonActionPerformed
+
+    private void TK1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TK1KeyReleased
+        // TODO add your handling code here:
+        dskh=data.TimKiem(TK1.getText().toLowerCase(), TK2.getText().toLowerCase(), TK3.getText().toLowerCase(), TK4.getText().toLowerCase());
+        TaoBang();
+    }//GEN-LAST:event_TK1KeyReleased
+
+    private void TK2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TK2KeyReleased
+        // TODO add your handling code here:
+        dskh=data.TimKiem(TK1.getText().toLowerCase(), TK2.getText().toLowerCase(), TK3.getText().toLowerCase(), TK4.getText().toLowerCase());
+        TaoBang();
+    }//GEN-LAST:event_TK2KeyReleased
+
+    private void TK3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TK3KeyReleased
+        // TODO add your handling code here:
+        dskh=data.TimKiem(TK1.getText().toLowerCase(), TK2.getText().toLowerCase(), TK3.getText().toLowerCase(), TK4.getText().toLowerCase());
+        TaoBang();
+    }//GEN-LAST:event_TK3KeyReleased
+
+    private void TK4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TK4KeyReleased
+        // TODO add your handling code here:
+        dskh=data.TimKiem(TK1.getText().toLowerCase(), TK2.getText().toLowerCase(), TK3.getText().toLowerCase(), TK4.getText().toLowerCase());
+        TaoBang();
+    }//GEN-LAST:event_TK4KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

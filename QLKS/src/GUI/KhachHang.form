@@ -151,12 +151,24 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TK1">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TK1KeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="TK2">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TK2KeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="TK3">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TK3KeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="TK4">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TK4KeyReleased"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
