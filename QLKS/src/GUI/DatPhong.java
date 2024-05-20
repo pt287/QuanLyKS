@@ -32,8 +32,24 @@ public class DatPhong extends javax.swing.JPanel {
         initComponents();        
         this.menu=m;
         UpdateDate();
+        allPhong();
    }
 
+    public void allPhong(){
+        PhongChuaDat = dataRoom.DatPhong(DateIn, DateOut);
+        DefaultTableModel table = new DefaultTableModel();
+        KQPhong.setModel(table);
+        table.addColumn("Loại Phòng");
+        table.addColumn("Mã phòng");
+        table.addColumn("Số Phòng");
+        table.addColumn("Giá Tiền");
+        for(int i=0;i<=PhongChuaDat.size()-1;i++){
+            PhongDTO d = PhongChuaDat.get(i);
+            String LPhong = d.getMaPhong().substring(0, 3);
+            table.addRow(new Object[]{LPhong,d.getMaPhong(),d.getSoPhong(),d.getDonGia()});
+            }
+        }
+    
     public void CheckPhong(String type){
         PhongChuaDat = dataRoom.DatPhong(DateIn, DateOut);
         DefaultTableModel table = new DefaultTableModel();
@@ -59,7 +75,8 @@ public class DatPhong extends javax.swing.JPanel {
         fieldDOut.setText(DateOut.toString());
     }
     
-    public void DatPhong(){
+    public void checkDatPhong(){
+        PhongDaDat.removeAll();
         DefaultTableModel table = new DefaultTableModel();
         PhongDaDat.setModel(table);
         table.addColumn("Loại Phòng");
@@ -225,6 +242,11 @@ public class DatPhong extends javax.swing.JPanel {
         Sub.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Sub.setForeground(new java.awt.Color(0, 1, 15));
         Sub.setText("Xóa");
+        Sub.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SubMouseClicked(evt);
+            }
+        });
         Sub.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SubActionPerformed(evt);
@@ -370,21 +392,26 @@ public class DatPhong extends javax.swing.JPanel {
                     }
                 }
             }
-            DatPhong();
+            checkDatPhong();
         }
     }//GEN-LAST:event_AddActionPerformed
 
     private void SubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubActionPerformed
-        // TODO add your handling code here:
-        int a = PhongDaDat.getSelectedRow();
-        if(a==-1){
-            JOptionPane.showMessageDialog(this,"Chưa chọn phòng!","Lỗi",JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-            String mp = KQPhong.getValueAt(a, 1).toString();
-            PhongDat.remove(a);
-            }
-        DatPhong();
+//        // TODO add your handling code here:
+//        int a = PhongDaDat.getSelectedRow();
+//        if(a==-1){
+//            JOptionPane.showMessageDialog(this,"Chưa chọn phòng!","Lỗi",JOptionPane.ERROR_MESSAGE);
+//        }
+//        else{
+//            String mp = KQPhong.getValueAt(a, 1).toString();
+////            for(int i=0;i<PhongDat.size();i++){
+////                PhongDTO check = PhongDat.get(i);
+//                //if(check.getMaPhong().equals(mp))
+//                    //PhongDat.remove(i);
+//            PhongDat.removeIf(n -> n.getMaPhong().equals(mp));
+//            //}
+//        }
+//        DatPhong();
     }//GEN-LAST:event_SubActionPerformed
 
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
@@ -397,17 +424,26 @@ public class DatPhong extends javax.swing.JPanel {
             BDadd.setMaDichVu("");
             dataBD.them(BDadd);
         }
-        PhongDat=new ArrayList<>();
-        CheckPhong("");
-        DatPhong();
-        dataBD.UpdateMoney(dataBill.MaHDmax());
         menu.ThoatDatPhong();
     }//GEN-LAST:event_ConfirmActionPerformed
 
     private void RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshActionPerformed
         // TODO add your handling code here:
         UpdateDate();
+        checkDatPhong();
     }//GEN-LAST:event_RefreshActionPerformed
+
+    private void SubMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SubMouseClicked
+        // TODO add your handling code here:
+        int a = PhongDaDat.getSelectedRow();
+        if(a==-1){
+            JOptionPane.showMessageDialog(this,"Chưa chọn phòng!","Lỗi",JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            PhongDat.remove(a);
+        }
+        checkDatPhong();
+    }//GEN-LAST:event_SubMouseClicked
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Add;
