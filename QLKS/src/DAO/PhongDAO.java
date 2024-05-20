@@ -103,14 +103,12 @@ public class PhongDAO {
         String DateOut = out.toString();
         try{
             //String qry = "SELECT R.RoomID, R.RoomPrice, R.RoomType, R.RoomNum,R.RoomSTT FROM Phong AS R WHERE R.RoomID NOT IN (SELECT BD.RoomID FROM ChiTietHoaDon AS BD INNER JOIN HoaDon AS B ON BD.BillID = B.BillID WHERE (B.DateIn BETWEEN '"+DateIn+"' AND '"+DateOut+"') OR (B.DateOUT BETWEEN '"+DateIn+"' AND '"+DateOut+"') OR (B.DateIN < '"+DateIn+"' AND B.DateOUT > '"+DateOut+"'))";
-            String qry = "SELECT * FROM Phong p " +
-            "LEFT JOIN ChiTietHoaDon c ON p.RoomID = c.RoomID " +
-            "LEFT JOIN HoaDon h ON c.BillID = h.BillID " +
-            "WHERE (h.DateIn > '" + DateIn +"' AND h.DateOut < '"+DateOut+"') " +
-            "OR (h.DateIn < '"+ DateIn +"' AND h.DateOut > '"+ DateOut +"') " +
-            "OR (h.DateIn < '"+DateIn+"' AND h.DateOut BETWEEN '"+DateIn+"' AND '"+DateOut+"') " +
-            "OR (h.DateIn BETWEEN '"+DateIn+"' AND '"+DateOut+"' AND h.DateOut > '"+DateOut+"') " +
-            "OR (h.DateIn IS NULL OR h.DateOut IS NULL)";
+            String qry ="""
+            SELECT DISTINCT p.RoomID,p.RoomNum,p.RoomType,p.RoomSTT,p.RoomNote,p.RoomPrice FROM Phong p 
+                        LEFT JOIN ChiTietHoaDon c ON p.RoomID = c.RoomID 
+                        LEFT JOIN HoaDon h ON c.BillID = h.BillID 
+                        WHERE p.ROOMID NOT IN (SELECT BD.RoomID FROM ChiTietHoaDon AS BD INNER JOIN HoaDon AS B ON BD.BillID = B.BillID WHERE (B.DateIn BETWEEN '2024-11-21' AND '2024-11-25') OR (B.DateOUT BETWEEN '2024-11-21' AND '2024-11-25') OR (B.DateIN < '2024-11-21' AND B.DateOUT > '2024-11-25'));
+                        """;
             st = con.createStatement();
             rs= st.executeQuery(qry);
             while (rs.next()){
