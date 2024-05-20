@@ -35,6 +35,7 @@ public class DatPhong extends javax.swing.JPanel {
 
     public void CheckPhong(String type){
         UpdateDate();
+        PhongChuaDat.removeAll(PhongDat);
         PhongChuaDat = dataRoom.DatPhong(DateIn, DateOut); 
         DefaultTableModel table = new DefaultTableModel();
         KQPhong.setModel(table);
