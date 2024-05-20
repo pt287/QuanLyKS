@@ -18,9 +18,10 @@ public class ChiTietHoaDonDAO {
         try{
             st=con.createStatement();
             rs=st.executeQuery("select SUM(BDPrice) from chitiethoadon Where BillID = " + mhd);
-            st.executeUpdate("update hoadon set BillTotal = " + rs.getInt(1)+ " where BillID = " + mhd);
-            rs.close();
-            st.close();
+            while(rs.next()){
+            st.executeUpdate("update hoadon set BillTotal = " + rs.getInt(1)+ " where BillID = " + mhd);}
+//            rs.close();
+//            st.close();
         } catch(SQLException ex){
             //báo lỗi
         }
@@ -50,7 +51,7 @@ public class ChiTietHoaDonDAO {
                 rs=st.executeQuery("Select RoomPrice From Phong Where RoomID = '" + cthdin.getMaPhong() + "';");
                 while(rs.next())
                     giatien = giatien + rs.getInt(1);
-                rs.close();
+//                rs.close();
             }
             qry= qry + giatien +")";
             st.executeUpdate(qry);
