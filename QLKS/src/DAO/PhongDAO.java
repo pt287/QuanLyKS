@@ -116,8 +116,8 @@ public class PhongDAO {
             while (rs.next()){
                 PhongDTO d = new PhongDTO();
                 d.setMaPhong(rs.getString(1));
-                d.setDonGia(rs.getInt(2));
-                d.setSoPhong(rs.getString(4));
+                d.setDonGia(rs.getInt(6));
+                d.setSoPhong(rs.getString(2));
                 list.add(d);
 //                rs.close();
 //                st.close();
