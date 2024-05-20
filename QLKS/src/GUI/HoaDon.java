@@ -66,10 +66,10 @@ public class HoaDon extends javax.swing.JPanel {
         table.addColumn("Giá");
         BangHoaDon.getTableHeader().setResizingAllowed(false);
         BangHoaDon.setColumnSelectionAllowed(false);
-        for(HoaDonDTO p:dshd){
-            table.addRow(new Object[]{p.getMaHoaDon(),p.getMaKhachHang(),p.getMaNhanVien(),p.getNgayNhan(),p.getNgayTra(),p.getTongTien()});
-        }
-
+        for(int i = dshd.size() - 1; i >= 0; i--) {
+            HoaDonDTO p = dshd.get(i);
+            table.addRow(new Object[]{p.getMaHoaDon(), p.getMaKhachHang(), p.getMaNhanVien(), p.getNgayNhan(), p.getNgayTra(), p.getTongTien()});
+        }       
     }
     public void TaoBangcthd(){
         if (taohoadon) {
@@ -581,19 +581,20 @@ public class HoaDon extends javax.swing.JPanel {
 
     private void ButtonTaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonTaoHDActionPerformed
         // TODO add your handling code here:
-        taohoadon=true;
-        try{
-            LocalDate ngaynhan=LocalDate.of(Integer.parseInt(NhapNamNhan.getText()),Integer.parseInt(NhapThangNhan.getText()),Integer.parseInt(NhapNgayNhan.getText()));
-            LocalDate ngaytra=LocalDate.of(Integer.parseInt(NhapNamTra.getText()),Integer.parseInt(NhapThangTra.getText()),Integer.parseInt(NhapNgayTra.getText()));
-            boolean isAfter = ngaytra.isAfter(ngaynhan);
+        if(!taohoadon){
+            taohoadon=true;
             try{
-                 if(MaKhachHang.getText().length() <= 8 && !MaKhachHang.getText().equals("")){//them casi kiem tra ma khach hang ton tai k
-                    if(isAfter){
-                       hd.them(new HoaDonInDTO(MaKhachHang.getText(),MaNhanVien.getText(),ngaynhan,ngaytra));
+                LocalDate ngaynhan=LocalDate.of(Integer.parseInt(NhapNamNhan.getText()),Integer.parseInt(NhapThangNhan.getText()),Integer.parseInt(NhapNgayNhan.getText()));
+                LocalDate ngaytra=LocalDate.of(Integer.parseInt(NhapNamTra.getText()),Integer.parseInt(NhapThangTra.getText()),Integer.parseInt(NhapNgayTra.getText()));
+                boolean isAfter = ngaytra.isAfter(ngaynhan);
+                try{
+                    if(MaKhachHang.getText().length() <= 8 && !MaKhachHang.getText().equals("")){//them casi kiem tra ma khach hang ton tai k
+                        if(isAfter){
+                            hd.them(new HoaDonInDTO(MaKhachHang.getText(),MaNhanVien.getText(),ngaynhan,ngaytra));
+                        }else{
+                            JOptionPane.showMessageDialog(this, "Ngày trả phải sau ngày nhận", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                        }
                     }else{
-                        JOptionPane.showMessageDialog(this, "Ngày trả phải sau ngày nhận", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                    }
-                }else{
                         JOptionPane.showMessageDialog(this, "Mã khách hàng phải đủ 8 ký tự", "Lỗi", JOptionPane.ERROR_MESSAGE);
                     }   
                   
@@ -601,8 +602,11 @@ public class HoaDon extends javax.swing.JPanel {
                     ex.printStackTrace();
             }
             TaoBangHd();
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(this, "Lỗi ngày nhận/trả!!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(this, "Lỗi ngày nhận/trả!!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Đã tạo hóa đơn!", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_ButtonTaoHDActionPerformed
 
