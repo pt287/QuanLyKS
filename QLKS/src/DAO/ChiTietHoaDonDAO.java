@@ -67,14 +67,20 @@ public class ChiTietHoaDonDAO {
                 rs=st.executeQuery("Select RoomPrice From Phong Where RoomID = '" + cthdin.getMaPhong() + "';");
                 while(rs.next())
                     giatien = giatien + (rs.getInt(1)*intSoNgay);
-//                rs.close();
+                rs.close();
             }
             qry= qry + giatien +")";
             st.executeUpdate(qry);
             st.executeUpdate("Set Foreign_key_checks = 1");
             rs = st.executeQuery("Select MAX(BILLID) FROM CHITIETHOADON");
-            while(rs.next())
+            while(rs.next()){
                 cthdout.setMaHoaDon(rs.getInt(1));
+                rs.close();
+            }
+            rs = st.executeQuery("Select MAX(BDID) FROM CHITIETHOADON");
+            while(rs.next()){
+                cthdout.setMaChiTietHoaDon(rs.getInt(1));
+            }
             cthdout.setMaHoaDon(cthdin.getMaHoaDon());
             cthdout.setMaDichVu(cthdin.getMaDichVu());
             cthdout.setMaPhong(cthdin.getMaPhong());
