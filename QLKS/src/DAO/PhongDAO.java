@@ -40,8 +40,8 @@ public class PhongDAO {
             }
             st.executeUpdate(qry);
             st.executeUpdate("Set Foreign_key_checks = 1");
-            rs.close();
-            st.close();
+//            rs.close();
+//            st.close();
         }
         catch(SQLException ex){
         }
