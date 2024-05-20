@@ -10,6 +10,8 @@ import DTO.ChiTietHoaDonDTO;
 import DTO.ChiTietHoaDonInDTO;
 import GUICHART.RoomRatio.RoomRatioModel;
 import GUICHART.ServiceRatio.SvcRatioModel;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 public class ChiTietHoaDonDAO {
     Connection con = ConnectionProvider.getCon();
     Statement st = null;
@@ -28,10 +30,21 @@ public class ChiTietHoaDonDAO {
     }
     public ChiTietHoaDonDTO them(ChiTietHoaDonInDTO cthdin)
     {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         ChiTietHoaDonDTO cthdout = new ChiTietHoaDonDTO();
+        String ngaynhantemp = "";
+        String ngaytratemp = "";
         try {
             st=con.createStatement();
-            st.executeUpdate("Set Foreign_key_checks = 0");
+            rs = st.executeQuery("Select DateIn, Dateout from HoaDon Where (Select Max(BillID) FROM HoaDon)");
+            while(rs.next()){
+                ngaynhantemp = rs.getString(1);
+                ngaytratemp = rs.getString(2);
+            }
+            LocalDate Ngaynhan = LocalDate.parse(ngaynhantemp,formatter);
+            LocalDate Ngaytra = LocalDate.parse(ngaytratemp,formatter);
+            long tongngay = Ngaynhan.until(Ngaytra, ChronoUnit.DAYS);
+            int tongngayint = Math.toIntExact(tongngay);
             int giatien = 0;
             String qry="Insert into ChiTietHoaDon(BillID, SvcID, RoomID, BDPRICE) Values(";
             qry = qry + "'" + cthdin.getMaHoaDon() + "',";
@@ -50,10 +63,11 @@ public class ChiTietHoaDonDAO {
                 qry = qry + "'" + cthdin.getMaPhong() + "',";
                 rs=st.executeQuery("Select RoomPrice From Phong Where RoomID = '" + cthdin.getMaPhong() + "';");
                 while(rs.next())
-                    giatien = giatien + rs.getInt(1);
+                    giatien = giatien + (rs.getInt(1)*tongngayint);
 //                rs.close();
             }
             qry= qry + giatien +")";
+            st.executeUpdate("Set Foreign_key_checks = 0");
             st.executeUpdate(qry);
             st.executeUpdate("Set Foreign_key_checks = 1");
             rs = st.executeQuery("Select MAX(BILLID) FROM CHITIETHOADON");
