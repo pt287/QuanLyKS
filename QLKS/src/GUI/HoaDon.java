@@ -582,7 +582,6 @@ public class HoaDon extends javax.swing.JPanel {
     private void ButtonTaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonTaoHDActionPerformed
         // TODO add your handling code here:
         if(!taohoadon){
-            taohoadon=true;
             try{
                 LocalDate ngaynhan=LocalDate.of(Integer.parseInt(NhapNamNhan.getText()),Integer.parseInt(NhapThangNhan.getText()),Integer.parseInt(NhapNgayNhan.getText()));
                 LocalDate ngaytra=LocalDate.of(Integer.parseInt(NhapNamTra.getText()),Integer.parseInt(NhapThangTra.getText()),Integer.parseInt(NhapNgayTra.getText()));
@@ -590,6 +589,7 @@ public class HoaDon extends javax.swing.JPanel {
                 try{
                     if(MaKhachHang.getText().length() <= 8 && !MaKhachHang.getText().equals("")){//them casi kiem tra ma khach hang ton tai k
                         if(isAfter){
+                            taohoadon=true;
                             hd.them(new HoaDonInDTO(MaKhachHang.getText(),MaNhanVien.getText(),ngaynhan,ngaytra));
                         }else{
                             JOptionPane.showMessageDialog(this, "Ngày trả phải sau ngày nhận", "Lỗi", JOptionPane.ERROR_MESSAGE);
