@@ -23,7 +23,7 @@ public class PhongDAO {
             String qry="Insert into Phong Values(";
             qry=qry+"'"+p.getMaPhong()+"',";
             qry=qry+"'"+p.getSoPhong()+"',";
-            if (!p.getMaPhong().equals("VIP")) {
+            if (!p.getMaPhong().contains("VIP")) {
                 PhongThuongDTO pt=(PhongThuongDTO)p;
                 qry=qry+"'"+pt.getKieuPhong()+"',";
             }else{
@@ -32,7 +32,7 @@ public class PhongDAO {
             qry=qry+"'"+p.getTinhTrang()+"',";
             qry=qry+"'"+p.getGhiChu()+"',";
             qry=qry+p.getDonGia()+",";
-            if(p.getMaPhong().equals("VIP")){
+            if(p.getMaPhong().contains("VIP")){
                 PhongVipDTO pv= (PhongVipDTO) p;
                 qry=qry+"'"+pv.getMaPhongAn()+"')";
             } else {
@@ -40,8 +40,6 @@ public class PhongDAO {
             }
             st.executeUpdate(qry);
             st.executeUpdate("Set Foreign_key_checks = 1");
-//            rs.close();
-//            st.close();
         }
         catch(SQLException ex){
         }
@@ -68,8 +66,8 @@ public class PhongDAO {
                     dsp.add(pt);
                 }
             }
-            rs.close();
-            st.close();
+//            rs.close();
+//            st.close();
         }
         catch(SQLException ex){
             //JOptionPane.ShowMessageDialog(null,"Lỗi đọc thông tin Sinh Viên!");
@@ -93,7 +91,7 @@ public class PhongDAO {
             qry = qry + "WHERE RoomID = '" + p.getMaPhong() + "'";
             st.executeUpdate(qry);
             st.executeUpdate("SET FOREIGN_KEY_CHECKS = 1");
-            st.close();
+//            st.close();
         } catch (SQLException ex) {
             // Xử lý ngoại lệ
             ex.printStackTrace(); // In lỗi ra console hoặc ghi log
@@ -104,7 +102,15 @@ public class PhongDAO {
         String DateIn = in.toString();
         String DateOut = out.toString();
         try{
-            String qry = "SELECT R.RoomID, R.RoomPrice, R.RoomType, R.RoomNum,R.RoomSTT FROM Phong AS R WHERE R.RoomID NOT IN (SELECT BD.RoomID FROM ChiTietHoaDon AS BD INNER JOIN HoaDon AS B ON BD.BillID = B.BillID WHERE (B.DateIn BETWEEN '"+DateIn+"' AND '"+DateOut+"') OR (B.DateOUT BETWEEN '"+DateIn+"' AND '"+DateOut+"') OR (B.DateIN < '"+DateIn+"' AND B.DateOUT > '"+DateOut+"'))";
+            //String qry = "SELECT R.RoomID, R.RoomPrice, R.RoomType, R.RoomNum,R.RoomSTT FROM Phong AS R WHERE R.RoomID NOT IN (SELECT BD.RoomID FROM ChiTietHoaDon AS BD INNER JOIN HoaDon AS B ON BD.BillID = B.BillID WHERE (B.DateIn BETWEEN '"+DateIn+"' AND '"+DateOut+"') OR (B.DateOUT BETWEEN '"+DateIn+"' AND '"+DateOut+"') OR (B.DateIN < '"+DateIn+"' AND B.DateOUT > '"+DateOut+"'))";
+            String qry = "SELECT * FROM Phong p " +
+            "LEFT JOIN ChiTietHoaDon c ON p.RoomID = c.RoomID " +
+            "LEFT JOIN HoaDon h ON c.BillID = h.BillID " +
+            "WHERE (h.DateIn > '" + DateIn +"' AND h.DateOut < '"+DateOut+"') " +
+            "OR (h.DateIn < '"+ DateIn +"' AND h.DateOut > '"+ DateOut +"') " +
+            "OR (h.DateIn < '"+DateIn+"' AND h.DateOut BETWEEN '"+DateIn+"' AND '"+DateOut+"') " +
+            "OR (h.DateIn BETWEEN '"+DateIn+"' AND '"+DateOut+"' AND h.DateOut > '"+DateOut+"') " +
+            "OR (h.DateIn IS NULL OR h.DateOut IS NULL)";
             st = con.createStatement();
             rs= st.executeQuery(qry);
             while (rs.next()){
@@ -112,10 +118,9 @@ public class PhongDAO {
                 d.setMaPhong(rs.getString(1));
                 d.setDonGia(rs.getInt(2));
                 d.setSoPhong(rs.getString(4));
-                d.setTinhTrang(rs.getString(5));
                 list.add(d);
-                rs.close();
-                st.close();
+//                rs.close();
+//                st.close();
             }
         }
         catch(SQLException ex){
@@ -137,8 +142,8 @@ public class PhongDAO {
                 phong.setSoPhong(rs.getString("RoomNum"));
                 phong.setDonGia(rs.getInt("RoomPrice"));
         }
-        rs.close();
-        st.close();
+//        rs.close();
+//        st.close();
     }
         catch(SQLException ex){
             //báo lỗi
