@@ -51,4 +51,23 @@ public class KhachHangDAO {
         }
         return dskh;
     }
+        public void Sua(KhachHangDTO a){
+        try {
+            st = con.createStatement();
+            st.executeUpdate("SET FOREIGN_KEY_CHECKS = 0");
+    
+            String qry = "UPDATE KhachHang SET " +
+                "ClientName = '" + a.getTen() + "', " +
+                "ClientPhoneNum = '" + a.getSoDienThoai() + "', " +
+                "ClientCID = '" + a.getCCCD() + "', " +
+                "WHERE ClientID = '" + a.getMaKhachHang() + "'";
+            st.executeUpdate(qry);
+            st.executeUpdate("SET FOREIGN_KEY_CHECKS = 1");
+            st.close();
+        } catch (SQLException ex) {
+            // Xử lý ngoại lệ
+            ex.printStackTrace(); // In lỗi ra console hoặc ghi log
+        }
+    }
+}
 }
