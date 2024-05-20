@@ -10,6 +10,10 @@ import DTO.ChiTietHoaDonDTO;
 import DTO.ChiTietHoaDonInDTO;
 import GUICHART.RoomRatio.RoomRatioModel;
 import GUICHART.ServiceRatio.SvcRatioModel;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 public class ChiTietHoaDonDAO {
     Connection con = ConnectionProvider.getCon();
     Statement st = null;
@@ -30,9 +34,21 @@ public class ChiTietHoaDonDAO {
     {
         ChiTietHoaDonDTO cthdout = new ChiTietHoaDonDTO();
         try {
+            String Sngaynhan = "";
+            String Sngaytra = "";
             st=con.createStatement();
             st.executeUpdate("Set Foreign_key_checks = 0");
+            rs= st.executeQuery("SELECT DateIn, DateOut FROM HoaDon WHERE BillID = (SELECT MAX(BillID) FROM HoaDon);");
+            while(rs.next()){
+                Sngaynhan = rs.getString(1);
+                Sngaytra = rs.getString(2);
+            }
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate ngaynhan = LocalDate.parse(Sngaynhan, formatter);
+            LocalDate ngaytra = LocalDate.parse(Sngaytra, formatter);
             int giatien = 0;
+            long longSoNgay = ngaynhan.until(ngaytra, ChronoUnit.DAYS);
+            int intSoNgay = Math.toIntExact(longSoNgay);
             String qry="Insert into ChiTietHoaDon(BillID, SvcID, RoomID, BDPRICE) Values(";
             qry = qry + "'" + cthdin.getMaHoaDon() + "',";
             if(cthdin.getMaDichVu().equals("")){
@@ -50,7 +66,7 @@ public class ChiTietHoaDonDAO {
                 qry = qry + "'" + cthdin.getMaPhong() + "',";
                 rs=st.executeQuery("Select RoomPrice From Phong Where RoomID = '" + cthdin.getMaPhong() + "';");
                 while(rs.next())
-                    giatien = giatien + rs.getInt(1);
+                    giatien = giatien + (rs.getInt(1)*intSoNgay);
 //                rs.close();
             }
             qry= qry + giatien +")";
@@ -96,7 +112,7 @@ public class ChiTietHoaDonDAO {
         ArrayList RRlist = new ArrayList<RoomRatioModel>();
         try{
             st=con.createStatement();
-            rs=st.executeQuery("Select R.RoomType as RType ,Count(BD.RoomID) as Count From Phong as R, chitiethoadon as BD where BD.RoomID=R.RoomID GROUP by R.RoomType; ");
+            rs=st.executeQuery("Select R.RoomType as RType ,Count(BD.RoomID) as Count From Phong as R, chitiethoadon as BD where BD.RoomID=R.RoomID GROUP by R.RoomType");
             while(rs.next()){
                 RoomRatioModel model = new RoomRatioModel();
                 model.setRType(rs.getString(1));
